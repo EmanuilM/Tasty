@@ -1,0 +1,26 @@
+.gallery  { 
+    margin-top: 300px;
+ }
+ 
+ 
+ 
+ .gallery-wrapper ul  { 
+     list-style: none;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+ }
+ 
+ .gallery-wrapper ul li  { 
+    margin: 10px;
+    flex-grow: 1;
+ }
+ 
+ 
+ .gallery-wrapper ul li img { 
+     max-height: 300px;
+     width: 100%; 
+     object-fit: cover;
+ }
+ 
+ 

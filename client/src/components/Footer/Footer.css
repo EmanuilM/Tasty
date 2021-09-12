@@ -1,0 +1,53 @@
+footer { 
+    background: #383838;
+    color: white;
+    height: 230px;
+}
+
+footer p { 
+    text-align: center;
+}
+
+
+.footer-wrapper { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.footer-social-media-icons ul  { 
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.footer-social-media-icons ul li  { 
+    margin: 10px;
+    font-size: 20px;
+}
+
+.footer-social-media-icons ul li a { 
+    color: white;
+}
+
+.footer-social-media-icons ul li a:hover { 
+    color: rgb(182, 178, 178);
+}
+
+.footer-support-section ul { 
+    list-style: none;
+    margin: 10px;
+    font-size: 20px;
+    padding: 0;
+}
+
+.footer-restaurant-info { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-info-wrapper { 
+    margin:auto 10px;
+}  

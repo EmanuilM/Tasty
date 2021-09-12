@@ -1,0 +1,81 @@
+header { 
+    background: #383838;
+    height: 80px;
+}
+
+header nav ul {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    list-style: none;
+}
+
+header nav ul li {
+    margin: 30px 10px;
+}
+
+header nav ul a {
+    text-decoration: none;
+    margin: 10px;
+    font-size: 20px;
+    color: white;
+}
+
+header nav ul li:hover { 
+    animation-name: animationButton;
+    animation-duration: 1s;
+}
+
+.fa-bars { 
+    display: none;
+    font-size: 40px;
+    color: white;
+    padding: 10px 0px 0px 10px;
+}
+
+.logo-wrapper { 
+    height: 0;
+}
+
+.logo-wrapper img { 
+    height: 87px;
+    mix-blend-mode: multiply;
+    background-color: blue;
+}
+
+@media screen and (max-width:900px){
+   .showMenu { 
+    height: 490px;
+    }
+
+    .showMenuItems { 
+        display: block;
+    }
+
+   header nav ul { 
+        display: none;
+   }
+
+   header nav ul { 
+    flex-direction: column;
+    align-content: space-around;
+    }
+
+    header nav ul li { 
+       text-align: center;
+    } 
+
+    .fa-bars { 
+        display: block;
+    }
+}
+
+
+@keyframes animationButton {
+    0% {
+        opacity: 0;
+        transform: scale3d(1.5, 2.5, 1.5);
+    }
+}
+

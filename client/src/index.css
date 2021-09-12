@@ -1,0 +1,49 @@
+@import url('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap');
+
+/* Global styles */
+
+
+html { 
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #EEEEEE;
+}
+
+
+/* scroller */
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+  /* Global typography */
+
+  .typographgy-heading { 
+    font-family: 'Lobster', cursive;
+    font-size: 38px;
+    text-align: center;
+  }
+
+  .typographgy-paragraph { 
+    font-family: 'Balsamiq Sans', cursive;
+  }

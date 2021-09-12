@@ -1,0 +1,19 @@
+.about-us article{ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-us-description-wrapper { 
+    flex-basis: 70%;
+}
+
+.about-us  p{ 
+    max-width: 400px;
+    margin: 18px 29%;
+}
+
+.about-us img{ 
+    width: 300px;
+    object-fit: contain;
+}

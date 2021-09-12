@@ -1,0 +1,135 @@
+
+.login-page-wrapper { 
+    background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+}
+
+.login-page-content-wrapper { 
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    width: 80%;
+    height: 73%;
+    box-shadow: 0px 0px 49px -3px #000000;
+}
+
+.login-form-wrapper h1 { 
+    color: #4D4948;
+    font-size: 33px;
+}
+
+.login-page-content-wrapper img { 
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-form-wrapper { 
+    margin: 30px auto;
+  
+} 
+
+
+.login-form-wrapper form { 
+    display: flex;
+    flex-direction: column;
+    font-family: 'Anton', sans-serif;
+}
+
+
+.login-form-wrapper form input{ 
+   margin: 10px;
+   margin-bottom: 30px;
+   border: none;
+   border-bottom: 3px solid #DEDEDE;
+   background: transparent;
+   outline: none;
+   padding-right: 26px;
+   width: 86%;
+   font-size: 17px;
+}
+
+
+.login-form-wrapper form input:focus{ 
+    border-bottom: 3px solid tomato;
+ }
+ .login-form-wrapper form input:focus +i  { 
+    color: tomato;
+ }
+ 
+ .login-form-wrapper form label{ 
+    position: relative;
+ }
+
+  
+ .login-form-wrapper form label i { 
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    color: #DEDEDE;
+ }
+ 
+ 
+.login-btn { 
+    background: #AE1611;
+    color: white;
+    border-radius: 33px;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.login-link { 
+    background: linear-gradient(to bottom, #ff9800 0%, #ff9800 100%);
+	background-position: 0 100%;
+	background-repeat: repeat-x;
+	background-size: 3px 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4D4948;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+
+
+.login-link:hover { 
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23ff9800' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+    background-position: 0 100%;
+    background-size: auto 6px;
+    background-repeat: repeat-x;
+    text-decoration: none;
+}
+
+
+@media screen and (max-width:900px) {
+    .login-page-content-wrapper { 
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+    .login-page-content-wrapper img { 
+        width: 100%;
+        height: 24%;
+    }
+}
+
+
+@media screen and (max-width:320px) {
+    .login-page-content-wrapper img { 
+        width: 100%;
+        height: 10%;
+    }
+}
