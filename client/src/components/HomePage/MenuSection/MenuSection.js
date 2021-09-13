@@ -1,4 +1,5 @@
 import './MenuSection.css';
+import { Link } from 'react-router-dom';
 
 const MenuSection = () => {
     return (
@@ -6,7 +7,7 @@ const MenuSection = () => {
         <article>
             <h1 className="typographgy-heading">Our Menus</h1>
             <p>Take a look at our special menu</p>
-            <button className="check-menu-btn">Check our menu</button>
+                <Link className="check-menu-btn" to="/menu">Check our menu</Link>
         </article>
     </section>
     )

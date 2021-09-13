@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const Header = () => {
-    const [isActive , setActive] = useState(false);
+    const [isActive, setActive] = useState(false);
 
-    const activateSmallScreenView = () => { 
+    const activateSmallScreenView = () => {
         setActive(!isActive);
     }
 
@@ -18,14 +18,10 @@ const Header = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <a href="#">Menu</a>
+                        <Link to="/menu">Menu</Link>
                     </li>
                     <li>
                         <a href="#">Reservations</a>
-
-                    </li>
-                    <li>
-                        <a href="#">Locations</a>
                     </li>
                     <li>
                         <a href="#">Contacts</a>

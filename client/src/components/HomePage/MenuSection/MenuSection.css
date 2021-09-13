@@ -20,6 +20,7 @@
     background: transparent;
     border-radius: 8px;
     color: white;
+    text-decoration: none;
 }
 
 .check-menu-btn:hover { 
