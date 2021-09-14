@@ -4,7 +4,7 @@ import image2 from '../../assets/menuImages/menuAside2.jpg';
 import image3 from '../../assets/menuImages/menuAside3.jpg';
 import MenuListItem from './MenuListItems/MenuListItem';
 
-const Menu = () => {
+const DailyMenu = () => {
     return (
         <main>
             <section className="menu-page-wrapper">
@@ -81,4 +81,4 @@ const Menu = () => {
     )
 }
 
-export default Menu;
+export default DailyMenu;

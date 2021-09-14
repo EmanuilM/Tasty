@@ -1,0 +1,26 @@
+.reservation-details-wrapper form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.reservation-details-wrapper form input {
+  width: 161px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.confirm-reservation-btn { 
+    background: rgb(218, 55, 67);
+    color: white;
+    padding: 10px 40px;
+    font-size: 20px;
+    border: none;
+
+}
+.confirm-reservation-btn:hover { 
+    background: #931B23;
+}
+

@@ -1,0 +1,47 @@
+.reservation-select-menu { 
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.reservation-select { 
+    padding: 10px;
+    border: 1px solid gray;
+    flex-grow: 1;
+}
+
+.reservation-date { 
+    padding: 8px;
+    border: 1px solid gray;
+    flex-grow: 1;
+}
+
+
+.find-table-btn { 
+    padding: 10px 20px;
+    background: rgb(218, 55, 67);
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+.find-table-btn:hover { 
+    background: #931B23;
+}
+
+
+.free-reservation-btn { 
+    margin: 10px;
+    background: rgb(218, 55, 67);
+    padding: 7px 30px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+    border: none;
+}
+
+.free-reservation-btn:hover { 
+    background: #931B23;
+}
+

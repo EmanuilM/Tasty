@@ -18,10 +18,10 @@ const Header = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/menu">Menu</Link>
+                        <Link to="/daily-menu">Daily Menu</Link>
                     </li>
                     <li>
-                        <Link to="/reservation">Reservation</Link>
+                        <Link to="/reservation/make">Reservation</Link>
                     </li>
                     <li>
                         <a href="#">Contacts</a>
