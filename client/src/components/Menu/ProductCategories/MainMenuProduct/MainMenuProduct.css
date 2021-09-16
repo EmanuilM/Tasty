@@ -1,0 +1,40 @@
+.main-menu-product-price { 
+    position: absolute;
+    right: 0;
+    top: -58px;
+    font-size: 27px;
+    color: #CEB38C;
+}
+
+
+.main-menu-product-name { 
+    font-weight: bold;
+}
+
+.main-menu-product-ingredients span:nth-child(1) { 
+    font-weight: bold;
+ }
+ 
+ .main-menu-product-ingredients span:nth-child(2) { 
+     color: gray;
+ }
+ 
+ .main-menu-product-ingredients { 
+     width: 300px;
+ }
+
+ .main-menu-product-weight span:nth-child(1) { 
+    font-weight: bold;
+}
+
+.main-menu-product-weight span:nth-child(2) { 
+    color: gray;
+}
+
+@media screen and (max-width:350px) {
+    .main-menu-product-ingredients { 
+        width: 209px;
+    }
+    
+}
+

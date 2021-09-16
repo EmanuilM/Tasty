@@ -1,0 +1,65 @@
+.main-product-categories-page-wrapper { 
+    height: 100%;
+    background: white;
+}
+
+.main-menu-banner-wrapper { 
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url('../../../assets/menuImages/menuBanner.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    position: relative;
+}
+
+.main-menu-banner-wrapper h1 { 
+   margin: 0;
+   color: white;
+   font-size: 30px;
+   text-align: center;
+   padding-top: 171px;
+}
+
+.main-menu-products ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 960px;
+    margin: 70px auto;
+}
+
+
+.main-menu-products ul li {
+    margin: 10px;
+    position: relative;
+}
+
+.main-menu-products ul li img { 
+    width: 300px;
+}
+
+
+.main-menu-paggination ul { 
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-menu-paggination ul li { 
+    margin: 10px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+
+.main-menu-paggination ul li:hover{ 
+    border: 1px solid #CEB38C;
+    color: #CEB38C;
+}
+
+@media screen and (max-width:350px) {
+    .main-menu-products ul li img { 
+        width: 175px;
+    }
+}

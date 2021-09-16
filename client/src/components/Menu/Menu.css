@@ -1,0 +1,48 @@
+.main-menu-wrapper { 
+    height: 93vh;
+}
+
+.main-menu-wrapper h1 { 
+    text-align: center;
+}
+
+.main-menu-categories { 
+    max-width: 54%;
+    margin: 0px 0px 0px 15%;
+}
+
+.main-menu-categories ul  { 
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.main-menu-categories ul li { 
+    margin: 10px;
+}
+
+.main-menu-categories ul li a img { 
+    max-width: 200px;
+}
+
+.main-menu-categories ul li a img:hover { 
+    animation-name: onImageHover;
+    animation-duration: 1s;
+}
+
+
+.main-menu-ul-wrapper { 
+    width: 133%;
+}
+
+
+@keyframes onImageHover {
+    0% {
+        transform: scale(1.1);
+    }
+    100% { 
+        transform: scale(1);
+    }
+}
+

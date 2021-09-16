@@ -21,16 +21,19 @@ const Header = () => {
                         <Link to="/daily-menu">Daily Menu</Link>
                     </li>
                     <li>
+                        <Link to="/menu">Menu</Link>
+                    </li>
+                    <li>
                         <Link to="/reservation/make">Reservation</Link>
                     </li>
                     <li>
                         <a href="#">Contacts</a>
                     </li>
                     <li>
-                        <Link to="sign-up">Sign up</Link>
+                        <Link to="/sign-up">Sign up</Link>
                     </li>
                     <li>
-                        <Link to="sign-in">Sign in</Link>
+                        <Link to="/sign-in">Sign in</Link>
                     </li>
                 </ul>
             </nav>
