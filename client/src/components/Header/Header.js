@@ -27,7 +27,7 @@ const Header = () => {
                         <Link to="/reservation/make">Reservation</Link>
                     </li>
                     <li>
-                        <a href="#">Contacts</a>
+                        <Link to="/order">Order</Link>
                     </li>
                     <li>
                         <Link to="/sign-up">Sign up</Link>

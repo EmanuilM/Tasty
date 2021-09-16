@@ -3,7 +3,7 @@ import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
-import DailyMenu from './components/DailyMenu/Menu';
+import DailyMenu from './components/DailyMenu/DailyMenu';
 import Menu from './components/Menu/Menu';
 import Reservation from './components/Reservation/Reservation';
 import Footer from './components/Footer/Footer';

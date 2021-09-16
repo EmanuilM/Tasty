@@ -1,14 +1,13 @@
 import './ProductCategories.css';
 import MainMenuProduct from './MainMenuProduct/MainMenuProduct';
-import image from '../../../assets/menuImages/product-1.png';
+import image from '../../../assets/menuImages/mainMenuImages/pizzaImage.png';
 
 const ProductCategories = ({match}) => {
-    console.log(match.params)
     return (
         <main>
             <section className="main-product-categories-page-wrapper">
                 <article className="main-menu-banner-wrapper">
-                    <h1>Appetizers</h1>
+                    <h1>{match.params.products}</h1>
                 </article>
 
                 <article className="main-menu-products">

@@ -1,9 +1,10 @@
 .main-menu-wrapper { 
-    height: 93vh;
+    height: 100%;
 }
 
 .main-menu-wrapper h1 { 
     text-align: center;
+    font-size: 40px;
 }
 
 .main-menu-categories { 
@@ -23,12 +24,19 @@
 }
 
 .main-menu-categories ul li a img { 
-    max-width: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 33px;
+    object-fit: cover;
 }
 
 .main-menu-categories ul li a img:hover { 
     animation-name: onImageHover;
-    animation-duration: 1s;
+    animation-duration: 2s;
+}
+
+.main-menu-categories-name { 
+    font-size: 30px;
 }
 
 

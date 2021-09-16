@@ -1,7 +1,7 @@
-import './Menu.css';
-import image1 from '../../assets/menuImages/menuAside1.jpg';
-import image2 from '../../assets/menuImages/menuAside2.jpg';
-import image3 from '../../assets/menuImages/menuAside3.jpg';
+import './DailyMenu.css';
+import image1 from '../../assets/menuImages/dailyMenuImages/menuAside1.jpg';
+import image2 from '../../assets/menuImages/dailyMenuImages/menuAside2.jpg';
+import image3 from '../../assets/menuImages/dailyMenuImages/menuAside3.jpg';
 import MenuListItem from './MenuListItems/MenuListItem';
 
 const DailyMenu = () => {
@@ -9,8 +9,7 @@ const DailyMenu = () => {
         <main>
             <section className="menu-page-wrapper">
                 <article className="menu-banner-wrapper">
-                    <h1>Our menu</h1>
-                    {/* <img src={image} alt="image" /> */}
+                    <h1>Our daily menu</h1>
                 </article>
                 <h1 className="menu-heading">BREAKFAST MENU</h1>
                 <section className="menu-wrapper">
