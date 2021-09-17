@@ -1,0 +1,122 @@
+.order-menu-page-wrapper { 
+    height: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.order-menu-banner-wrapper { 
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url('../../assets/menuImages/menuBanner.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    position: relative;
+}
+
+
+.order-menu-banner-wrapper h1 { 
+    margin: 0;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 171px;
+}
+
+.order-menu-products-navigation  { 
+    background: #d2d2d2;
+    overflow: auto;
+}
+
+.order-menu-products-navigation ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.order-menu-products-navigation ul li { 
+    margin: 10px;
+}
+
+.order-menu-products-navigation ul li a{ 
+   text-decoration: none;
+   color: black;
+   font-size: 17px;
+}
+
+
+.order-menu-products ul { 
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order-menu-products ul li{ 
+    margin: 10px;
+    position: relative;
+}
+
+
+.order-menu-products ul li img { 
+    width: 200px;
+}
+
+.hide-order-menu-buttons { 
+    display: none;
+}
+
+
+/* .order-menu-products ul li img:hover .hide{
+    display: block;
+}
+
+.order-menu-products ul li img:hover  {
+    webkit-filter: blur(3px);
+    filter: blur(4px);
+}
+ */
+
+.order-menu-list-item-wrapper:hover .hide-order-menu-buttons { 
+    display: block;
+}
+
+
+.order-menu-paggination ul { 
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.order-menu-paggination ul li { 
+    margin: 10px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+
+.order-menu-paggination ul li:hover{ 
+    border: 1px solid #CEB38C;
+    color: #CEB38C;
+}
+
+
+@media screen and (max-width:280px) {
+    .order-menu-products ul li img { 
+        width: 130px;
+    }
+
+    /* .order-menu-banner-wrapper h1 {
+        right: 9%;
+    } */
+
+    .order-menu-products ul { 
+        justify-content: center;
+    }
+
+    
+}
+
+
+
+
+

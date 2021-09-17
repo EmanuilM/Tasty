@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import DailyMenu from './components/DailyMenu/DailyMenu';
 import Menu from './components/Menu/Menu';
 import Reservation from './components/Reservation/Reservation';
+import Orders from './components/Orders/Orders';
 import Footer from './components/Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 import ProductCategories from './components/Menu/ProductCategories/ProductCategories';
@@ -22,6 +23,7 @@ function App() {
         <Route path="/menu" component={Menu} exact />
         <Route path="/menu/categories/:products" component={ProductCategories} />
         <Route path="/reservation/:page" component={Reservation}  />
+        <Route path="/order/" component={Orders}  />
       </Switch>
       <Footer />
     </div>

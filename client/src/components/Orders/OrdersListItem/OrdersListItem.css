@@ -1,0 +1,56 @@
+.order-menu-product-name { 
+    font-weight: bold;
+}
+
+.order-menu-product-description { 
+    color: gray;
+    width: 210px;
+}
+
+.order-menu-product-price { 
+    color: #CEB38C;
+    font-size: 20px;
+}
+
+.order-menu-product-buttons-wrapper { 
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 45px;
+    right: 36px;
+    z-index: 1;
+}
+
+.order-menu-product-buttons-wrapper button { 
+    margin: 7px;
+}
+
+.order-menu-product-add-to-card-button , .order-menu-product-quck-view-button { 
+    border: 3px solid #CEB38C;
+    padding: 10px 30px;
+    border-radius: 30px;
+}
+
+.order-menu-product-add-to-card-button:hover , .order-menu-product-quck-view-button:hover { 
+    background: #CEB38C;
+    color: white;
+}
+
+@media screen and (max-width:280px) {
+    .order-menu-product-description { 
+        width: 163px;
+    }
+
+    .order-menu-product-add-to-card-button ,  .order-menu-product-quck-view-button{ 
+     padding: 10px 10px;
+    }
+
+    .order-menu-product-buttons-wrapper { 
+        top: 13px;
+        right: 43px;
+    }
+
+
+
+    
+}
