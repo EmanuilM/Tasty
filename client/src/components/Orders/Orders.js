@@ -3,7 +3,8 @@ import image from '../../assets/menuImages/orderMenuImages/orderMenu.jpg'
 import OrdersListItem from './OrdersListItem/OrdersListItem';
 import { Link } from 'react-router-dom';
 
-const Orders = () => {
+const Orders = (props) => {
+
     
     return (
         <main>
@@ -30,18 +31,18 @@ const Orders = () => {
                 <section className="order-menu-wrapper">
                     <article className="order-menu-products">
                         <ul>
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
                         </ul>
                     </article>
 
@@ -52,7 +53,7 @@ const Orders = () => {
             <article className="order-menu-paggination">
                     <ul>
                         <li>
-                            <i class="fas fa-arrow-left"></i>
+                            <i className="fas fa-arrow-left"></i>
                         </li>
                         <li>1</li>
                         <li>2</li>
@@ -62,7 +63,7 @@ const Orders = () => {
                         <li>6</li>
                         <li>7</li>
                         <li>
-                        <i class="fas fa-arrow-right"></i>
+                        <i className="fas fa-arrow-right"></i>
                         </li>
                     </ul>
                 </article>

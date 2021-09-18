@@ -3,13 +3,16 @@ import { useState  , Fragment} from 'react';
 import ProductDetails from '../ProductDetails/ProductDetails';
 
 
-const OrdersListItem = ({ productImage , productName , productDescription , productPrice}) => {
+const OrdersListItem = ({ productImage , productName , productDescription , productPrice , addToCart}) => {
     const [isOrderPageActive , activeOrderPage] = useState(false);
     function showModal() { 
         activeOrderPage(true);
     }
     function hideModal() { 
         activeOrderPage(false);
+    }
+    function addItemToCart () { 
+        addToCart(oldState => [...oldState , productName]);
     }
     return (
         <Fragment>
@@ -18,7 +21,7 @@ const OrdersListItem = ({ productImage , productName , productDescription , prod
             <img src={productImage} alt="image" />
             <div className="hide-order-menu-buttons">
             <div className="order-menu-product-buttons-wrapper">
-            <button className="order-menu-product-add-to-card-button">Add to card</button>
+            <button className="order-menu-product-add-to-card-button" onClick={addItemToCart}>Add to card</button>
             <button type="button" className="order-menu-product-quck-view-button" onClick={() => showModal()}>Quick view</button>
             
             </div>

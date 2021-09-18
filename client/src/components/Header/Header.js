@@ -1,5 +1,5 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link , Route} from 'react-router-dom';
 import { useState } from 'react';
 
 const Header = () => {
@@ -35,6 +35,14 @@ const Header = () => {
                     <li>
                         <Link to="/sign-in">Sign in</Link>
                     </li>
+                    <Route path="/order">
+                    <li className="order-cart">
+                        
+                        <Link to="/order-check-out" >
+                        <i className="fas fa-shopping-cart"></i>
+                        </Link>
+                    </li>
+                    </Route>
                 </ul>
             </nav>
         </header>
