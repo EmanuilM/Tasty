@@ -48,6 +48,7 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .order-menu-products ul li{ 
@@ -58,25 +59,6 @@
 
 .order-menu-products ul li img { 
     width: 200px;
-}
-
-.hide-order-menu-buttons { 
-    display: none;
-}
-
-
-/* .order-menu-products ul li img:hover .hide{
-    display: block;
-}
-
-.order-menu-products ul li img:hover  {
-    webkit-filter: blur(3px);
-    filter: blur(4px);
-}
- */
-
-.order-menu-list-item-wrapper:hover .hide-order-menu-buttons { 
-    display: block;
 }
 
 
@@ -104,15 +86,6 @@
     .order-menu-products ul li img { 
         width: 130px;
     }
-
-    /* .order-menu-banner-wrapper h1 {
-        right: 9%;
-    } */
-
-    .order-menu-products ul { 
-        justify-content: center;
-    }
-
     
 }
 

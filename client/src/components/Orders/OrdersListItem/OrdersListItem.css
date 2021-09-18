@@ -36,6 +36,23 @@
     color: white;
 }
 
+
+.hide-order-menu-buttons { 
+    display: none;
+}
+
+
+.order-menu-list-item-wrapper:hover .hide-order-menu-buttons { 
+    display: block;
+}
+
+.order-menu-list-item-wrapper:hover img { 
+    webkit-filter: blur(3px);
+    filter: blur(4px);
+}
+
+
+
 @media screen and (max-width:280px) {
     .order-menu-product-description { 
         width: 163px;
@@ -50,7 +67,5 @@
         right: 43px;
     }
 
-
-
-    
 }
+
