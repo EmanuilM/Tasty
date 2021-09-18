@@ -13,18 +13,18 @@ const Login = () => {
                         <form>
                             <label htmlFor="email">
                                 <input id="email" type="text" placeholder="Enter your email" / >
-                                <i class="fas fa-envelope"></i>
+                                <i className="fas fa-envelope"></i>
                             </label>
                             <label htmlFor="username">
                             <input id="username" type="text" placeholder="Enter your username" />
-                            <i class="fas fa-user"></i>
+                            <i className="fas fa-user"></i>
                             </label>
                             <label htmlFor="password">
                                 <input id="password" type="password" placeholder="Enter your password" />
-                                <i class="fas fa-lock"></i>
+                                <i className="fas fa-lock"></i>
                             </label>
                             
-                            <button className="login-btn">Login</button>
+                            <button className="login-btn">Sign in</button>
                         </form>
                         <Link to="sign-in" className="login-link">
                         <p>You don't have an account?</p>
