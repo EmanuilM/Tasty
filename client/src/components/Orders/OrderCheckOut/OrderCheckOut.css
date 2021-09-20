@@ -1,0 +1,133 @@
+.order-check-out-page-wrapper { 
+    height: 100%;
+}
+
+
+.order-check-out-page-wrapper h1 { 
+    text-align: center;
+}
+
+.order-check-out-order-items ul li img { 
+    width: 130px;
+}
+
+.order-check-out-order-items ul {
+    padding: 0;
+}
+
+.order-check-out-order-items li { 
+    display: flex;
+    align-items: center;
+}
+
+
+
+.order-check-out-details { 
+    height: 567px;
+}
+
+.order-check-out-details form { 
+    display: flex;
+    flex-direction: column;
+}
+
+.order-check-out-details form input { 
+    outline: none;
+    border: 1px solid gray;
+    padding: 10px;
+    font-size: 19px;
+}
+
+.order-check-out-details form input:focus { 
+    border: 1px solid #CEB38C;
+}
+
+
+.order-check-out-page-details { 
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.order-details-row input { 
+    margin-right: 70px;
+}
+
+.order-details-row { 
+    margin-top: 17px;
+}
+
+.order-check-out-total-price-wrapper { 
+    border: 1px solid gray;
+}
+
+
+.check-out-total-row { 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}
+
+.check-out-total-row h3{ 
+  padding-left: 10px;
+}
+
+
+.check-out-total-row p { 
+    font-size: 19px;
+    font-weight: bold;
+    color: #CEB38C;
+    padding-right: 13px;
+}
+
+.check-out-buttons { 
+    text-align: center;
+    margin: 30px;
+}
+
+.back-to-order-btn , .check-out-btn { 
+    font-weight: bold;
+    font-size: 19px;
+    padding: 10px 30px;
+    border: 1px solid #CEB38C;
+    border-radius: 33px;
+    margin-right: 30px;
+}
+
+.back-to-order-btn { 
+    background: transparent;
+    color: #CEB38C;
+}
+
+.back-to-order-btn:hover { 
+    background: #CEB38C;
+    color: white;
+}
+
+.check-out-btn { 
+    background: #CEB38C;
+    color: white;
+}
+
+.check-out-btn:hover { 
+    background: transparent;
+    color: #CEB38C;
+}
+
+
+
+
+@media screen and (max-width:690px) {
+    .order-check-out-page-details { 
+        justify-content: unset;
+    }
+}
+
+
+@media screen and (max-width:340px) {
+    .order-details-row input { 
+        margin-right: auto;
+    }
+}
