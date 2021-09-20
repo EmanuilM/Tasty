@@ -12,8 +12,9 @@ const OrdersListItem = ({ productImage , productName , productDescription , prod
         activeOrderPage(false);
     }
     function addItemToCart () { 
-        addToCart(oldState => [...oldState , productName]);
+        addToCart(oldState => [...oldState , {productName , productPrice}]);
     }
+
     return (
         <Fragment>
         <li>

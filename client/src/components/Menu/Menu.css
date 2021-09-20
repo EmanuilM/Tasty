@@ -1,5 +1,5 @@
 .main-menu-wrapper { 
-    height: 100vh;
+    height: 100%;
 }
 
 .main-menu-wrapper h1 { 
@@ -8,6 +8,7 @@
 }
 
 .main-menu-categories { 
+    height: 100vh;
     max-width: 54%;
     margin: 0px 0px 0px 15%;
 }

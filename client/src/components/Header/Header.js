@@ -15,25 +15,25 @@ const Header = () => {
                 <i onClick={activateSmallScreenView} className="fas fa-bars"></i>
                 <ul className={isActive ? "showMenuItems" : null} >
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link onClick={activateSmallScreenView} to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/daily-menu">Daily Menu</Link>
+                        <Link onClick={activateSmallScreenView} to="/daily-menu">Daily Menu</Link>
                     </li>
                     <li>
-                        <Link to="/menu">Menu</Link>
+                        <Link onClick={activateSmallScreenView} to="/menu">Menu</Link>
                     </li>
                     <li>
-                        <Link to="/reservation/make">Reservation</Link>
+                        <Link onClick={activateSmallScreenView} to="/reservation/make">Reservation</Link>
                     </li>
                     <li>
-                        <Link to="/order">Order</Link>
+                        <Link onClick={activateSmallScreenView} to="/order">Order</Link>
                     </li>
                     <li>
-                        <Link to="/sign-up">Sign up</Link>
+                        <Link onClick={activateSmallScreenView} to="/sign-up">Sign up</Link>
                     </li>
                     <li>
-                        <Link to="/sign-in">Sign in</Link>
+                        <Link onClick={activateSmallScreenView} to="/sign-in">Sign in</Link>
                     </li>
                     <Route path="/order">
                     <li className="order-cart">

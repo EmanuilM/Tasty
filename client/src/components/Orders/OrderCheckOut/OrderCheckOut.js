@@ -1,5 +1,5 @@
 import './OrderCheckOut.css';
-import { OrderCheckOutItem } from './OrderCheckOutItiem/OrderCheckOutItem';
+import { OrderItems } from './OrderItems/OrderItems';
 
 const OrderCheckOut = ({ currentCheckOutItems }) => {
     return (
@@ -10,24 +10,25 @@ const OrderCheckOut = ({ currentCheckOutItems }) => {
                     <article className="order-check-out-order-items">
                         <ul>
                             <h3>Your Order</h3>
-                           <OrderCheckOutItem name="Mediterranean Shrimp Pizza" items="3" price="16.80" / >
-                           <OrderCheckOutItem name="Mediterranean Shrimp Pizza" items="3" price="16.80" / >
-                           <OrderCheckOutItem name="Mediterranean Shrimp Pizza" items="3" price="16.80" / >
+                            {currentCheckOutItems.map((x, i) => {
+                                console.log(x)
+                                return <OrderItems key={i} name={x.productName} items="3" price={x.productPrice} />
+                            })}
+
                         </ul>
                         <article className="order-check-out-total-price-wrapper">
                             <div className="check-out-total-row">
                                 <h3>Cart total : </h3>
-                                <p>19.30$</p>
+                                <p>0$</p>
                             </div>
                             <div className="check-out-total-row">
                                 <h3>Delivery : </h3>
-                                <p>Free</p>
+                                <p>FREE</p>
                             </div>
                             <div className="check-out-total-row">
                                 <h3>Total : </h3>
-                                <p>30.00$</p>
+                                <p>0$</p>
                             </div>
-
                         </article>
                     </article>
 

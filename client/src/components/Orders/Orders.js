@@ -31,18 +31,18 @@ const Orders = (props) => {
                 <section className="order-menu-wrapper">
                     <article className="order-menu-products">
                         <ul>
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
-                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="$6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
+                            <OrdersListItem productImage={image} productName="Mediterranean Pizza" productDescription="Ut enimex ea ad minim veniam, quis nostrud exercitation." productPrice="6.25" addToCart={props.setCheckOutItems} />
                         </ul>
                     </article>
 

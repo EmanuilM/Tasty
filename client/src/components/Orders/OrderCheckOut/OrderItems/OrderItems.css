@@ -6,3 +6,7 @@
     display: flex;
     align-items: center;
 }
+
+.check-out-item-name {
+    width: 168px;
+}
