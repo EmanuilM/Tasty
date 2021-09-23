@@ -1,0 +1,52 @@
+.admin-page-main-content { 
+    max-width: 3000px;
+    margin: 0 auto;
+}
+
+.aside-navigation { 
+    min-width: 300px;
+
+}
+
+.aside-navigation aside { 
+    background: gray;
+    height: 100%;
+}
+
+
+.aside-navigation aside nav ul { 
+    list-style: none;
+    margin: 0;
+}
+
+.aside-navigation aside nav ul li { 
+    padding: 30px;
+ }
+
+.aside-navigation aside nav ul li a { 
+   text-decoration: none;
+   color: white;
+}
+
+.admin-panel-icon { 
+    margin-right: 10px;
+}
+
+.test-icon { 
+    font-size: 30px;
+}
+
+.showAside { 
+    display: block;
+}
+
+.hideAside { 
+    display: none;
+}
+
+
+@media screen and (max-width:660px) { 
+    .admin-page-wrapper { 
+        flex-direction: column;
+    }
+}

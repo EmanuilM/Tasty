@@ -1,0 +1,10 @@
+.admin-entire-page-wrapper { 
+    /* height: 100vh; */
+}
+
+.admin-page-wrapper { 
+    /* height: 100%; */
+    display: flex;
+
+}
+

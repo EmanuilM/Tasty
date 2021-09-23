@@ -11,13 +11,20 @@ import OrderCheckOut from './components/Orders/OrderCheckOut/OrderCheckOut';
 import Footer from './components/Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 import ProductCategories from './components/Menu/ProductCategories/ProductCategories';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
+import AdminPanel from './components/AdminPanel/AdminPanel';
+import Aside from './components/AdminPanel/Aside/Aside';
+
 
 function App() {
   const [currentCheckOutItems, setCheckOutItems] = useState([]);
+  const [isAdmin, setAdminPermission] = useState(true);
+
+  // if(isAdmin)
+
   return (
     <div className="App">
-      <Header />
+      <Header isAdmin={isAdmin} />
       <Switch>
         <Route path="/" component={HomePage} exact />
         <Route path="/sign-up" component={Register} />
@@ -31,12 +38,17 @@ function App() {
         </Route>
         <Route path="/order-check-out" component={OrderCheckOut}>
           <OrderCheckOut currentCheckOutItems={currentCheckOutItems} />
-
+        </Route>
+        <Route path="/admin-panel" component={AdminPanel}>
+          <AdminPanel / >
         </Route>
       </Switch>
+
+
       <Footer />
     </div>
   );
+
 }
 
 

@@ -1,0 +1,129 @@
+.admin-page-manage-tables-wrapper { 
+    width: 100%;
+}
+
+.admin-page-manage-tables { 
+    background: white;
+}
+
+.admin-page-manage-tables h1{ 
+    margin: 0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.admin-page-tables-search-wrapper { 
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.admin-page-tables-search-wrapper p { 
+    margin: 0;
+}
+
+.admin-page-buttons-wrapper { 
+    display: flex;
+    justify-content: space-between;
+}
+
+tbody tr:nth-child(odd) , tr:nth-child(odd) td { 
+    background: rgb(241, 241, 241);
+}
+/* 
+ td:nth-child(odd) { 
+    background: rgb(241, 241, 241);
+} */
+
+table,td,th { 
+    border: 1px solid rgb(221, 221, 221);
+}
+
+
+.admin-page-manage-tables table {
+    width: 100%;
+}
+
+.admin-page-manage-tables table tbody tr td:nth-child(1) { 
+    width: 108px;
+    text-align: center;
+}
+
+.admin-page-manage-tables table tbody tr td:nth-child(2) { 
+    width: 108px;
+    text-align: center;
+}
+
+.admin-page-manage-tables table tbody tr td:nth-child(3) { 
+    width: 108px;
+    text-align: center;
+}
+
+.admin-page-manage-tables table tbody tr td:nth-child(4) { 
+    width: 108px;
+    text-align: center;
+}
+
+
+ .Active { 
+    text-align: center;
+    background: #059A4E;
+    width: 80px;
+    color: white;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+
+.Busy { 
+    text-align: center;
+    background: #df3a08;
+    width: 80px;
+    color: white;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+.Reserved { 
+    text-align: center;
+    background: #f19500;
+    width: 80px;
+    color: white;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+
+.admin-page-tables-actions { 
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+
+.admin-page-manage-tables-actions-wrapper i:hover { 
+   color: tomato;
+}
+
+.add-table-button { 
+    background: rgba(60, 60, 218, 0.829);
+    color: white;
+    font-weight: bold;
+    padding: 10px 30px;
+    border: none;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.add-table-button:hover { 
+    background: rgba(38, 38, 235, 0.829);
+ 
+}
+
+@media screen and (max-width:320px) { 
+    .admin-page-tables-search-wrapper input { 
+        width: 70px;
+    }
+}

@@ -1,8 +1,8 @@
 import './Header.css';
-import { Link , Route} from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { useState } from 'react';
 
-const Header = () => {
+const Header = (props) => {
     const [isActive, setActive] = useState(false);
 
     const activateSmallScreenView = () => {
@@ -35,13 +35,21 @@ const Header = () => {
                     <li>
                         <Link onClick={activateSmallScreenView} to="/sign-in">Sign in</Link>
                     </li>
+                    {
+                        props.isAdmin ?
+                            <li>
+                                <Link onClick={activateSmallScreenView} to="/admin-panel">Admin Panel</Link>
+                            </li>
+                            : ""
+                    }
+
                     <Route path="/order">
-                    <li className="order-cart">
-                        
-                        <Link to="/order-check-out" >
-                        <i className="fas fa-shopping-cart"></i>
-                        </Link>
-                    </li>
+                        <li className="order-cart">
+
+                            <Link to="/order-check-out" >
+                                <i className="fas fa-shopping-cart"></i>
+                            </Link>
+                        </li>
                     </Route>
                 </ul>
             </nav>

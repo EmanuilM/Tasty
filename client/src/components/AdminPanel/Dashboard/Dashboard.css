@@ -1,0 +1,130 @@
+.admin-page-main-content { 
+    width: 100%;
+}
+
+.admin-page-main-content h1 { 
+    text-align: center;
+}
+
+.admin-page-restaurant-stats ul  {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+.admin-page-restaurant-stats ul li {
+  margin: 10px;
+}
+
+
+.delivery-stats {
+    background: url('https://img.freepik.com/free-vector/gradient-dynamic-blue-lines-background_23-2148995756.jpg?size=626&ext=jpg&ga=GA1.2.1687694167.1632268800');
+    width: 300px;
+    height: 100px;
+    color: white;
+}
+
+
+.order-received-stats {
+    background: url('https://media.istockphoto.com/vectors/abstract-red-geometric-vector-background-can-be-used-for-cover-design-vector-id1128461010?k=20&m=1128461010&s=612x612&w=0&h=nYkQ0E10Ejf6B-32l_gvl7GkZ_sY025m63eo9c29nks=');
+    width: 300px;
+    height: 100px;
+    color: white;
+}
+
+.earnings-stats{
+    background: url('https://media.istockphoto.com/photos/abstract-orange-background-picture-id679762938?k=20&m=679762938&s=170667a&w=0&h=2w542_6ysiXx6WFHtRB6liiPPMkEJGP4ltcRAVhFmD0=');
+    width: 300px;
+    height: 100px;
+    color: white;
+}
+
+.earnings-stats h1{
+    position: absolute;
+    top: 14px;
+    right: 94px;
+}
+
+.earnings-stats p{
+    position: absolute;
+    right: 117px;
+    top: 26px;
+}
+
+
+
+.admin-page-restaurant-stats ul li div h1  {
+  margin: 0;
+  font-size: 23px;
+}
+
+.admin-page-restaurant-stats ul li div p { 
+    text-align: center;
+    font-size: 23px;
+}
+
+.admin-page-restaurant-stats ul li div  { 
+    position: relative;
+}
+
+.admin-panel-dashboard-icon { 
+    position: absolute;
+    top: 19px;
+    font-size: 45px;
+    right: 221px;
+}
+
+.stats h1 { 
+    position: absolute;
+    right: 34px;
+    top: 14px;
+}
+
+.stats p { 
+    position: absolute;
+    top: 26px;
+    right: 97px;
+}
+
+.charts-wrapper { 
+    display: flex;
+}
+
+.line-chart-wrapper {
+    width: 60%;
+    margin-left: 46px;
+}
+
+.line-chart-wrapper h3 { 
+    text-align: center;
+}
+
+.doughnut-chart-wrapper { 
+    width: 30%;
+}
+
+.doughnut-chart-wrapper h3 { 
+   text-align: center;
+}
+
+@media screen and (max-width:924px) {
+        .charts-wrapper { 
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .line-chart-wrapper , .doughnut-chart-wrapper { 
+            width: 87%;
+        }
+}
+
+@media screen and (max-width:330px) {
+  .admin-page-restaurant-stats ul li .stats i , .earnings-stats i {
+        display: none;
+  }
+  .admin-page-restaurant-stats ul li .stats  , .earnings-stats  {
+    width: 200px;
+    }
+  
+}
