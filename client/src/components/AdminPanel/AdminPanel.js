@@ -3,6 +3,7 @@ import Aside from './Aside/Aside';
 import Dashboard from './Dashboard/Dashboard';
 import { Switch, Route } from 'react-router-dom';
 import Tables from './Tables/Tables';
+import TableDetails from './Tables/TableDetails/TableDetails';
 
 const AdminPanel = () => {
     return (
@@ -12,7 +13,8 @@ const AdminPanel = () => {
             <Aside />
             <Switch>
             <Route path="/admin-panel" component={Dashboard} exact />
-            <Route path="/admin-panel/tables" component={Tables} />
+            <Route path="/admin-panel/tables" component={Tables} exact />
+            <Route path="/admin-panel/tables/details/:tableID" component={TableDetails} />
             </Switch>
             </section>
             </div>

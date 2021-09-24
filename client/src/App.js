@@ -21,6 +21,7 @@ function App() {
   const [isAdmin, setAdminPermission] = useState(true);
 
   // if(isAdmin)
+  // style={{ display: "flex" , flexDirection : "column" , height : "125vh"}}
 
   return (
     <div className="App">
@@ -40,7 +41,7 @@ function App() {
           <OrderCheckOut currentCheckOutItems={currentCheckOutItems} />
         </Route>
         <Route path="/admin-panel" component={AdminPanel}>
-          <AdminPanel / >
+          <AdminPanel />
         </Route>
       </Switch>
 

@@ -15,7 +15,6 @@ const Menu = () => {
     return (
 
         <main>
-
             <section className="main-menu-wrapper">
                 <h1>MENU CATEGORIES</h1>
                 <article className="main-menu-categories">

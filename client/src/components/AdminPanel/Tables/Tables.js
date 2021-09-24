@@ -76,7 +76,7 @@ const Tables = () => {
                                 </td>
                                 <td className="admin-page-manage-tables-actions-wrapper">
                                     <div className="admin-page-tables-actions">
-                                    <Link to={`details/${x.tableName}`}>
+                                    <Link to={`tables/details/${x.tableName}`}>
                                         <i className="fas fa-info"></i>
                                     </Link>
                                     <i className="fas fa-edit"></i>

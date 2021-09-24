@@ -1,0 +1,15 @@
+.admin-page-table-details-info li { 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.admin-page-table-details-info li img { 
+    width: 100px;
+    object-fit: contain;
+    border-radius: 17px;
+}

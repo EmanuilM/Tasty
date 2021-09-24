@@ -5,26 +5,24 @@ import { Link } from 'react-router-dom';
 
 const Orders = (props) => {
 
-    
+
     return (
         <main>
             <section className="order-menu-banner-wrapper">
                 <h1>Make your order</h1>
             </section>
             <section className="order-menu-products-navigation">
-                    <ul>
-                        <li>
-                            <Link to="">Category</Link>
-                        </li>
-                        <li>
-                            <Link to="">Category</Link>
-                        </li>
-                        <li>
-                            <Link to="">Category</Link>
-                        </li>
-                        
-                     
-                    </ul>
+                <ul>
+                    <li>
+                        <Link to="">Category</Link>
+                    </li>
+                    <li>
+                        <Link to="">Category</Link>
+                    </li>
+                    <li>
+                        <Link to="">Category</Link>
+                    </li>
+                </ul>
             </section>
             <section className="order-menu-page-wrapper">
 
@@ -51,23 +49,22 @@ const Orders = (props) => {
             </section>
 
             <article className="order-menu-paggination">
-                    <ul>
-                        <li>
-                            <i className="fas fa-arrow-left"></i>
-                        </li>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
-                        <li>6</li>
-                        <li>7</li>
-                        <li>
+                <ul>
+                    <li>
+                        <i className="fas fa-arrow-left"></i>
+                    </li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>
                         <i className="fas fa-arrow-right"></i>
-                        </li>
-                    </ul>
-                </article>
-
+                    </li>
+                </ul>
+            </article>
         </main>
     )
 }
