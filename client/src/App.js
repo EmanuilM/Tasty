@@ -44,8 +44,6 @@ function App() {
           <AdminPanel />
         </Route>
       </Switch>
-
-
       <Footer />
     </div>
   );

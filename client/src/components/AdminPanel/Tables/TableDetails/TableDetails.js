@@ -4,10 +4,9 @@ import TableDetailsProductList from './TableDetailsProductList/TableDetailsProdu
 
 
 const TableDetails = (props) => {
-    console.log(props)
     return (
         <section className="table-details-wrapper">
-            <h1>Managing table {props.match.params.tableID}</h1>
+            <h1>Details of table {props.match.params.tableID}</h1>
             <ul className="admin-page-table-details-info">
                 <TableDetailsProductList
                     productImage="https://st.depositphotos.com/1004373/1268/i/950/depositphotos_12682057-stock-photo-fresh-salad.jpg"

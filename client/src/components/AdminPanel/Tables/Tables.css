@@ -98,6 +98,10 @@ table,td,th {
     margin: 0 auto;
 }
 
+.admin-page-tables-actions a { 
+    color: black;
+}
+
 
 .admin-page-manage-tables-actions-wrapper i:hover { 
    color: tomato;

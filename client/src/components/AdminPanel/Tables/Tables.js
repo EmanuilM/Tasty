@@ -42,17 +42,17 @@ const Tables = () => {
             }
         ]
     }
- 
+
     return (
         <section className="admin-page-manage-tables-wrapper">
             <section className="admin-page-manage-tables">
                 <h1>Manage tables</h1>
                 <div className="admin-page-buttons-wrapper">
-                <button className="add-table-button">Add table</button>
-                <div className="admin-page-tables-search-wrapper">
-                    <p>Search : </p>
-                    <input type="text" />
-                </div>
+                    <button className="add-table-button">Add table</button>
+                    <div className="admin-page-tables-search-wrapper">
+                        <p>Search : </p>
+                        <input type="text" />
+                    </div>
                 </div>
                 <table>
                     <thead>
@@ -76,11 +76,13 @@ const Tables = () => {
                                 </td>
                                 <td className="admin-page-manage-tables-actions-wrapper">
                                     <div className="admin-page-tables-actions">
-                                    <Link to={`tables/details/${x.tableName}`}>
-                                        <i className="fas fa-info"></i>
-                                    </Link>
-                                    <i className="fas fa-edit"></i>
-                                    <i className="fas fa-trash"></i>
+                                        <Link to={`tables/details/${x.tableName}`}>
+                                            <i className="fas fa-info"></i>
+                                        </Link>
+                                        <Link to={`tables/manage/${x.tableName}`}>
+                                            <i className="fas fa-edit"></i>
+                                        </Link>
+                                        <i className="fas fa-trash"></i>
                                     </div>
                                 </td>
                             </tr>

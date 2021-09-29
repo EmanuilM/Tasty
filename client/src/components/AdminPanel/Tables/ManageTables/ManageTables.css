@@ -1,0 +1,97 @@
+.admin-page-manage-table-wrapper { 
+    width: 100%;
+}
+
+.admin-page-manage-table-wrapper h1 { 
+    font-size: 30px;
+    text-align: center;
+}
+
+.admin-page-add-product-button-wrapper { 
+    text-align: center;
+}
+
+.admin-page-add-product-button-wrapper h1{ 
+    font-size: 30px;
+}
+
+.admin-page-manage-table-titles { 
+    display: flex;
+    justify-content: center;
+}
+
+.admin-page-manage-table-titles h3:nth-child(1),
+.admin-page-manage-table-titles h3:nth-child(2),
+.admin-page-manage-table-titles h3:nth-child(3) { 
+    border: 1px solid gray;
+    padding: 10px 30px;
+}
+
+.manage-table-add-product-button { 
+    padding: 10px;
+    border: none;
+    background: green;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+
+
+.manage-table-add-product-button:hover { 
+    background: rgb(17, 160, 17);
+}
+
+.change-table-status p  { 
+    font-size: 30px;
+}
+
+.change-table-status { 
+    text-align: center;
+}
+
+.change-table-status select , .change-table-status input  { 
+    font-size: 19px;
+}
+
+.admin-page-manage-tables-buttons-wrapper  { 
+    text-align: center;
+    margin: 30px;
+}
+
+.admin-page-manage-tables-buttons-wrapper button { 
+    margin: 10px;
+}
+
+
+.admin-page-manage-tables-save-changes-button { 
+    padding: 10px 30px;
+    border: none;
+    background: green;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.admin-page-manage-tables-save-changes-button:hover { 
+    background: rgb(17, 160, 17);
+}
+
+.admin-page-manage-tables-back-button { 
+    padding: 10px 30px;
+    border: none;
+    background: #ff1414;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.admin-page-manage-tables-back-button:hover { 
+    background: tomato;
+}
+
+@media screen and (max-width:400px) {
+    .admin-page-manage-table-titles { 
+        flex-direction: column;
+    }
+}

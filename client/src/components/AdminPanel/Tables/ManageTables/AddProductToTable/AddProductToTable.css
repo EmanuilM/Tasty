@@ -1,0 +1,36 @@
+.admin-page-manage-table-add-product { 
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.admin-page-manage-table-add-product select:nth-child(2) { 
+    padding: 10px;
+    width: 126px;
+}
+
+.admin-page-manage-table-add-product input { 
+    padding: 10px;
+    width: 110px;
+}
+
+.manage-table-select-product-category { 
+    padding: 10px;
+    width: 136px;
+}
+
+
+@media screen and (max-width:400px) {
+     .admin-page-manage-table-add-product { 
+        flex-direction: column;
+    }
+
+    .manage-table-select-product-category , .manage-table-select-product { 
+        width: 100% !important;
+    }
+
+    .manage-table-product-quantity { 
+        width: 93% !important;
+    }
+    
+}
