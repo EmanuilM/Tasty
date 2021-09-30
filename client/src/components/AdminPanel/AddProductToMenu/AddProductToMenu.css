@@ -1,0 +1,17 @@
+.admin-page-create-product-wrapper { 
+    width: 100%;
+}
+
+.admin-page-create-product-inputs { 
+    text-align: center;
+}
+
+.admin-page-create-product-inputs input { 
+    padding: 10px 30px;
+    width: 241px;
+}
+
+.admin-page-create-product-inputs select { 
+    padding: 10px 30px;
+    width: 300px;
+}
