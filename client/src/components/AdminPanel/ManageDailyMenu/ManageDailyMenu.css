@@ -1,0 +1,45 @@
+.admin-page-manage-daily-menu-wrapper {
+    width: 100%;
+}
+
+.admin-page-manage-daily-menu-wrapper h1 { 
+    text-align: center;
+    font-size: 30px;
+}
+
+
+
+.manage-breakfast-daily-menu , .manage-lunch-daily-menu , .manage-dinner-daily-menu { 
+    background: lightgrey;
+    height: 700px;
+    overflow: auto;
+    width: 87%;
+    margin: 0 auto;
+}
+
+
+.manage-breakfast-daily-menu ul , .manage-lunch-daily-menu ul , .manage-dinner-daily-menu ul { 
+    list-style: none;
+    padding: 0;
+}
+
+.admin-page-manage-daily-menu-add-product-button-wrapper { 
+    text-align: center;
+}
+
+.admin-page-manage-daily-menu-add-product-button-wrapper button { 
+    padding: 10px 30px;
+    border: none;
+    background: tomato;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.admin-page-manage-daily-menu-add-product-button-wrapper button:hover { 
+   
+    background: rgb(241, 76, 46);
+   
+}
+

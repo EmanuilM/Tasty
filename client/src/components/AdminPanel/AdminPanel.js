@@ -6,6 +6,7 @@ import Tables from './Tables/Tables';
 import TableDetails from './Tables/TableDetails/TableDetails';
 import ManageTables from './Tables/ManageTables/ManageTables';
 import CreateTable from './Tables/CreateTable/CreateTable';
+import ManageDailyMenu from './ManageDailyMenu/ManageDailyMenu';
 
 const AdminPanel = () => {
     return (
@@ -19,6 +20,8 @@ const AdminPanel = () => {
             <Route path="/admin-panel/tables/create" component={CreateTable}  />
             <Route path="/admin-panel/tables/details/:tableID" component={TableDetails} />
             <Route path="/admin-panel/tables/manage/:tableID" component={ManageTables} />
+            <Route path="/admin-panel/manage/daily-menu" component={ManageDailyMenu} />
+
             </Switch>
             </section>
             </div>

@@ -1,0 +1,10 @@
+
+.admin-page-manage-menu-current-products { 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.admin-page-manage-menu-current-products i:hover { 
+    color: tomato;
+}
