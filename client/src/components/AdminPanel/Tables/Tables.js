@@ -48,7 +48,9 @@ const Tables = () => {
             <section className="admin-page-manage-tables">
                 <h1>Manage tables</h1>
                 <div className="admin-page-buttons-wrapper">
+                    <Link to="/admin-panel/tables/create">
                     <button className="add-table-button">Add table</button>
+                    </Link>
                     <div className="admin-page-tables-search-wrapper">
                         <p>Search : </p>
                         <input type="text" />

@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Tables from './Tables/Tables';
 import TableDetails from './Tables/TableDetails/TableDetails';
 import ManageTables from './Tables/ManageTables/ManageTables';
+import CreateTable from './Tables/CreateTable/CreateTable';
 
 const AdminPanel = () => {
     return (
@@ -15,6 +16,7 @@ const AdminPanel = () => {
             <Switch>
             <Route path="/admin-panel" component={Dashboard} exact />
             <Route path="/admin-panel/tables" component={Tables} exact />
+            <Route path="/admin-panel/tables/create" component={CreateTable}  />
             <Route path="/admin-panel/tables/details/:tableID" component={TableDetails} />
             <Route path="/admin-panel/tables/manage/:tableID" component={ManageTables} />
             </Switch>

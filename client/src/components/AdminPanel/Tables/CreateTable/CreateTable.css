@@ -1,0 +1,58 @@
+.admin-page-create-table-wrapper { 
+    width: 100%;
+}
+
+.admin-page-create-table-wrapper h1 { 
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.admin-page-create-table-inputs-wrapper { 
+    text-align: center;
+}
+
+.admin-page-create-table-inputs-wrapper form input { 
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.admin-page-create-table-inputs-wrapper form select { 
+    width: 31.7%;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.admin-page-create-table-buttons-wrapper button { 
+    margin: 10px;
+}
+
+.admin-page-create-table-save-changes-button { 
+    padding: 10px 30px;
+    border: none;
+    background: green;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.admin-page-create-table-save-changes-button:hover { 
+    background: rgb(17, 160, 17);
+}
+
+
+.admin-page-create-table-back-button { 
+    padding: 10px 30px;
+    border: none;
+    background: #ff1414;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.admin-page-create-table-back-button:hover { 
+    background: tomato;
+}
