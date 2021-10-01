@@ -1,7 +1,9 @@
 import './ManageTables.css';
 import AddProductToTable from './AddProductToTable/AddProductToTable';
 import { useState } from 'react/cjs/react.development';
+import { Fragment } from 'react';
 const ManageTables = (props) => {
+
     const [reserved, setReserved] = useState(false);
     const [product, setProductToTable] = useState([<AddProductToTable />]);
     function testFunction(e) {
@@ -12,7 +14,7 @@ const ManageTables = (props) => {
         }
     }
     function addProduct() {
-        setProductToTable(oldState => oldState.push(<AddProductToTable />));
+        setProductToTable(oldState => [...oldState, <AddProductToTable />]);
     }
     function goBack() {
         return props.history.goBack();
@@ -29,18 +31,11 @@ const ManageTables = (props) => {
                 <h3>Product</h3>
                 <h3>Quantity</h3>
             </div>
-            {product.map(x => {
-                return x
+            {product.map((x,i) => {
+               
+                return <Fragment key={i}>{x}</Fragment>
+                
             })}
-            {/* <AddProductToTable />
-                <AddProductToTable />
-                <AddProductToTable />
-                <AddProductToTable />
-                <AddProductToTable />
-                <AddProductToTable />
-                <AddProductToTable /> */}
-
-
             <article className="change-table-status">
                 <p>Change table status</p>
                 <select name="test" onChange={testFunction}>
