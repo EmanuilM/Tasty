@@ -7,7 +7,7 @@ import TableDetails from './Tables/TableDetails/TableDetails';
 import ManageTables from './Tables/ManageTables/ManageTables';
 import CreateTable from './Tables/CreateTable/CreateTable';
 import ManageDailyMenu from './ManageDailyMenu/ManageDailyMenu';
-import AddProductToMenu from './AddProductToMenu/AddProductToMenu';
+import AddProductToMenu from './ManageDailyMenu/AddProductToDailyMenu/AddProductToDailyMenu';
 
 const AdminPanel = () => {
     return (
@@ -22,7 +22,7 @@ const AdminPanel = () => {
             <Route path="/admin-panel/tables/details/:tableID" component={TableDetails} />
             <Route path="/admin-panel/tables/manage/:tableID" component={ManageTables} />
             <Route path="/admin-panel/manage/daily-menu" component={ManageDailyMenu} />
-            <Route path="/admin-panel/products/create" component={AddProductToMenu} />
+            <Route path="/admin-panel/daily-menu/product/create" component={AddProductToMenu} />
 
             </Switch>
             </section>

@@ -13,7 +13,7 @@ const ManageDailyMenu = () => {
 
             <section className="manage-breakfast-daily-menu">
                 <div className="admin-page-manage-daily-menu-add-product-button-wrapper">
-                    <Link to="/admin-panel/products/create">
+                    <Link to="/admin-panel/daily-menu/product/create">
                     <button>Add product</button>
                     </Link>
                 </div>
