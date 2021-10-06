@@ -9,7 +9,6 @@ dotenv.config({
 async function startServer() { 
     try {
         require('./config/db')
-        require('./router');
         require('./config/express')(app);
         app.listen(process.env.PORT , () => console.log(`Server is running on port ${process.env.PORT}`));
     } catch (error) {

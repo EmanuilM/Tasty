@@ -11,10 +11,6 @@ const Login = () => {
                     <div className="login-form-wrapper">
                         <h1>Log in to your account</h1>
                         <form>
-                            <label htmlFor="email">
-                                <input id="email" type="text" placeholder="Enter your email" / >
-                                <i className="fas fa-envelope"></i>
-                            </label>
                             <label htmlFor="username">
                             <input id="username" type="text" placeholder="Enter your username" />
                             <i className="fas fa-user"></i>
@@ -26,7 +22,7 @@ const Login = () => {
                             
                             <button className="login-btn">Sign in</button>
                         </form>
-                        <Link to="sign-in" className="login-link">
+                        <Link to="sign-up" className="login-link">
                         <p>You don't have an account?</p>
                         <p>Sign up</p>
                         </Link>

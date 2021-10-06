@@ -11,21 +11,46 @@ import OrderCheckOut from './components/Orders/OrderCheckOut/OrderCheckOut';
 import Footer from './components/Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 import ProductCategories from './components/Menu/ProductCategories/ProductCategories';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import AdminPanel from './components/AdminPanel/AdminPanel';
 import Aside from './components/AdminPanel/Aside/Aside';
+import { useAppSelector } from './store/index';
+import { useDispatch } from 'react-redux';
+import { setUserState } from './store/auth-slice';
 
 
 function App() {
   const [currentCheckOutItems, setCheckOutItems] = useState([]);
   const [isAdmin, setAdminPermission] = useState(true);
+  const authState = useAppSelector(state => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const currentAuthState = JSON.parse(window.localStorage.getItem('user'));
+    if (currentAuthState) {
+      dispatch(
+        setUserState({
+          isAuthenticated: currentAuthState.isAuthenticated,
+          userAuthState: currentAuthState.userAuthState
+        })
+      )
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    window.localStorage.setItem('user', JSON.stringify(authState));
+  }, [authState]);
 
   // if(isAdmin)
   // style={{ display: "flex" , flexDirection : "column" , height : "125vh"}}
 
+
   return (
+
     <div className="App">
+
       <Header isAdmin={isAdmin} />
+
       <Switch>
         <Route path="/" component={HomePage} exact />
         <Route path="/sign-up" component={Register} />

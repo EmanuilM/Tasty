@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const router = require('../router');
 module.exports = (app) => { 
     app.use(express.json());
     app.use(express.urlencoded({extended : true}));
@@ -9,4 +10,5 @@ module.exports = (app) => {
         origin: process.env.origin,
         credentials : true
     }))
+    app.use(router);
 }
