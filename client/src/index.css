@@ -52,3 +52,14 @@ main {
   .typographgy-paragraph { 
     font-family: 'Balsamiq Sans', cursive;
   }
+
+  /* Form error message */
+
+  .form-error-message { 
+    text-align: center;
+  }
+
+  .form-error-message small { 
+    color: red;
+    font-size: 17px;
+  }

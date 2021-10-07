@@ -22,6 +22,7 @@ header nav ul a {
     color: white;
 }
 
+
 header nav ul li:hover { 
     animation-name: animationButton;
     animation-duration: 1s;
