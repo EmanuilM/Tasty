@@ -31,7 +31,17 @@ async function register({ email, username, password, repeatPassword }) {
     user.save();
 
     const token = jwt.sign({ _id: user._id }, process.env.SECRET_WORD);
-    return token;
+
+    return { 
+        token , 
+        user : {
+            _id : user._id,
+            email : user.email,
+            username : user.username,
+            isAdmin : user.isAdmin,
+            isWorker : user.isWorker,
+        },
+    }
 
 }
 
@@ -49,7 +59,17 @@ async function login({ username, password }) {
     }
     const token = jwt.sign({ _id: isUserExists._id }, process.env.SECRET_WORD);
 
-    return token;
+    return { 
+        token , 
+        user : {
+            _id : isUserExists._id,
+            email : isUserExists.email,
+            username : isUserExists.username,
+            isAdmin : isUserExists.isAdmin,
+            isWorker : isUserExists.isWorker,
+        },
+    }
+
 }
 
 

@@ -19,6 +19,8 @@ const authSlice = createSlice({
             state.userAuthState = { 
                 accessToken : action.payload.accessToken,
                 _id : action.payload._id,
+                isAdmin : action.payload.isAdmin,
+                isWorker : action.payload.isWorker,
             }
             state.isAuthenticated = true;
         },

@@ -15,7 +15,8 @@ const Header = (props) => {
         setActive(!isActive);
     }
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-
+    const isAdmin = useAppSelector(state => state.auth.userAuthState.isAdmin);
+    
     const logoutHandler = () => { 
         authService.logout()
         .then(data => { 
@@ -48,7 +49,7 @@ const Header = (props) => {
                             <Link onClick={activateSmallScreenView} to="/order">Order</Link>
                         </li>
                         {
-                            props.isAdmin ?
+                            isAdmin ?
                                 <li>
                                     <Link onClick={activateSmallScreenView} to="/admin-panel">Admin Panel</Link>
                                 </li>

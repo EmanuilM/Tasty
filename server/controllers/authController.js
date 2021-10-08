@@ -4,13 +4,13 @@ const authService = require('../services/authService');
 
 router.post('/register', async (req, res) => {
     try {
-        const token = await authService.register(req.body);
+        const data = await authService.register(req.body);
         if (process.env.NODE_ENV === 'production') {
-            res.cookie(process.env.AUTH_COOKIE, token, { httpOnly: true, secure: true } );
+            res.cookie(process.env.AUTH_COOKIE, data.token, { httpOnly: true, secure: true } );
         } else {
-            res.cookie(process.env.AUTH_COOKIE, token, { httpOnly: true } );
+            res.cookie(process.env.AUTH_COOKIE, data.token, { httpOnly: true } );
         }
-        res.status(200).json(token);
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error.message);
     }
@@ -18,13 +18,13 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const token = await authService.login(req.body);
+        const data = await authService.login(req.body);
         if (process.env.NODE_ENV === 'production') {
-            res.cookie(process.env.AUTH_COOKIE, token, { httpOnly: true, secure: true });
+            res.cookie(process.env.AUTH_COOKIE, data.token, { httpOnly: true, secure: true });
         } else {
-            res.cookie(process.env.AUTH_COOKIE, token, { httpOnly: true });
+            res.cookie(process.env.AUTH_COOKIE, data.token, { httpOnly: true });
         }
-        res.status(200).json(token);
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);
         

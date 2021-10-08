@@ -38,8 +38,10 @@ const Login = ({ history }) => {
         authService.login(loginForm)
         .then(data => { 
             dispatch(handleAuthenticate({
-                accessToken : data,
-                _id : '123123123'
+                accessToken : data.token,
+                _id : data.user._id,
+                isAdmin : data.user.isAdmin,
+                isWorker : data.user.isWorker,
             }));
             history.push('/');
         })
