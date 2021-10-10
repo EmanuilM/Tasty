@@ -35,8 +35,16 @@ async function logout() {
     return await api.httpRequest('/auth/logout', options);
 }
 
+async function getUser() { 
+   
+    return await api.httpRequest('/auth' , { 
+        credentials : 'include'
+    });
+}
+
 export {
     register,
     login,
     logout,
+    getUser,
 }

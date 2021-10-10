@@ -6,6 +6,7 @@ import { handleAuthenticate } from '../../store/auth-slice';
 import * as authService from '../../services/authService';
 import { useState } from 'react';
 import emailRegex from '../../utils/emailRegex';
+import { loader } from '../../store/loader';
 
 
 
@@ -49,18 +50,20 @@ const Register = ({ history }) => {
             password: e.target.password.value,
             repeatPassword: e.target.repeatPassword.value,
         }
-
+        dispatch(loader());
         authService.register(registerForm)
             .then(data => {
                 dispatch(handleAuthenticate({
                     accessToken: data.token,
                     _id: data.user._id,
-                    isAdmin : data.user.isAdmin,
-                    isWorker : data.user.isWorker,
+                    isAdmin: data.user.isAdmin,
+                    isWorker: data.user.isWorker,
                 }));
+                dispatch(loader());
                 history.push('/');
             })
             .catch((error) => {
+                dispatch(loader());
                 console.log(error);
             })
     }

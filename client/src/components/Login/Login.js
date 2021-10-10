@@ -3,10 +3,14 @@ import image from '../../assets/loginPage.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import * as authService from '../../services/authService';
-import { useDispatch } from 'react-redux';  
+import { useDispatch } from 'react-redux';
 import { handleAuthenticate } from '../../store/auth-slice'
+import { showAlert } from '../../store/alert-slice';
+import { loader } from '../../store/loader';
+
 
 const Login = ({ history }) => {
+    const [loading, setLoader] = useState(true);
     const dispatch = useDispatch();
     const [fields, setFields] = useState({
         username: '',
@@ -29,25 +33,29 @@ const Login = ({ history }) => {
         setFields(state => ({ ...state, [name]: value }));
     }
 
-    const loginSubmitHandler = (e) => { 
+    const loginSubmitHandler = (e) => {
         e.preventDefault();
-        const loginForm = { 
-            username : e.target.username.value,
-            password : e.target.password.value,
+        const loginForm = {
+            username: e.target.username.value,
+            password: e.target.password.value,
         };
+        dispatch(loader());
         authService.login(loginForm)
-        .then(data => { 
-            dispatch(handleAuthenticate({
-                accessToken : data.token,
-                _id : data.user._id,
-                isAdmin : data.user.isAdmin,
-                isWorker : data.user.isWorker,
-            }));
-            history.push('/');
-        })
-        .catch((error) => { 
-            console.log(error);
-        })
+            .then(data => {
+                dispatch(handleAuthenticate({
+                    accessToken: data.token,
+                    _id: data.user._id,
+                    isAdmin: data.user.isAdmin,
+                    isWorker: data.user.isWorker,
+                }));
+                dispatch(loader());
+                history.push('/');
+            })
+            .catch((error) => {
+                dispatch(loader());
+                dispatch(showAlert(error))
+                console.log(error);
+            })
 
     }
 

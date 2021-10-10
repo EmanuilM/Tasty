@@ -15,27 +15,34 @@ import { Fragment, useEffect, useState } from 'react';
 import AdminPanel from './components/AdminPanel/AdminPanel';
 import Aside from './components/AdminPanel/Aside/Aside';
 import { useAppSelector } from './store/index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserState, handleAuthenticate } from './store/auth-slice';
+import { Alert } from './components/shared/Alert/Alert';
+import { Loader } from './components/shared/Loader/Loader';
+import { showAlert } from './store/alert-slice';
+import { loader } from './store/loader';
+import * as authService from './services/authService';
 
 
 function App() {
   const [currentCheckOutItems, setCheckOutItems] = useState([]);
   const [isAdmin, setAdminPermission] = useState(true);
   const authState = useAppSelector(state => state.auth);
+  const alertState = useAppSelector(state => state.alert);
+  const isLoading = useSelector(state => state.loader);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('http://localhost:7000/api/auth', {
-      credentials: 'include'
-    })
-      .then(res => res.json())
+    dispatch(loader());
+    authService.getUser()
       .then(response => {
+        dispatch(loader());
         if (response) {
           dispatch(handleAuthenticate(response))
         }
       })
       .catch((error) => {
+        dispatch(loader());
         console.log(error);
       })
   }, [])
@@ -85,6 +92,10 @@ function App() {
         </Route>
       </Switch>
       <Footer />
+
+      {isLoading ? <Loader /> : ""}
+      {alertState.shown ? <Alert message={alertState.message} /> : ""}
+
     </div>
   );
 
