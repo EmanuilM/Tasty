@@ -30,7 +30,7 @@ async function register({ email, username, password, repeatPassword }) {
     const user = new userModel({ email: email.toLowerCase().trim(), username: username.toLowerCase().trim(), password: password.trim() })
     user.save();
 
-    const token = jwt.sign({ _id: user._id }, process.env.SECRET_WORD);
+    const token = jwt.sign({ _id: user._id , isAdmin : user.isAdmin , isWorker : user.isWorker   }, process.env.SECRET_WORD);
 
     return { 
         token , 
@@ -57,7 +57,7 @@ async function login({ username, password }) {
     if (!isPasswordMatch) {
         throw ({ message: 'Invalid Password!' });
     }
-    const token = jwt.sign({ _id: isUserExists._id }, process.env.SECRET_WORD);
+    const token = jwt.sign({ _id: isUserExists._id , isAdmin : isUserExists.isAdmin , isWorker : isUserExists.isWorker}, process.env.SECRET_WORD);
 
     return { 
         token , 
