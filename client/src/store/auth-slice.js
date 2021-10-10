@@ -31,10 +31,10 @@ const authSlice = createSlice({
             }
             state.isAuthenticated = false;
         },
-        setUserState(state , action) { 
-            state.isAuthenticated = action.payload.isAuthenticated;
-            state.userAuthState = action.payload.userAuthState;
-        }
+        // setUserState(state , action) { 
+        //     state.isAuthenticated = action.payload.isAuthenticated;
+        //     state.userAuthState = action.payload.userAuthState;
+        // }
     }
 });
 export const { handleAuthenticate , handleLogOut , setUserState } = authSlice.actions
