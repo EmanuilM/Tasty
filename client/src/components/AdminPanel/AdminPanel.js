@@ -8,6 +8,7 @@ import ManageTables from './Tables/ManageTables/ManageTables';
 import CreateTable from './Tables/CreateTable/CreateTable';
 import ManageDailyMenu from './ManageDailyMenu/ManageDailyMenu';
 import AddProductToMenu from './ManageDailyMenu/AddProductToDailyMenu/AddProductToDailyMenu';
+import EditProduct from './ManageDailyMenu/EditProduct/EditProduct';
 
 const AdminPanel = () => {
     return (
@@ -23,6 +24,7 @@ const AdminPanel = () => {
             <Route path="/admin-panel/tables/manage/:tableID" component={ManageTables} />
             <Route path="/admin-panel/manage/daily-menu" component={ManageDailyMenu} />
             <Route path="/admin-panel/daily-menu/product/create" component={AddProductToMenu} />
+            <Route path="/admin-panel/daily-menu/product/edit/:id" component={EditProduct} />
 
             </Switch>
             </section>

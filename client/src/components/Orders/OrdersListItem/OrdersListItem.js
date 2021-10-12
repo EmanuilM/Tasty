@@ -23,7 +23,7 @@ const OrdersListItem = ({ productImage , productName , productDescription , prod
             <div className="hide-order-menu-buttons">
             <div className="order-menu-product-buttons-wrapper">
             <button className="order-menu-product-add-to-card-button" onClick={addItemToCart}>Add to card</button>
-            <button type="button" className="order-menu-product-quck-view-button" onClick={() => showModal()}>Quick view</button>
+            <button type="button" className="order-menu-product-quck-view-button" onClick={showModal}>Quick view</button>
             
             </div>
             </div>
@@ -33,8 +33,8 @@ const OrdersListItem = ({ productImage , productName , productDescription , prod
             <p className="order-menu-product-price">{productPrice}$</p>
            
         </li>
-        <ProductDetails show={isOrderPageActive} handleClose={hideModal} / > 
 
+        <ProductDetails show={isOrderPageActive} handleClose={hideModal} / > 
         </Fragment>
     )
 }

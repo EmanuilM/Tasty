@@ -1,11 +1,28 @@
-import BreakfastMenu from './BreakfastMenu/BreakfastMenu';
-import LunchMenu from './LunchMenu/LunchMenu';
-import DinnerMenu from './DinnerMenu/DinnerMenu';
+import DailyMenuProduct from './DailyMenuProduct/DailyMenuProduct';
 import './ManageDailyMenu.css';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react';
+import * as dailyMenuService from '../../../services/dailyMenuService';
+import { loader } from '../../../store/loader';
 
 
 const ManageDailyMenu = () => {
+    const dispatch = useDispatch();
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        dispatch(loader())
+        dailyMenuService.getProducts()
+            .then(res => {
+                dispatch(loader());
+                setData(res);
+            })
+            .catch(error => {
+                console.log(error);
+                dispatch(loader());
+            })
+    }, []);
+
     return (
         <section className="admin-page-manage-daily-menu-wrapper">
 
@@ -14,127 +31,30 @@ const ManageDailyMenu = () => {
             <section className="manage-breakfast-daily-menu">
                 <div className="admin-page-manage-daily-menu-add-product-button-wrapper">
                     <Link to="/admin-panel/daily-menu/product/create">
-                    <button>Add product</button>
+                        <button>Add product</button>
                     </Link>
                 </div>
                 <ul>
                     <h1>Breakfast Menu</h1>
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
-                    <BreakfastMenu />
+                    {data.length > 0 ? data[0].map(x => {
+                        return <DailyMenuProduct key={x._id} id={x._id} data={x} />
+                    }) :  <><p>There's no products</p></>}
+
                     <h1>Lucnh Menu</h1>
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
+
+                    {data.length > 0 ? data[1].map(x => {
+                        return <DailyMenuProduct key={x._id} id={x._id} data={x} />
+                    }) : <><p>There's no products</p></>}
+
                     <h1>Dinner Menu</h1>
-                    <DinnerMenu />
-                    <DinnerMenu />
-                    <DinnerMenu />
-                    <DinnerMenu />
-                    <DinnerMenu />
-                    <DinnerMenu />
-                    <DinnerMenu />
-                    <DinnerMenu />
-                    <DinnerMenu />
 
-
-
+                    {data.length > 0 ? data[2].map(x => {
+                        return <DailyMenuProduct key={x._id} id={x._id} data={x} />
+                    }) : <><p>There's no products</p></>}
 
                 </ul>
 
             </section>
-
-
-            {/* <h1>Lunch Menu</h1>
-            <section className="manage-lunch-daily-menu">
-                <p className="admin-page-manage-daly-menu-title">Current lunch menu</p>
-                <div className="admin-page-manage-daily-menu-add-product-button-wrapper">
-                    <button>Add product</button>
-                </div>
-                <ul>
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                    <LunchMenu />
-                </ul>
-
-            </section> */}
-
-
-            {/* <h1>Dinner Menu</h1>
-            <section className="manage-dinner-daily-menu">
-                <p className="admin-page-manage-daly-menu-title">Current lunch menu</p>
-                <div className="admin-page-manage-daily-menu-add-product-button-wrapper">
-                    <button>Add product</button>
-                </div>
-                <ul>
-               
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-                <DinnerMenu / >
-
-                </ul>
-
-            </section> */}
 
         </section>
     )

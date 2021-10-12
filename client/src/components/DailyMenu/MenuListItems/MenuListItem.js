@@ -1,6 +1,6 @@
 import './MenuListItem.css';
 
-const MenuListItem = ({itemName , price , ingredients}) => {
+const MenuListItem = ({itemName , price , description}) => {
     return (
         <li>
             <div className="productName-and-productPrice-wrapper">
@@ -8,7 +8,7 @@ const MenuListItem = ({itemName , price , ingredients}) => {
                 <h4 className="product-price">{price}$</h4>
             </div>
             <div className="product-ingredients">
-                <p>{ingredients}</p>
+                <p>{description}</p>
             </div>
         </li>
     )

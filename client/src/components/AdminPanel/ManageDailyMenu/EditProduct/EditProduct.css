@@ -1,21 +1,21 @@
-.admin-page-daily-menu-add-product { 
+.admin-page-daily-menu-edit-product { 
     width: 100%;
 }
 
-.admin-page-daily-menu-create-product-inputs { 
+.admin-page-daily-menu-edit-product-inputs { 
     text-align: center;
 }
 
-.admin-page-daily-menu-create-product-inputs h1 { 
+.admin-page-daily-menu-edit-product-inputs h1 { 
     font-size: 30px;
 }
 
-.admin-page-daily-menu-create-product-inputs input { 
+.admin-page-daily-menu-edit-product-inputs input { 
     padding: 10px 30px;
     width: 241px;
 }
 
-.admin-page-daily-menu-create-product-inputs select { 
+.admin-page-daily-menu-edit-product-inputs select { 
     padding: 10px 30px;
     width: 300px;
 }
