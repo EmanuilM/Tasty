@@ -66,7 +66,7 @@ const EditProduct = ({ match , history }) => {
                     </div>
                     <div className="daily-menu-product-price">
                         <p>Product Price</p>
-                        <input type="string" name="productPrice" defaultValue={initialData?.productPrice} />
+                        <input type="numner" step="any" min="0" name="productPrice" defaultValue={initialData?.productPrice}  />
                     </div>
                     <div className="daily-menu-product-description">
                         <p>Description</p>

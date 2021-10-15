@@ -52,7 +52,7 @@ const AddProductToDailyMenu = ({ history }) => {
                     </div>
                     <div className="daily-menu-product-price">
                         <p>Product Price</p>
-                        <input type="string" name="productPrice" />
+                        <input type="number" step="any" min="0" name="productPrice" />
                     </div>
                     <div className="daily-menu-product-description">
                         <p>Description</p>

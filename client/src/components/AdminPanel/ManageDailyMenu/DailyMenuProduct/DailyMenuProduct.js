@@ -3,10 +3,10 @@ import { Fragment, useState } from 'react';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { Link } from 'react-router-dom';
 
-const DailyMenuProduct = ({ data, id }) => {
+const DailyMenuProduct = ({ data, id , deleteItem }) => {
     const [isDeleteModalActive, setDeleteModal] = useState(false);
 
-    function showDeleteModal(e) {
+    function showDeleteModal() {
         setDeleteModal(true);
     }
     function hideDeleteModal() {
@@ -25,7 +25,7 @@ const DailyMenuProduct = ({ data, id }) => {
                     <i className="fas fa-trash" onClick={showDeleteModal}></i>
                 </div>
             </li>
-            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} id={id} />
+            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} id={id} deleteItem={deleteItem} />
         </Fragment>
     )
 }

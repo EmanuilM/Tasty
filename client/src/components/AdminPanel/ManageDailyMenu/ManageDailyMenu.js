@@ -23,6 +23,21 @@ const ManageDailyMenu = () => {
             })
     }, []);
 
+
+    const deleteItem = (id) => { 
+        dispatch(loader());
+        dailyMenuService.deleteProduct(id)
+        .then(res => {
+            dispatch(loader());
+            setData(res)
+            console.log(res)
+        })
+        .catch(error => {
+            dispatch(loader());
+            console.log(error)
+        })
+    }
+
     return (
         <section className="admin-page-manage-daily-menu-wrapper">
 
@@ -37,19 +52,19 @@ const ManageDailyMenu = () => {
                 <ul>
                     <h1>Breakfast Menu</h1>
                     {data.length > 0 ? data[0].map(x => {
-                        return <DailyMenuProduct key={x._id} id={x._id} data={x} />
+                        return <DailyMenuProduct key={x._id} id={x._id} data={x} deleteItem={deleteItem} />
                     }) :  <><p>There's no products</p></>}
 
                     <h1>Lucnh Menu</h1>
 
                     {data.length > 0 ? data[1].map(x => {
-                        return <DailyMenuProduct key={x._id} id={x._id} data={x} />
+                        return <DailyMenuProduct key={x._id} id={x._id} data={x}  deleteItem={deleteItem} />
                     }) : <><p>There's no products</p></>}
 
                     <h1>Dinner Menu</h1>
 
                     {data.length > 0 ? data[2].map(x => {
-                        return <DailyMenuProduct key={x._id} id={x._id} data={x} />
+                        return <DailyMenuProduct key={x._id} id={x._id} data={x} deleteItem={deleteItem} />
                     }) : <><p>There's no products</p></>}
 
                 </ul>

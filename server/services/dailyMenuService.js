@@ -13,6 +13,9 @@ async function getDailyMenu() {
 }
 
 async function createProduct(data) {
+    if(typeof data.productPrice === "string") { 
+        throw({message : "Product price must be a number"});
+    }
     if (!data.productName || !data.productPrice || !data.productDescription || !data.category) {
         throw ({ message: "All feilds are required!" });
     }
@@ -28,10 +31,14 @@ async function createProduct(data) {
 }
 
 async function deleteProduct(id) { 
-    return await dailyMenuModel.deleteOne({id});
+     await dailyMenuModel.deleteOne({_id: id});
+     return getDailyMenu();
 }
 
 async function editProduct(id , data) { 
+    if(typeof data.productPrice === "string") { 
+        throw({message : "Product price must be a number"});
+    }
     if (!data.productName || !data.productPrice || !data.productDescription || !data.category) {
         throw ({ message: "All feilds are required!" });
     }
