@@ -15,7 +15,7 @@ async function getDailyMenu() {
 async function createProduct(data) {
     if(typeof data.productPrice === "string") { 
         throw({message : "Product price must be a number"});
-    }
+    } 
     if (!data.productName || !data.productPrice || !data.productDescription || !data.category) {
         throw ({ message: "All feilds are required!" });
     }
