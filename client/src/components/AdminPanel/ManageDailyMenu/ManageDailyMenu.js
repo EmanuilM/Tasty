@@ -24,18 +24,18 @@ const ManageDailyMenu = () => {
     }, []);
 
 
-    const deleteItem = (id) => { 
+    const deleteItem = (id) => {
         dispatch(loader());
         dailyMenuService.deleteProduct(id)
-        .then(res => {
-            dispatch(loader());
-            setData(res)
-            console.log(res)
-        })
-        .catch(error => {
-            dispatch(loader());
-            console.log(error)
-        })
+            .then(res => {
+                dispatch(loader());
+                setData(res)
+                console.log(res)
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error)
+            })
     }
 
     return (

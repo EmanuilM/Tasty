@@ -5,6 +5,15 @@
     align-items: center;
 }
 
+.admin-page-manage-menu-current-products > p { 
+    width: 170px;
+    word-wrap: break-word;
+}
+
 .admin-page-manage-menu-current-products i:hover { 
+    cursor: pointer;
     color: tomato;
+}
+.admin-page-manage-menu-current-products a  { 
+    color: blue;
 }

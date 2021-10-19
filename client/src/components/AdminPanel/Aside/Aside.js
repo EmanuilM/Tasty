@@ -22,7 +22,7 @@ const Aside = () => {
                         </li>
                         <li>
                             <Link to="/admin-panel/tables">
-                                <i class="far fa-edit admin-panel-icon"></i>
+                                <i className="far fa-edit admin-panel-icon"></i>
                                 Tables
                             </Link>
                         </li>

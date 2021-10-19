@@ -40,7 +40,7 @@ const DailyMenu = () => {
                         <ul>
                             {data.length > 0 ? data[0].slice(0, Math.ceil(data[0].length / 2)).map(x => {
                                 return <MenuListItem key={x._id} itemName={x.productName} price={x.productPrice} description={x.productDescription} />
-                            }) : ""}
+                            }) : "" }
 
                         </ul>
                         <ul>

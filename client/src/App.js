@@ -11,15 +11,13 @@ import OrderCheckOut from './components/Orders/OrderCheckOut/OrderCheckOut';
 import Footer from './components/Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 import ProductCategories from './components/Menu/ProductCategories/ProductCategories';
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AdminPanel from './components/AdminPanel/AdminPanel';
-import Aside from './components/AdminPanel/Aside/Aside';
 import { useAppSelector } from './store/index';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserState, handleAuthenticate } from './store/auth-slice';
+import { handleAuthenticate } from './store/auth-slice';
 import { Alert } from './components/shared/Alert/Alert';
 import { Loader } from './components/shared/Loader/Loader';
-import { showAlert } from './store/alert-slice';
 import { loader } from './store/loader';
 import * as authService from './services/authService';
 

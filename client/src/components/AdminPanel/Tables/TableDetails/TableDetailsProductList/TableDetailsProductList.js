@@ -8,6 +8,7 @@ const TableDetailsProductList = ({productImage , productName , productQuantity ,
             <p>x{productQuantity}</p>
             <p>{message}</p>
             <p>{productPrice}$</p>
+            <i className="fas fa-times remove-item"></i>
         </li>
     )
 }

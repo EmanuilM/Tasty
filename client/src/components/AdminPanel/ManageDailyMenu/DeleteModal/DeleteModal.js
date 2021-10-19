@@ -1,5 +1,4 @@
 import './DeleteModal.css';
-import * as dailyMenuService from '../../../../services/dailyMenuService';
 const DeleteModal = ({ handleClose, show , id , deleteItem  }) => {
     const showHideClassName = show ? "delete-modal-wrapper display-block" : "delete-modal-wrapper display-none";
 

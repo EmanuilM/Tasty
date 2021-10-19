@@ -13,3 +13,7 @@
     object-fit: contain;
     border-radius: 17px;
 }
+
+.remove-item:hover { 
+    color: tomato;
+}
