@@ -10,6 +10,8 @@ module.exports = (req,res,next) => {
             res.locals.user = decoded;
             res.locals.isAuth = true;
         })
+    }else { 
+       return res.status(403).json({message : "You must be logged in"})
     }
 
     next();

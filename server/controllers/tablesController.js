@@ -1,9 +1,11 @@
 const { Router } = require('express');
 const router = Router();
 const tablesService = require('../services/tablesService');
+const auth = require('../middlewares/auth');
+const isAuthorized = require('../middlewares/isAuthorized');
 
 
-router.get('/' , async (req,res) => { 
+router.get('/' , auth , isAuthorized ,  async (req,res) => { 
     try {
         const data = await tablesService.getTables();
         res.status(200).json(data);
@@ -13,7 +15,7 @@ router.get('/' , async (req,res) => {
 });
 
 
-router.post('/create' , async (req,res) => { 
+router.post('/create' , auth , isAuthorized ,  async (req,res) => { 
     try {
         const data = await tablesService.createTable(req.body);
         res.status(200).json(data);
@@ -23,7 +25,7 @@ router.post('/create' , async (req,res) => {
 });
 
 
-router.post('/delete/:id' , async (req,res) => { 
+router.post('/delete/:id' , auth , isAuthorized , async (req,res) => { 
     try {
         const data = await tablesService.deleteTable(req.params.id);
         res.status(200).json(data);    
@@ -32,7 +34,7 @@ router.post('/delete/:id' , async (req,res) => {
     }
 })
 
-router.post('/add-product' , async (req,res) => { 
+router.post('/add-product' , auth , isAuthorized , async (req,res) => { 
     try {
         const data = await tablesService.addProduct(req.body);
         res.status(200).json(data)        
