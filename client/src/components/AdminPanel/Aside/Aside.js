@@ -33,9 +33,9 @@ const Aside = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin-panel/dashboard">
+                            <Link to="/admin-panel/manage/menu">
                                 <i className="fas fa-tachometer-alt admin-panel-icon"></i>
-                                Dashboard
+                                Manage Menu
                             </Link>
                         </li>
                         <li>

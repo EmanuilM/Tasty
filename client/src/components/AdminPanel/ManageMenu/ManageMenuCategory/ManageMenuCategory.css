@@ -1,0 +1,51 @@
+.manage-menu-category-wrapper { 
+    width: 70%;
+    margin: 0 auto;
+}
+
+.manage-menu-category-wrapper h1  { 
+    text-align: center;
+    font-size: 40px;
+}
+
+.manage-menu-products {
+    background: lightgrey;
+    height: 700px;
+    overflow: auto;
+}
+
+.manage-menu-products ul { 
+    list-style: none;
+}
+
+.manage-menu-products ul li { 
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.manage-menu-products ul li p{ 
+    width: 170px;
+}
+
+.add-product-button-wrapper { 
+    text-align: center;
+}
+
+
+.add-product-btn { 
+    cursor: pointer;
+    padding: 10px 30px;
+    border: none;
+    background: tomato;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.manage-menu-products h2 { 
+    text-align: center;
+    font-size: 30px;
+}
+

@@ -1,0 +1,38 @@
+.admin-page-manage-menu-wrapper { 
+    text-align: center;
+}
+
+.admin-page-manage-menu-wrapper h1 { 
+    font-size: 40px;
+}
+
+.menu-categories ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu-categories ul li { 
+    margin: 10px;
+}
+
+.menu-categories ul li a img { 
+    width: 200px;
+    height: 200px;
+    border-radius: 33px;
+    object-fit: cover;
+}
+
+.menu-categories ul li a img:hover { 
+    animation-name: onImageHover;
+    animation-duration: 2s;
+}
+
+@keyframes onImageHover {
+    0% {
+        transform: scale(1.1);
+    }
+    100% { 
+        transform: scale(1);
+    }
+}

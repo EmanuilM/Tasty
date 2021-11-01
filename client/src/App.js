@@ -24,7 +24,6 @@ import * as authService from './services/authService';
 
 function App() {
   const [currentCheckOutItems, setCheckOutItems] = useState([]);
-  const [isAdmin, setAdminPermission] = useState(true);
   const authState = useAppSelector(state => state.auth);
   const alertState = useAppSelector(state => state.alert);
   const isLoading = useSelector(state => state.loader);
@@ -43,6 +42,9 @@ function App() {
         dispatch(loader());
         console.log(error);
       })
+
+
+      
   }, [])
 
   // useEffect(() => {
@@ -69,7 +71,7 @@ function App() {
 
     <div className="App">
 
-      <Header isAdmin={isAdmin} />
+      <Header  />
 
       <Switch>
         <Route path="/" component={HomePage} exact />

@@ -9,6 +9,9 @@ import CreateTable from './Tables/CreateTable/CreateTable';
 import ManageDailyMenu from './ManageDailyMenu/ManageDailyMenu';
 import AddProductToMenu from './ManageDailyMenu/AddProductToDailyMenu/AddProductToDailyMenu';
 import EditProduct from './ManageDailyMenu/EditProduct/EditProduct';
+import ManageMenu from './ManageMenu/ManageMenu';
+import ManageMenuCategory from './ManageMenu/ManageMenuCategory/ManageMenuCategory';
+import AddProductToCategory from './ManageMenu/AddProductToCategory/AddProductToCategory';
 
 const AdminPanel = () => {
     return (
@@ -25,6 +28,9 @@ const AdminPanel = () => {
             <Route path="/admin-panel/manage/daily-menu" component={ManageDailyMenu} />
             <Route path="/admin-panel/daily-menu/product/create" component={AddProductToMenu} />
             <Route path="/admin-panel/daily-menu/product/edit/:id" component={EditProduct} />
+            <Route path="/admin-panel/manage/menu" component={ManageMenu} exact />
+            <Route path="/admin-panel/manage/menu/add-product" component={AddProductToCategory} exact />
+            <Route path="/admin-panel/manage/menu/:category" component={ManageMenuCategory} exact />
 
             </Switch>
             </section>

@@ -28,13 +28,13 @@ const Menu = () => {
                             </li>
 
                             <li>
-                                <Link to="/menu/categories/meat-dishes">
+                                <Link to="/menu/categories/meat">
                                     <img src={meatDishes} alt="image" />
                                 </Link>
                                 <p className="main-menu-categories-name">Meat Dishes</p>
                             </li>
                             <li>
-                                <Link to="/menu/categories/sea-food">
+                                <Link to="/menu/categories/seafood">
                                     <img src={seaFood} alt="image" />
                                 </Link>
                                 <p className="main-menu-categories-name">Seafood</p>

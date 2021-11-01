@@ -77,7 +77,7 @@ const Tables = () => {
                         </thead>
                         <tbody>
                             {tables.length > 0 ? tables.map(x => {
-                                return <Table data={x} id={x._id} deleteTable={deleteTable} / >
+                                return <Table key={x._id} data={x} id={x._id} deleteTable={deleteTable} / >
                             }) : ""}
                         </tbody>
                     </table>
