@@ -3,15 +3,30 @@ import * as menuService from '../../../../services/menuService';
 import { loader } from '../../../../store/loader';
 import { useDispatch } from 'react-redux';
 import { showAlert } from '../../../../store/alert-slice';
+import { useState } from 'react';
 
 
 
 const AddProductToCategory = ({ history }) => {
 
     const dispatch = useDispatch();
+    const [image , setImage] = useState({preview : '' , raw : ''})
 
     const addProductHandler = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        const formData = new FormData();
+        Array.from(image.raw).map(x => { 
+            formData.append('image' , x);
+        })
+      
+        menuService.uploadImage(formData)
+        .then(res => { 
+            console.log(res)
+        })
+        .catch(error => { 
+            console.log(error);
+        })
+
         const productFileds = {
             productName: e.target.productName.value,
             productPrice: Number(e.target.productPrice.value),
@@ -19,7 +34,7 @@ const AddProductToCategory = ({ history }) => {
             category: e.target.category.value,
         }
         dispatch(loader());
-        menuService.createProduct(productFileds)
+        menuService.createProduct(productFileds , formData)
             .then(res => {
                 console.log(res)
                 dispatch(loader());
@@ -33,6 +48,17 @@ const AddProductToCategory = ({ history }) => {
 
 
     }
+
+    const handleChange = (e) => { 
+        console.log(e.target.files);
+        setImage({
+            preview : URL.createObjectURL(e.target.files[0]),
+            raw : e.target.files
+        })
+
+    }
+
+ 
 
     return (
         <section className="admin-page-menu-add-product">
@@ -67,10 +93,10 @@ const AddProductToCategory = ({ history }) => {
                         <p>Description</p>
                         <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription"></textarea>
                     </div>
-                    <input type="file" multiple="true"/>
                     <div className="menu-add-product-button-wrapper">
                         <button>Add product to menu</button>
                     </div>
+                    <input type="file" multiple onChange={handleChange} />
                 </form>
 
             </div>
