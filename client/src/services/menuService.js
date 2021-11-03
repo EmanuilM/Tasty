@@ -12,31 +12,18 @@ async function getProductsByMenuCategory(category) {
 
 
 
-async function createProduct(data , images) { 
+async function createProduct(data) { 
     const options = {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify([data,images]),
+        body: data,
         credentials: 'include'
     }
     return await api.httpRequest('/menu/create-product', options)
 }
 
-async function uploadImage(files) { 
-    const options = {
-        method: 'POST',
-        body: files,
-        credentials: 'include'
-    }
-    return await api.httpRequest('/menu/upload-image', options)
-
-}
 
 
 export { 
     getProductsByMenuCategory,
     createProduct,
-    uploadImage,
 }

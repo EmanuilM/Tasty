@@ -10,22 +10,10 @@ import { useState } from 'react';
 const AddProductToCategory = ({ history }) => {
 
     const dispatch = useDispatch();
-    const [image , setImage] = useState({preview : '' , raw : ''})
+    const [image, setImage] = useState({ preview: '', raw: '' })
 
     const addProductHandler = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        Array.from(image.raw).map(x => { 
-            formData.append('image' , x);
-        })
-      
-        menuService.uploadImage(formData)
-        .then(res => { 
-            console.log(res)
-        })
-        .catch(error => { 
-            console.log(error);
-        })
 
         const productFileds = {
             productName: e.target.productName.value,
@@ -33,8 +21,17 @@ const AddProductToCategory = ({ history }) => {
             productDescription: e.target.productDescription.value,
             category: e.target.category.value,
         }
+
+        const formData = new FormData();
+        Array.from(image.raw).map(x => {
+            formData.append('image', x);
+        })
+        formData.append('inputs', JSON.stringify(productFileds));
+
+
+
         dispatch(loader());
-        menuService.createProduct(productFileds , formData)
+        menuService.createProduct(formData)
             .then(res => {
                 console.log(res)
                 dispatch(loader());
@@ -49,16 +46,15 @@ const AddProductToCategory = ({ history }) => {
 
     }
 
-    const handleChange = (e) => { 
+    const handleChange = (e) => {
         console.log(e.target.files);
         setImage({
-            preview : URL.createObjectURL(e.target.files[0]),
-            raw : e.target.files
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files
         })
 
     }
 
- 
 
     return (
         <section className="admin-page-menu-add-product">
