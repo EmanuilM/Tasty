@@ -7,25 +7,42 @@ import { showAlert } from '../../../../store/alert-slice';
 import * as menuService from '../../../../services/menuService';
 import { useState } from 'react';
 import { Fragment } from 'react/cjs/react.development';
+import { MenuProduct } from '../ManageMenuCategory/MenuProduct/MenuProduct';
 
-const ManageMenuCategory = ({ match }) => {
+
+const ManageMenuCategory = ({ match, history }) => {
     const dispatch = useDispatch();
     const [response, setResponse] = useState();
-    console.log(response);
 
-    // dispatch(loader());
+
     useEffect(() => {
+        dispatch(loader());
         menuService.getProductsByMenuCategory(match.params.category[0].toUpperCase() + match.params.category.substring(1))
             .then(res => {
-                // dispatch(loader());
+                dispatch(loader());
                 setResponse(res);
                 console.log(res);
             })
             .catch(error => {
-                // dispatch(loader());
+                dispatch(loader());
                 console.log(error);
             })
     }, []);
+
+
+    const deleteItem = (id) => {
+        dispatch(loader());
+        menuService.deleteProduct(id)
+            .then(res => {
+                dispatch(loader());
+                history.push('/admin-panel/manage/menu');
+            })
+            .catch(error => {
+                dispatch(loader());
+                dispatch(showAlert());
+                console.log(error);
+            })
+    }
 
     return (
         <section className="manage-menu-category-wrapper">
@@ -39,13 +56,7 @@ const ManageMenuCategory = ({ match }) => {
                 <h2>Current products</h2>
                 <ul>
                     {response?.length > 0 ? response.map(x => {
-                        return <Fragment key={x._id}>
-                            <li>
-                                <p>{x.productName}</p>
-                                <i className="fas fa-highlighter"></i>
-                                <i className="fas fa-trash"></i>
-                            </li>
-                        </Fragment>
+                        return <MenuProduct key={x._id} id={x._id} data={x} deleteItem={deleteItem} />
                     }) : ""}
 
                 </ul>

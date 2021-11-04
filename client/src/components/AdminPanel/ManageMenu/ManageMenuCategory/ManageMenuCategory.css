@@ -49,3 +49,12 @@
     font-size: 30px;
 }
 
+
+
+.editIcon { 
+   color: blue; 
+}
+
+.editIcon:hover , .deleteIcon:hover { 
+    color: tomato; 
+ }

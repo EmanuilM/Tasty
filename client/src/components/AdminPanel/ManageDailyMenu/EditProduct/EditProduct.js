@@ -36,12 +36,14 @@ const EditProduct = ({ match , history }) => {
         dispatch(loader());
         dailyMenuService.editProduct(match.params.id , editProductFileds)
         .then(res => {
+            console.log(res)
             dispatch(loader());
             history.push('/admin-panel/manage/daily-menu')
         })
         .catch(error => { 
             dispatch(loader());
             dispatch(showAlert(error));
+            console.log(error)
         })
     }
 

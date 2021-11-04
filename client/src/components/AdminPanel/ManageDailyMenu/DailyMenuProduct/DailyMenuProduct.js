@@ -1,6 +1,6 @@
 import './DailyMenuProduct.css';
 import { Fragment, useState } from 'react';
-import DeleteModal from '../DeleteModal/DeleteModal';
+import DeleteModal from '../../../shared/DeleteModal/DeleteModal';
 import { Link } from 'react-router-dom';
 
 const DailyMenuProduct = ({ data, id , deleteItem }) => {

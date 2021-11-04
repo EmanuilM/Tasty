@@ -1,0 +1,96 @@
+import './EditMenuProduct.css';
+import * as menuService from '../../../../services/menuService';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loader } from '../../../../store/loader';
+import { showAlert } from '../../../../store/alert-slice';
+
+const EditMenuProduct = ({match}) => {
+
+    const dispatch = useDispatch();
+
+    const [initialData , setInitialData] = useState();
+    
+
+    useEffect(() => { 
+        dispatch(loader());
+        menuService.getProductByID(match.params.id)
+        .then(res => { 
+            dispatch(loader());
+            setInitialData(res);
+        })
+        .catch(error => { 
+            dispatch(loader());
+            dispatch(showAlert(error));
+        })
+    },[]);
+
+    const onSubmiHandler = (e) => { 
+        e.preventDefault();
+        const editProductFileds = {
+            productName : e.target.productName.value,
+            productPrice : Number(e.target.productPrice.value),
+            productDescription : e.target.productDescription.value,
+            category : e.target.category.value,
+        }
+
+
+        dispatch(loader());
+        menuService.editProduct(match.params.id , editProductFileds)
+        .then(res => { 
+            dispatch(loader());
+            console.log(res);
+        })
+        .catch(error => {
+            dispatch(loader());
+            dispatch(showAlert());
+            console.log(error);
+        })
+    }
+
+    return (
+        <section className="admin-page-menu-edit-product">
+            <div className="admin-page-menu-edit-product-inputs">
+                <h1>Edit item</h1>
+                <form onSubmit={onSubmiHandler}>
+                    <div className="menu-product-name">
+                        <p>Product Name</p>
+                        <input type="text" name="productName" defaultValue={initialData?.productName} />
+                    </div>
+
+                    <div className="menu-product-category">
+                        <p>Add product to</p>
+                        <select name="category" defaultValue={initialData?.category}>
+                            <option>Appetizers</option>
+                            <option>Meat</option>
+                            <option>Seafood</option>
+                            <option>Soups</option>
+                            <option>Salads</option>
+                            <option>Pasta</option>
+                            <option>Burgers</option>
+                            <option>Desserts</option>
+                            <option>Wines</option>
+                            <option>Coctails</option>
+                        </select>
+
+                    </div>
+                    <div className="menu-product-price">
+                        <p>Product Price</p>
+                        <input type="numner" step="any" min="0" name="productPrice" defaultValue={initialData?.productPrice} />
+                    </div>
+                    <div className="menu-product-description">
+                        <p>Description</p>
+                        <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription" defaultValue={initialData?.productDescription}></textarea>
+                    </div>
+                    <div className="menu-add-product-button-wrapper">
+                        <button>Add product to menu</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </section>
+    )
+}
+
+export default EditMenuProduct;
