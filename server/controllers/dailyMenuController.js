@@ -27,7 +27,7 @@ router.post('/delete-product/:id' , auth , isAuthorized , async (req,res) => {
         const data = await dailyMenuService.deleteProduct(req.params.id);
         res.status(200).json(data);
     } catch (error) {
-        res.status(400).json(error);
+    res.status(400).json(error);
     }
 });
 

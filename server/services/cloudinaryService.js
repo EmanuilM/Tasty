@@ -13,6 +13,19 @@ function uploadImageToCloudinary (file , type = 'image') {
 }
 
 
+function deleteImageFromCloudinary (id , type = 'image') { 
+    return new Promise((resolve,reject) => { 
+        cloudinary.uploader.destroy(id , {resource_type : type} , (error , response) => { 
+            if(error) { 
+                return reject(error);
+            }
+            return resolve(response);
+        })
+    })
+}
+
+
 module.exports = {
     uploadImageToCloudinary,
+    deleteImageFromCloudinary,
 }
