@@ -3,7 +3,7 @@ const router = Router();
 const menuService = require('../services/menuService');
 const formidable = require('formidable');
 const { parseForm } = require('../utils/parseForm');
-const { uploadImageToCloudinary } = require('../services/cloudinaryService');
+const { uploadImageToCloudinary , deleteImageFromCloudinary, deleteImageByPublicID } = require('../services/cloudinaryService');
 
 router.get('/:category', async (req, res) => {
     try {
@@ -52,7 +52,6 @@ router.post('/create-product', async (req, res) => {
 
         }
         const data = await menuService.createProduct(JSON.parse(fields['inputs']) , response);
-
         res.status(200).json([data, response]);
     } catch (error) {
         res.status(400).json(error);
@@ -82,6 +81,25 @@ router.get('/product/:id' , async (req,res) => {
 router.post('/edit-product/:id' , async (req,res) => { 
     try {
         const data = await menuService.editProduct(req.params.id , req.body);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.post('/delete-image/:id' , async (req,res) => { 
+    try {
+        const data = await deleteImageFromCloudinary(req.params.id);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.patch('/update/:id' ,  async (req,res) => { 
+    try {
+       
+        const data = await menuService.update(req.params.id , req.body[0]);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);

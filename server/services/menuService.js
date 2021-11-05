@@ -27,29 +27,41 @@ async function createProduct(data, imagesData) {
 
 async function deleteProduct(id) {
     const product = await menuModel.findById(id);
-    product.images.map(async (x) => { 
-        await cloudinaryService.deleteImageFromCloudinary(x.imageID)
+    product.images.map(async (x) => {
+        await cloudinaryService.deleteImageFromCloudinary(x.imageID.split('/')[1]);
     })
-   return await menuModel.deleteOne({ _id: id });
-    
+    return await menuModel.deleteOne({ _id: id });
+
 }
 
-async function getProductByID(id) { 
+async function getProductByID(id) {
     const product = await menuModel.findById(id);
-    if(!product) { 
-        throw({message : "There's not such product!"});
+    if (!product) {
+        throw ({ message: "There's not such product!" });
     }
     return product;
 }
 
-async function editProduct(id , data) { 
-    if(typeof data.productPrice === "string") { 
-        throw({message : "Product price must be a number"});
+async function editProduct(id, data) {
+    if (typeof data.productPrice === "string") {
+        throw ({ message: "Product price must be a number" });
     }
     if (!data.productName || !data.productPrice || !data.productDescription || !data.category) {
         throw ({ message: "All feilds are required!" });
     }
-    return await menuModel.updateOne({_id : id} , data)
+    return await menuModel.updateOne({ _id: id }, data)
+}
+
+async function update(id, deleteImageID) {
+    const product = await menuModel.findById(id);
+    product.images.map(async (x) => {
+        if (x.imageID === deleteImageID) {
+         return await menuModel.updateOne({ id: id }, { $pull: { images: x } })
+        }
+    })
+
+    return await menuModel.findById(id);
+
 }
 
 
@@ -59,4 +71,5 @@ module.exports = {
     deleteProduct,
     getProductByID,
     editProduct,
+    update,
 }
