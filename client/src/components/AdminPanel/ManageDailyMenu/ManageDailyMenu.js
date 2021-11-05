@@ -51,21 +51,21 @@ const ManageDailyMenu = () => {
                 </div>
                 <ul>
                     <h1>Breakfast Menu</h1>
-                    {data.length > 0 ? data[0].map(x => {
+                    {data[0]?.length > 0 ? data[0].map(x => {
                         return <DailyMenuProduct key={x._id} id={x._id} data={x} deleteItem={deleteItem} />
-                    }) :  <><p>There's no products</p></>}
+                    }) :  <p className="no-product-message">There's no products</p>}
 
                     <h1>Lucnh Menu</h1>
 
-                    {data.length > 0 ? data[1].map(x => {
-                        return <DailyMenuProduct key={x._id} id={x._id} data={x}  deleteItem={deleteItem} />
-                    }) : <><p>There's no products</p></>}
+                    {data[1]?.length > 0 ? data[1].map(x => {
+                        return <DailyMenuProduct key={x._id} id={x._id} data={x} deleteItem={deleteItem} />
+                    }) :  <p className="no-product-message">There's no products</p>}
 
                     <h1>Dinner Menu</h1>
 
-                    {data.length > 0 ? data[2].map(x => {
+                    {data[2]?.length > 0 ? data[2].map(x => {
                         return <DailyMenuProduct key={x._id} id={x._id} data={x} deleteItem={deleteItem} />
-                    }) : <><p>There's no products</p></>}
+                    }) : <p className="no-product-message">There's no products</p>}
 
                 </ul>
 

@@ -75,7 +75,7 @@ const EditProduct = ({ match , history }) => {
                         <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription" defaultValue={initialData?.productDescription}></textarea>
                     </div>
                     <div className="daily-menu-add-product-button-wrapper">
-                        <button>Add product to menu</button>
+                        <button>Edit product</button>
                     </div>
                 </form>
 

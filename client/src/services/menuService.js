@@ -58,6 +58,29 @@ async function editProduct(id , data) {
 }
 
 
+async function deleteImage(id) { 
+    const options = {
+        method: 'POST',
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/menu/delete-image/${id}`, options)
+}
+
+
+async function update(id , imageID) { 
+    const options = {
+        method : 'PATCH',
+        headers : { 
+            'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify([imageID]),
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/menu/update/${id}`, options)
+}
+
+
+
 
 
 
@@ -67,4 +90,6 @@ export {
     getProductByID,
     deleteProduct,
     editProduct,
+    deleteImage,
+    update
 }

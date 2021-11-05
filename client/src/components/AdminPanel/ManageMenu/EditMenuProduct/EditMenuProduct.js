@@ -4,48 +4,72 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
+import ProductImage from './ProductImage/ProductImage';
 
-const EditMenuProduct = ({match}) => {
+const EditMenuProduct = ({ match }) => {
 
     const dispatch = useDispatch();
 
-    const [initialData , setInitialData] = useState();
-    
+    const [initialData, setInitialData] = useState();
 
-    useEffect(() => { 
+
+
+    useEffect(() => {
         dispatch(loader());
         menuService.getProductByID(match.params.id)
-        .then(res => { 
-            dispatch(loader());
-            setInitialData(res);
-        })
-        .catch(error => { 
-            dispatch(loader());
-            dispatch(showAlert(error));
-        })
-    },[]);
+            .then(res => {
+                dispatch(loader());
+                setInitialData(res);
+            })
+            .catch(error => {
+                dispatch(loader());
+                dispatch(showAlert(error));
+            })
+    }, []);
 
-    const onSubmiHandler = (e) => { 
-        e.preventDefault();
-        const editProductFileds = {
-            productName : e.target.productName.value,
-            productPrice : Number(e.target.productPrice.value),
-            productDescription : e.target.productDescription.value,
-            category : e.target.category.value,
-        }
-
-
+    const deleteImage = (id) => { 
         dispatch(loader());
-        menuService.editProduct(match.params.id , editProductFileds)
+        menuService.deleteImage(id.split('/')[1])
         .then(res => { 
             dispatch(loader());
             console.log(res);
+            menuService.update(match.params.id , id)
+            .then(res => { 
+                console.log(res);
+                setInitialData(res);
+            })
+            .catch(error => { 
+                console.log(error);
+            })
         })
-        .catch(error => {
+        .catch(error => { 
             dispatch(loader());
             dispatch(showAlert());
             console.log(error);
         })
+    }
+
+    const onSubmiHandler = (e) => {
+        e.preventDefault();
+        const editProductFileds = {
+            productName: e.target.productName.value,
+            productPrice: Number(e.target.productPrice.value),
+            productDescription: e.target.productDescription.value,
+            category: e.target.category.value,
+        }
+
+
+        dispatch(loader());
+        menuService.editProduct(match.params.id, editProductFileds)
+            .then(res => {
+                dispatch(loader());
+                console.log(res);
+            })
+            .catch(error => {
+                dispatch(loader());
+                dispatch(showAlert());
+                console.log(error);
+            })
     }
 
     return (
@@ -82,8 +106,17 @@ const EditMenuProduct = ({match}) => {
                         <p>Description</p>
                         <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription" defaultValue={initialData?.productDescription}></textarea>
                     </div>
+                    <section className="product-images-wrapper">
+                        <h1>Product images</h1>
+                        <ul>
+                            {initialData?.images.map(x => {
+                                return <ProductImage key={x.imageID} data={x} deleteImage={deleteImage} / >
+                            })}
+                        </ul>
+
+                    </section>
                     <div className="menu-add-product-button-wrapper">
-                        <button>Add product to menu</button>
+                        <button>Edit product</button>
                     </div>
                 </form>
 

@@ -37,3 +37,18 @@
 .menu-add-product-button-wrapper button:hover { 
     background: rgb(17, 160, 17);
 }
+
+
+.product-images-wrapper {
+    background: gray;
+    width: 30%;
+    margin: 0 auto;
+}
+
+.product-images-wrapper ul  {
+    padding: unset;
+    list-style: none; 
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

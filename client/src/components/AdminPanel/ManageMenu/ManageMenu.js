@@ -1,7 +1,7 @@
 import './ManageMenu.css';
 import { Link } from 'react-router-dom';
 
-import salads from '../../../assets/menuImages/mainMenuImages/wine.jpg';
+import salads from '../../../assets/menuImages/mainMenuImages/salads.jpg';
 import appetizers from '../../../assets/menuImages/mainMenuImages/appetizers.jpg';
 import meatDishes from '../../../assets/menuImages/mainMenuImages/meatDishes.jpg';
 import seaFood from '../../../assets/menuImages/mainMenuImages/seaFood.jpg';

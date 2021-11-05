@@ -1,0 +1,23 @@
+.product-images-wrapper ul li  { 
+    margin: 10px;
+    width: 30%;
+    position: relative;
+}
+
+.product-images-wrapper ul li i { 
+   position: absolute;
+   right: 0;
+   padding: 3px;
+}
+
+.product-images-wrapper ul li i:hover { 
+   color: tomato;
+ }
+
+
+
+.product-images-wrapper ul li img { 
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
