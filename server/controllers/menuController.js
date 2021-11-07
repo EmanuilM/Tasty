@@ -20,15 +20,19 @@ router.post('/create-product', async (req, res) => {
         const [fields, files] = await parseForm(req, form);
         const response = [];
 
+
+        files.image.map(x => { 
+            if (!/image\/(jpg|jpeg|png)$/.test(x.mimetype)) {
+                throw ({ message: 'Unsupported file extension! We support jpg/jpeg/png file extensions!' })
+            }
+            if (x.size > 10485760) {
+                throw ({ message: 'File cannot be over 10 MB' });
+            }
+        })
+
         if (Array.isArray(files.image)) {
             await Promise.all(
                 files.image.map(async (x) => {
-                    if (!/image\/(jpg|jpeg|png)$/.test(x.mimetype)) {
-                        throw ({ message: 'Unsupported file extension! We support jpg/jpeg/png file extensions!' })
-                    }
-                    if (x.size > 10485760) {
-                        throw ({ message: 'File cannot be over 10 MB' });
-                    }
                     const [image, imageID] = await uploadImageToCloudinary(x.filepath);
                     response.push({ imageURL: image, imageID: imageID })
                 })
@@ -37,17 +41,7 @@ router.post('/create-product', async (req, res) => {
             if(!files.image) { 
                 throw({message : 'Image/s is required!'});
             }
-
-            if (!/image\/(jpg|jpeg|png)$/.test(files.image.mimetype)) {
-                throw ({ message: 'Unsupported file extension! We support jpg/jpeg/png file extensions!' });
-            }
-            if (files.image.size > 10485760) {
-                throw ({ message: 'File cannot be over 10 MB' });
-            }
-
             const [image, imageID] = await uploadImageToCloudinary(files.image.filepath);
-           
-           
             response.push({ imageURL: image, imageID: imageID })
 
         }
