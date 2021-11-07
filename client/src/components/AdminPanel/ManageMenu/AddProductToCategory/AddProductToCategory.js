@@ -4,13 +4,14 @@ import { loader } from '../../../../store/loader';
 import { useDispatch } from 'react-redux';
 import { showAlert } from '../../../../store/alert-slice';
 import { useState } from 'react';
-
+import FileUploader from './DragAndDropFileUploader/FileUploader';
 
 
 const AddProductToCategory = ({ history }) => {
 
     const dispatch = useDispatch();
-    const [image, setImage] = useState({ preview: '', raw: '' })
+    const [filesList, setFilesList] = useState([]);
+
 
     const addProductHandler = async (e) => {
         e.preventDefault();
@@ -23,7 +24,7 @@ const AddProductToCategory = ({ history }) => {
         }
 
         const formData = new FormData();
-        Array.from(image.raw).map(x => {
+        Array.from(filesList).map(x => {
             formData.append('image', x);
         })
         formData.append('inputs', JSON.stringify(productFileds));
@@ -46,14 +47,23 @@ const AddProductToCategory = ({ history }) => {
 
     }
 
-    const handleChange = (e) => {
-        console.log(e.target.files);
-        setImage({
-            preview: URL.createObjectURL(e.target.files[0]),
-            raw: e.target.files
-        })
+        const onFileDrop = (e) => {
+            console.log(e.target.files)
+            Array.from(e.target.files).map(x => { 
+                if (x) {
+                    setFilesList((state) => [...state, x]);
+                }
+            })
+    
+        }
 
-    }
+        const fileRemove = (file) => { 
+            const updatedList = [...filesList];
+            updatedList.splice(filesList.indexOf(file) , 1);
+            setFilesList(updatedList);
+        }
+
+    
 
 
     return (
@@ -89,11 +99,13 @@ const AddProductToCategory = ({ history }) => {
                         <p>Description</p>
                         <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription"></textarea>
                     </div>
+                    <FileUploader  onFileDrop={onFileDrop} fileRemove={fileRemove} filesList={filesList}  />
                     <div className="menu-add-product-button-wrapper">
                         <button>Add product to menu</button>
                     </div>
-                    <input type="file" multiple onChange={handleChange} />
+                    {/* <input type="file" multiple onChange={handleChange} /> */}
                 </form>
+
 
             </div>
 

@@ -1,0 +1,66 @@
+.file-uploader-wrapper { 
+    background: white;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.drag-and-drop-section {
+    border: 3px dashed blue;
+    background: #F5F8FF;
+    border-radius: 10px;
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.drag-and-drop-section:hover, .onDrag{ 
+    opacity: 0.7;
+}
+
+.drag-and-drop-section img { 
+    width: 50%;
+}
+
+.drag-and-drop-section h3 { 
+    color: gray;
+}
+
+.drag-and-drop-section input { 
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+
+.ready-to-upload ul li { 
+    background: #F5F8FF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    border-radius: 10px;
+}
+
+.ready-to-upload ul li img { 
+    padding: 10px;
+    width: 50px;
+    object-fit: contain;
+    margin-right: 30px;
+}
+
+.delete-image { 
+    background: white;
+    padding: 7px;
+    border-radius: 60px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0px 0px 3px gray;
+}
+
+
+
