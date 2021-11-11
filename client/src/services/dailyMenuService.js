@@ -19,7 +19,7 @@ async function createProduct(data) {
 
 async function deleteProduct(id) {
     const options = {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -30,7 +30,7 @@ async function deleteProduct(id) {
 
 async function editProduct(id , data) { 
     const options = {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },

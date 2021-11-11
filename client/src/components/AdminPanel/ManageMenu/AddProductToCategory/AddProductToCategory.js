@@ -47,23 +47,23 @@ const AddProductToCategory = ({ history }) => {
 
     }
 
-        const onFileDrop = (e) => {
-            console.log(e.target.files)
-            Array.from(e.target.files).map(x => { 
-                if (x) {
-                    setFilesList((state) => [...state, x]);
-                }
-            })
-    
-        }
+    const onFileDrop = (e) => {
+        console.log(e.target.files)
+        Array.from(e.target.files).map(x => {
+            if (x) {
+                setFilesList((state) => [...state, x]);
+            }
+        })
 
-        const fileRemove = (file) => { 
-            const updatedList = [...filesList];
-            updatedList.splice(filesList.indexOf(file) , 1);
-            setFilesList(updatedList);
-        }
+    }
 
-    
+    const fileRemove = (file) => {
+        const updatedList = [...filesList];
+        updatedList.splice(filesList.indexOf(file), 1);
+        setFilesList(updatedList);
+    }
+
+
 
 
     return (
@@ -99,7 +99,7 @@ const AddProductToCategory = ({ history }) => {
                         <p>Description</p>
                         <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription"></textarea>
                     </div>
-                    <FileUploader  onFileDrop={onFileDrop} fileRemove={fileRemove} filesList={filesList}  />
+                    <FileUploader onFileDrop={onFileDrop} fileRemove={fileRemove} filesList={filesList} />
                     <div className="menu-add-product-button-wrapper">
                         <button>Add product to menu</button>
                     </div>

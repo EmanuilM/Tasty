@@ -20,6 +20,7 @@ const EditMenuProduct = ({ match }) => {
             .then(res => {
                 dispatch(loader());
                 setInitialData(res);
+
             })
             .catch(error => {
                 dispatch(loader());
@@ -35,7 +36,6 @@ const EditMenuProduct = ({ match }) => {
             console.log(res);
             menuService.update(match.params.id , id)
             .then(res => { 
-                console.log(res);
                 setInitialData(res);
             })
             .catch(error => { 
@@ -64,6 +64,7 @@ const EditMenuProduct = ({ match }) => {
             .then(res => {
                 dispatch(loader());
                 console.log(res);
+                console.log(res)
             })
             .catch(error => {
                 dispatch(loader());
