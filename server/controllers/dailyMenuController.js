@@ -22,7 +22,7 @@ router.post('/create-product', auth , isAuthorized ,   async (req, res) => {
     }
 });
 
-router.post('/delete-product/:id' , auth , isAuthorized , async (req,res) => {
+router.delete('/delete-product/:id' , auth , isAuthorized , async (req,res) => {
     try {
         const data = await dailyMenuService.deleteProduct(req.params.id);
         res.status(200).json(data);
@@ -31,7 +31,7 @@ router.post('/delete-product/:id' , auth , isAuthorized , async (req,res) => {
     }
 });
 
-router.post('/edit-product/:id' ,  auth , isAuthorized ,async (req,res) => { 
+router.patch('/edit-product/:id' ,  auth , isAuthorized ,async (req,res) => { 
     try {
         const data = await dailyMenuService.editProduct(req.params.id , req.body);
         res.status(200).json(data);
