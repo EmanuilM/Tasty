@@ -1,14 +1,15 @@
 const menuModel = require("../models/menuModel");
 const cloudinaryService = require("./cloudinaryService");
-const {
-  uploadImageToCloudinary,
-  deleteImageFromCloudinary,
-  deleteImageByPublicID,
-} = require("../services/cloudinaryService");
+const { uploadImageToCloudinary } = require("../services/cloudinaryService");
 
 async function getProductsByMenuCategory(category) {
   return await menuModel.find({ category: category });
 }
+
+async function getNext(category , page) { 
+  return menuModel.find({category : category }).skip(page).limit(10);
+}
+
 
 async function createProduct(data, files) {
   const imageCollection = [];
@@ -99,7 +100,7 @@ async function editProduct(id, data) {
   return await menuModel.updateOne({ _id: id }, data);
 }
 
-async function update(id, deleteImageID) {
+async function updateProduct(id, deleteImageID) {
   const product = await menuModel.findById(id);
   product.images.map(async (x) => {
     if (x.imageID === deleteImageID) {
@@ -110,11 +111,13 @@ async function update(id, deleteImageID) {
   return await menuModel.findById(id);
 }
 
+
 module.exports = {
   getProductsByMenuCategory,
   createProduct,
   deleteProduct,
   getProductByID,
   editProduct,
-  update,
+  updateProduct,
+  getNext,
 };
