@@ -33,7 +33,6 @@ const EditMenuProduct = ({ match }) => {
         menuService.deleteImage(id.split('/')[1])
         .then(res => { 
             dispatch(loader());
-            console.log(res);
             menuService.update(match.params.id , id)
             .then(res => { 
                 setInitialData(res);

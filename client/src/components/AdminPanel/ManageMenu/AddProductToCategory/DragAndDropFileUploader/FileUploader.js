@@ -6,7 +6,6 @@ import { imageConfig } from '../DragAndDropFileUploader/imageConfig';
 
 
 const FileUploader = ({ onFileDrop, filesList , fileRemove }) => {
-    console.log(filesList)
     const wrapperRef = useRef(null);
     const onDragEnter = () => wrapperRef.current.classList.add('onDrag');
     const onDragLeave = () => wrapperRef.current.classList.remove('onDrag');

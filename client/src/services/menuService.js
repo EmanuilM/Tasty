@@ -1,13 +1,13 @@
 import * as api from '../utils/api';
 
-async function getProductsByMenuCategory(category) { 
+async function getProductsByMenuCategory(category , page) { 
     const options = {
         headers: {
             'Content-Type': 'application/json',
         },
         credentials: 'include'
     }
-    return await api.httpRequest(`/menu/${category}`, options)
+    return await api.httpRequest(`/menu/${category}?page=${page}`, options)
 }
 
 
@@ -76,7 +76,7 @@ async function update(id , imageID) {
         body : JSON.stringify([imageID]),
         credentials: 'include'
     }
-    return await api.httpRequest(`/menu/update/${id}`, options)
+    return await api.httpRequest(`/menu/update-product/${id}`, options)
 }
 
 

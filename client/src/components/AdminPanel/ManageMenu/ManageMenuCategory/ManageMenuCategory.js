@@ -21,7 +21,6 @@ const ManageMenuCategory = ({ match, history }) => {
             .then(res => {
                 dispatch(loader());
                 setResponse(res);
-                console.log(res);
             })
             .catch(error => {
                 dispatch(loader());

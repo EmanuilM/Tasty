@@ -6,7 +6,7 @@ import { handleLogOut } from '../../store/auth-slice';
 import { useDispatch } from 'react-redux';
 import * as authService from '../../services/authService';
 
-const Header = (props) => {
+const Header = ({props}) => {
     const dispatch = useDispatch();
     const [isActive, setActive] = useState(false);
 

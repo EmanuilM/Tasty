@@ -44,34 +44,13 @@ function App() {
       })
 
 
-      
   }, [])
-
-  // useEffect(() => {
-  //   const currentAuthState = JSON.parse(window.localStorage.getItem('user'));
-  //   if (currentAuthState) {
-  //     dispatch(
-  //       setUserState({
-  //         isAuthenticated: currentAuthState.isAuthenticated,
-  //         userAuthState: currentAuthState.userAuthState
-  //       })
-  //     )
-  //   }
-  // }, [dispatch])
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('user', JSON.stringify(authState));
-  // }, [authState]);
-
-  // if(isAdmin)
-  // style={{ display: "flex" , flexDirection : "column" , height : "125vh"}}
-
 
   return (
 
     <div className="App">
 
-      <Header  />
+      <Header />
 
       <Switch>
         <Route path="/" component={HomePage} exact />
@@ -79,7 +58,7 @@ function App() {
         <Route path="/sign-in" component={Login} />
         <Route path="/daily-menu" component={DailyMenu} />
         <Route path="/menu" component={Menu} exact />
-        <Route path="/menu/categories/:products" component={ProductCategories} />
+        <Route path="/menu/categories/:category" component={ProductCategories} />
         <Route path="/reservation/:page" component={Reservation} />
         <Route path="/order" component={Orders}>
           <Orders setCheckOutItems={setCheckOutItems} />

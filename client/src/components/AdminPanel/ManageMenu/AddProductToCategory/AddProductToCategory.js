@@ -34,14 +34,12 @@ const AddProductToCategory = ({ history }) => {
         dispatch(loader());
         menuService.createProduct(formData)
             .then(res => {
-                console.log(res)
                 dispatch(loader());
                 history.push('/admin-panel/manage/menu');
             })
             .catch((error) => {
                 dispatch(loader());
                 dispatch(showAlert(error))
-                console.log(error);
             })
 
 
