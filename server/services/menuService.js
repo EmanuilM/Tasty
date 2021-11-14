@@ -7,7 +7,11 @@ async function getProductsByMenuCategory(category) {
 }
 
 async function getNext(category , page) { 
-  return menuModel.find({category : category }).skip(page).limit(10);
+  return Promise.all([
+    getProductsByMenuCategory(category),
+    menuModel.find({category : category }).skip((page  - 1) * 9 ).limit(9)
+  ])
+ 
 }
 
 

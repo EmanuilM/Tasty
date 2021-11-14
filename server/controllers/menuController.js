@@ -7,8 +7,6 @@ const { uploadImageToCloudinary , deleteImageFromCloudinary, deleteImageByPublic
 
 router.get('/:category', async (req, res) => {
     try {
-        console.log(req.query.page)
-        
         const data = Number(req.query.page) ? await menuService.getNext( req.params.category , Number(req.query.page)) : await menuService.getProductsByMenuCategory(req.params.category);
         res.status(200).json(data);
     } catch (error) {
