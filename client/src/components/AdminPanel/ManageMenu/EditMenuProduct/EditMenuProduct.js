@@ -6,7 +6,7 @@ import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
 import ProductImage from './ProductImage/ProductImage';
 
-const EditMenuProduct = ({ match }) => {
+const EditMenuProduct = ({ match , history }) => {
 
     const dispatch = useDispatch();
 
@@ -20,7 +20,6 @@ const EditMenuProduct = ({ match }) => {
             .then(res => {
                 dispatch(loader());
                 setInitialData(res);
-
             })
             .catch(error => {
                 dispatch(loader());
@@ -62,13 +61,11 @@ const EditMenuProduct = ({ match }) => {
         menuService.editProduct(match.params.id, editProductFileds)
             .then(res => {
                 dispatch(loader());
-                console.log(res);
-                console.log(res)
+                history.goBack();
             })
             .catch(error => {
                 dispatch(loader());
                 dispatch(showAlert());
-                console.log(error);
             })
     }
 

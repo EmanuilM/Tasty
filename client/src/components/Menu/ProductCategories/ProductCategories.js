@@ -11,31 +11,29 @@ import { useState } from 'react/cjs/react.development';
 import { Link } from 'react-router-dom';
 
 
-const ProductCategories = ({match , location}) => {
-    console.log(location)
+const ProductCategories = ({ match, location }) => {
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
-    const params = new URLSearchParams(location.search);
-    const page = parseInt(params.get('page'));
-    
+    const [pages, setPages] = useState([]);
+
+
 
     useEffect(() => {
+        const page = location.search.split('=')[1];
         dispatch(loader());
-        menuService.getProductsByMenuCategory(match.params.category[0].toUpperCase() + match.params.category.substring(1) , page)
-            .then(res => {
+        menuService.getProductsByMenuCategory(match.params.category[0].toUpperCase() + match.params.category.substring(1), page || 1)
+            .then(([allProducts, filteredProducts]) => {
                 dispatch(loader());
-                setProducts(res);
+                setProducts(filteredProducts);
+                setPages(Array.from({ length: Math.ceil(allProducts.length / 9) }, (v, i) => i + 1))
             })
             .catch(error => {
                 dispatch(loader());
                 dispatch(showAlert());
                 console.log(error);
             })
-      
-    }, [])
 
-
-
+    }, [location.search])
 
 
     return (
@@ -47,49 +45,31 @@ const ProductCategories = ({match , location}) => {
 
                 <article className="main-menu-products">
                     <ul>
-                        {products.map(x => {
+                        {products.length <= 0 ? <h1>There's no products</h1> : products.map(x => {
                             return <MainMenuProduct key={x._id} productName={x.productName} price={x.productPrice} image={x.images[0].imageURL} ingredients={x.productDescription} />
                         })}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
-                        {/* <MainMenuProduct productName="Mediterranean Shrimp Pizza" image={image} price="8.40" ingredients="Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese." weight="450g" /> */}
                     </ul>
                 </article>
                 <article className="main-menu-paggination">
                     <ul>
-                        <li>
-                            <i className="fas fa-arrow-left"></i>
-                        </li>
-                        <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=1`}>1</Link>
-                        </li>
-                        <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=2`}>2</Link>
-                        </li>
-                        <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=3`}>3</Link>
-                        </li>
-                        <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=4`}>4</Link>
-                        </li>
-                        <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=5`}>5</Link>
-                        </li>
-                        <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=6`}>6</Link>
-                        </li>
-                        <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=7`}>7</Link>
-                        </li>
-                        <li>
-                            <i className="fas fa-arrow-right"></i>
-                        </li>
+                        {products.length <= 0 ? "" : <li>
+                            <Link to={`/menu/categories/${match.params.category}?page=${Number(location.search.split('=')[1]) - 1}`}>
+                                <i className="fas fa-arrow-left"></i>
+                            </Link>
+
+                        </li>}
+
+                        {pages.map(x => {
+                            return <li key={x}>
+                                <Link to={`/menu/categories/${match.params.category}?page=${x}`}>{x}</Link>
+                            </li>
+                        })}
+                        {products.length <= 0 ? "" : <li>
+                            <Link to={`/menu/categories/${match.params.category}?page=${Number(location.search.split('=')[1]) + 1}`}>
+                                <i className="fas fa-arrow-right"></i>
+                            </Link>
+                        </li>}
+
                     </ul>
                 </article>
             </section>
