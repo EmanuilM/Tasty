@@ -21,7 +21,6 @@ import { Loader } from './components/shared/Loader/Loader';
 import { loader } from './store/loader';
 import * as authService from './services/authService';
 
-
 function App() {
   const [currentCheckOutItems, setCheckOutItems] = useState([]);
   const authState = useAppSelector(state => state.auth);
@@ -42,7 +41,6 @@ function App() {
         dispatch(loader());
         console.log(error);
       })
-
 
   }, [])
 

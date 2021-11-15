@@ -60,6 +60,16 @@
     color: #CEB38C;
 }
 
+.main-menu-paggination ul li a { 
+    color: black;
+    text-decoration: none;
+}
+
+.main-menu-paggination ul li a:hover { 
+    color: #CEB38C;
+    text-decoration: none;
+}
+
 @media screen and (max-width:350px) {
     .main-menu-products ul li img { 
         width: 175px;

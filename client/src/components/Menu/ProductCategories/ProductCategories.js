@@ -35,12 +35,12 @@ const ProductCategories = ({ match, location }) => {
 
     }, [location.search])
 
-
+    console.log(products)
     return (
         <main>
             <section className="main-product-categories-page-wrapper">
                 <article className="main-menu-banner-wrapper">
-                    <h1>{match.params.products}</h1>
+                    <h1>{match.params.category.slice(0, 1).toUpperCase() + match.params.category.slice(1)}</h1>
                 </article>
 
                 <article className="main-menu-products">
@@ -52,23 +52,23 @@ const ProductCategories = ({ match, location }) => {
                 </article>
                 <article className="main-menu-paggination">
                     <ul>
-                        {products.length <= 0 ? "" : <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=${Number(location.search.split('=')[1]) - 1}`}>
+                        {products.length ? <li>
+                            <Link to={`/menu/categories/${match.params.category}?page=${Number(location.search.split('=')[1]) - 1 ? Number(location.search.split('=')[1]) - 1 : 1}`}>
                                 <i className="fas fa-arrow-left"></i>
                             </Link>
 
-                        </li>}
+                        </li> : ""}
 
                         {pages.map(x => {
                             return <li key={x}>
                                 <Link to={`/menu/categories/${match.params.category}?page=${x}`}>{x}</Link>
                             </li>
                         })}
-                        {products.length <= 0 ? "" : <li>
-                            <Link to={`/menu/categories/${match.params.category}?page=${Number(location.search.split('=')[1]) + 1}`}>
+                        {products.length >= 9 ? <li>
+                            <Link to={`/menu/categories/${match.params.category}?page=${Number(location.search.split('=')[1]) + 1 ? Number(location.search.split('=')[1]) + 1 : 2}`}>
                                 <i className="fas fa-arrow-right"></i>
                             </Link>
-                        </li>}
+                        </li> : ""}
 
                     </ul>
                 </article>

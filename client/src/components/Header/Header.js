@@ -5,25 +5,38 @@ import { useAppSelector } from '../../store';
 import { handleLogOut } from '../../store/auth-slice';
 import { useDispatch } from 'react-redux';
 import * as authService from '../../services/authService';
+import { useEffect } from 'react';
+import * as dailyMenuService from '../../services/dailyMenuService';
 
-const Header = ({props}) => {
+const Header = () => {
     const dispatch = useDispatch();
     const [isActive, setActive] = useState(false);
+    const [dailyMenuProducts, setDailyMenuProducts] = useState();
 
     const activateSmallScreenView = () => {
         setActive(!isActive);
     }
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const isAdmin = useAppSelector(state => state.auth.userAuthState.isAdmin);
-    
-    const logoutHandler = () => { 
+
+    useEffect(() => {
+        dailyMenuService.getProducts()
+            .then(res => {
+                setDailyMenuProducts(res);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    })
+
+    const logoutHandler = () => {
         authService.logout()
-        .then(data => { 
-            dispatch(handleLogOut())
-        })
-        .catch((error) => { 
-            console.log(error);
-        })
+            .then(data => {
+                dispatch(handleLogOut())
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     if (isAuthenticated) {
@@ -35,9 +48,9 @@ const Header = ({props}) => {
                         <li>
                             <Link onClick={activateSmallScreenView} to="/">Home</Link>
                         </li>
-                        <li>
+                        {dailyMenuProducts[0]?.length >= 1 || dailyMenuProducts[1]?.length >= 1 || dailyMenuProducts[2]?.length >= 1 ? <li>
                             <Link onClick={activateSmallScreenView} to="/daily-menu">Daily Menu</Link>
-                        </li>
+                        </li> : ""}
                         <li>
                             <Link onClick={activateSmallScreenView} to="/menu">Menu</Link>
                         </li>
