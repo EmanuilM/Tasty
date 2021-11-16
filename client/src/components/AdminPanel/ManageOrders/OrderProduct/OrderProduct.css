@@ -1,0 +1,36 @@
+.delivered { 
+    color: #39B38E;
+    margin-right: 10px;
+}
+
+.cancalled { 
+    color: #FD5146;
+    margin-right: 10px;
+}
+
+.pending { 
+    margin-right: 10px;
+    color: #4373BD;
+}
+
+.manage-orders-list ul li{ 
+    background: #FAFBFE;
+    border-radius: 10px;
+    margin: 10px 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    grid-column-gap: 10px;
+}
+
+
+.manage-orders-list ul li:hover{ 
+ transform: scale(1.07);
+ box-shadow: 0px 0px 3px gray;
+}
+
+.manage-orders-list ul li p:nth-child(3) { 
+    word-break: break-all;
+}

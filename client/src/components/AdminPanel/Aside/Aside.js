@@ -10,7 +10,6 @@ const Aside = () => {
     return (
         <section className="aside-navigation">
 
-            {/* <i class="fab fa-adn test-icon" onClick={setAsideBarState}></i> */}
             <aside className={activeSideBar ? "showAside" : "hideAside"}>
                 <nav>
                     <ul>
@@ -39,9 +38,9 @@ const Aside = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin-panel/dashboard">
-                                <i className="fas fa-tachometer-alt admin-panel-icon"></i>
-                                Dashboard
+                            <Link to="/admin-panel/manage/orders/all-orders">
+                            <i className="fas fa-shopping-cart admin-panel-icon"></i>
+                                Manage Orders
                             </Link>
                         </li>
                         <li>

@@ -14,13 +14,28 @@ const Orders = (props) => {
             <section className="order-menu-products-navigation">
                 <ul>
                     <li>
-                        <Link to="">Category</Link>
+                        <Link to="">Appetizers</Link>
                     </li>
                     <li>
-                        <Link to="">Category</Link>
+                        <Link to="">Meat</Link>
                     </li>
                     <li>
-                        <Link to="">Category</Link>
+                        <Link to="">Seafood</Link>
+                    </li>
+                    <li>
+                        <Link to="">Salands</Link>
+                    </li>
+                    <li>
+                        <Link to="">Pasta</Link>
+                    </li>
+                    <li>
+                        <Link to="">Burgers</Link>
+                    </li>
+                    <li>
+                        <Link to="">Desserts</Link>
+                    </li>
+                    <li>
+                        <Link to="">Wines</Link>
                     </li>
                 </ul>
             </section>
