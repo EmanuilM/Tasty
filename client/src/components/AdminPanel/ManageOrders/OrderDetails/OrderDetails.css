@@ -1,0 +1,170 @@
+.admin-panel-orders-details { 
+    width: 100%;
+} 
+
+.admin-panel-orders-details >  h1 { 
+    margin: 19px 0px 19px 43px;
+
+}
+
+.admin-panel-orders-details h1 span { 
+    color: #FE6D6F;
+}
+
+
+.ordered-products-list { 
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin-bottom: 30px;
+}
+
+.ordered-products-list-headings { 
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid gray;
+}
+
+
+.order-details-wrapper { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.order-products-and-customer-information-wrapper {
+    width: 60%;
+}
+
+.order-details-information { 
+    margin: 10px 0px 0px 30px;
+}
+
+.order-details-information article{ 
+   margin-bottom: 10px;
+}
+
+.ordered-products-list-headings p { 
+    flex: 1 1 0px;
+    text-align: center;
+}
+
+.ordered-products  { 
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid gray;
+}
+
+.ordered-products:last-child  { 
+    border-bottom: unset;
+}
+
+
+.ordered-products { 
+    display: flex;
+}
+
+.ordered-products p { 
+    flex: 1 1 0px;
+    text-align: center;
+    word-break: break-all;
+    padding: 0px 7px;
+}
+
+
+
+.ordered-products div img { 
+    width: 30px;
+    padding: 7px;
+    object-fit: contain;
+}
+
+.customer-and-order-details { 
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+
+.customer-and-order-details h1 { 
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+    font-size: 19px;
+    margin: 10px 30px;
+    text-align: center;
+    font-size: 19px;
+    
+}
+
+.order-product-and-customer-details div { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    margin: 0px 10px;
+    padding: 0px 10px;
+}
+
+
+.order-product-and-customer-details div h3 { 
+  width: 170px;
+}
+
+.order-product-and-customer-details div p { 
+    text-align: center;
+    width: 100px;
+}
+  
+  
+
+
+.order-product-and-customer-details div:last-child { 
+    border: unset;
+}
+
+.order-summary { 
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.order-summary h1 { 
+    text-align: center;
+    font-size: 19px;
+}
+
+.order-summary div { 
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.order-delivery-details { 
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.order-delivery-details  h1 { 
+    text-align: center;
+    font-size: 19px;
+}
+
+.order-delivery-details div { 
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+    align-items: center;
+}
+
+@media screen and (max-width:430px) {
+    .order-products-and-customer-information-wrapper { 
+        width: 100%;
+    }
+    
+    .order-details-information { 
+        margin: 10px 0px 0px 0px;
+        width: 100%;
+    }
+    
+}

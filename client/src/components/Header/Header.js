@@ -19,15 +19,15 @@ const Header = () => {
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const isAdmin = useAppSelector(state => state.auth.userAuthState.isAdmin);
 
-    useEffect(() => {
-        dailyMenuService.getProducts()
-            .then(res => {
-                setDailyMenuProducts(res);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    })
+    // useEffect(() => {
+    //     dailyMenuService.getProducts()
+    //         .then(res => {
+    //             setDailyMenuProducts(res);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // })
 
     const logoutHandler = () => {
         authService.logout()
@@ -48,9 +48,9 @@ const Header = () => {
                         <li>
                             <Link onClick={activateSmallScreenView} to="/">Home</Link>
                         </li>
-                        {dailyMenuProducts[0]?.length >= 1 || dailyMenuProducts[1]?.length >= 1 || dailyMenuProducts[2]?.length >= 1 ? <li>
+                        {/* {dailyMenuProducts[0]?.length >= 1 || dailyMenuProducts[1]?.length >= 1 || dailyMenuProducts[2]?.length >= 1 ? <li>
                             <Link onClick={activateSmallScreenView} to="/daily-menu">Daily Menu</Link>
-                        </li> : ""}
+                        </li> : ""} */}
                         <li>
                             <Link onClick={activateSmallScreenView} to="/menu">Menu</Link>
                         </li>

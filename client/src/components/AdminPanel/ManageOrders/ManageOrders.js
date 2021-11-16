@@ -17,7 +17,7 @@ const ManageOrders = () => {
                             <NavLink activeClassName="current-route" to="/admin-panel/manage/orders/pending-orders" exact>Pending Orders</NavLink>
                         </li>
                         <li>
-                            <NavLink activeClassName="current-route" to="/admin-panel/manage/orders/delivered-orders" exa>Delivered Orders</NavLink>
+                            <NavLink activeClassName="current-route" to="/admin-panel/manage/orders/delivered-orders" exact>Delivered Orders</NavLink>
                         </li>
                         <li>
                             <NavLink activeClassName="current-route" to="/admin-panel/manage/orders/booked-orders">Booked Orders</NavLink>

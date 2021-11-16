@@ -1,7 +1,9 @@
 import './OrderProduct.css';
+import { Link } from 'react-router-dom';
 
 const OrderProduct = ({orderID , orderDate , orderProductName , orderProductPrice , orderStatus}) => {
     return (
+        <Link to="/admin-panel/manage/order/details/123123123">
         <li>
             <p className="order-id">#{orderID}</p>
             <p className="order-date">{orderDate}</p>
@@ -14,6 +16,8 @@ const OrderProduct = ({orderID , orderDate , orderProductName , orderProductPric
                 {orderStatus}
             </p>
         </li>
+        </Link>
+
     )
 }
 
