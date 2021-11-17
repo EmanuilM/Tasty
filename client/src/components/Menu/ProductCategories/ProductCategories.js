@@ -35,7 +35,6 @@ const ProductCategories = ({ match, location }) => {
 
     }, [location.search])
 
-    console.log(products)
     return (
         <main>
             <section className="main-product-categories-page-wrapper">

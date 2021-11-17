@@ -19,15 +19,15 @@ const Header = () => {
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const isAdmin = useAppSelector(state => state.auth.userAuthState.isAdmin);
 
-    // useEffect(() => {
-    //     dailyMenuService.getProducts()
-    //         .then(res => {
-    //             setDailyMenuProducts(res);
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // })
+    useEffect(() => {
+        dailyMenuService.getProducts()
+            .then(res => {
+                setDailyMenuProducts(res);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    } , [])
 
     const logoutHandler = () => {
         authService.logout()

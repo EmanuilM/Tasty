@@ -58,9 +58,11 @@ function App() {
         <Route path="/menu" component={Menu} exact />
         <Route path="/menu/categories/:category" component={ProductCategories} />
         <Route path="/reservation/:page" component={Reservation} />
-        <Route path="/order" component={Orders}>
-          <Orders setCheckOutItems={setCheckOutItems} />
+        <Route path="/order" component={Orders} exact>
+          
         </Route>
+        <Route path="/order/categories/:category" component={Orders} exact />
+
         <Route path="/order-check-out" component={OrderCheckOut}>
           <OrderCheckOut currentCheckOutItems={currentCheckOutItems} />
         </Route>
