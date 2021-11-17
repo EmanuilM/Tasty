@@ -1,0 +1,16 @@
+const { Router } = require('express');
+const router = Router();
+const menuService = require('../services/menuService');
+const orderService = require('../services/orderService');
+
+
+router.get('/all-products/:category' , async (req,res) => { 
+    try {
+        const data =   await orderService.getAllProducts(req.params.category , Number(req.query.page))
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+module.exports = router;

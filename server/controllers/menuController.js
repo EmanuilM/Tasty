@@ -3,7 +3,7 @@ const router = Router();
 const menuService = require('../services/menuService');
 const formidable = require('formidable');
 const { parseForm } = require('../utils/parseForm');
-const { uploadImageToCloudinary , deleteImageFromCloudinary, deleteImageByPublicID } = require('../services/cloudinaryService');
+const { deleteImageFromCloudinary } = require('../services/cloudinaryService');
 
 router.get('/:category', async (req, res) => {
     try {
@@ -72,14 +72,6 @@ router.patch('/update-product/:id' ,  async (req,res) => {
         res.status(400).json(error);
     }
 })
-
-router.get('/pagination' , async (req,res) => { 
-    // const items = [...Array(150).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) }));
-    // const page = parseInt(req.query.page) || 1;
-    // const pageSize = 5;
-    // const pager = paginate(items.length, page, pageSize);
-});
-
 
 
 module.exports = router;
