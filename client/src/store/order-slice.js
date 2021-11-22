@@ -7,7 +7,6 @@ const orderSlice = createSlice({
     initialState: initialOrderSlice,
     reducers: {
         addProduct(state, action) {
-            console.log(action)
             let values = [];
             const data = JSON.parse(localStorage.getItem('orders'));
             let isExists = false;
@@ -44,7 +43,6 @@ const orderSlice = createSlice({
             state = JSON.parse(localStorage.getItem('orders'));
             for (let index = 0; index < state.length; index++) {
                 if (state[index]._id === action.payload) {
-                    console.log(state.indexOf(state[index]));
                     state.splice(state.indexOf(state[index]), 1);
                     localStorage.setItem('orders', JSON.stringify(state));
                     break;

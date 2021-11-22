@@ -14,9 +14,16 @@ const OrderCheckOut = ({ history }) => {
         history.push('/order')
     }
 
+    let subtotal = 0; 
+    let discount = 0;
+    let shipping = 7;
+    let total = 0;
 
-    // const [shipping , setShipping] = useState();
-  
+    orderState?.map(x => { 
+        subtotal = x.productPrice * x.quantity;
+        shipping = x.productPrice * x.quantity + shipping >= 10 ? shipping = 0 : shipping = 7;
+        total = subtotal + shipping;
+    })
 
     function makeOrder(e) { 
         e.preventDefault();
@@ -120,10 +127,7 @@ const OrderCheckOut = ({ history }) => {
                         <article className="checkout-page-order-price-wrapper">
                             <div>
                                 <p>Subtotal : </p>
-                                <p>{orderState?.map(x => { 
-                                    return x.quantity * x.productPrice;
-                                    
-                                })} $</p>
+                                <p>{subtotal} $</p>
                             </div>
                             <div>
                                 <p>Discount : </p>
@@ -131,23 +135,11 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <p>Shipping</p>
-                                <p>{orderState?.map(x => { 
-                                     if (x.quantity * x.productPrice < 10) {
-                                         return 7;
-                                     }else {
-                                         return 0;
-                                     }
-                                })} $</p>
+                                <p>{shipping} $</p>
                             </div>
                             <div>
                                 <p>Total : </p>
-                                <p>{orderState?.map(x => { 
-                                    if(x.quantity * x.productPrice < 10)  { 
-                                        return x.quantity * x.productPrice + 7;
-                                    }else { 
-                                        return x.quantity * x.productPrice + 0;
-                                    }
-                                })} $</p>
+                                <p>{total} $</p>
                             </div>
                         </article>
 
