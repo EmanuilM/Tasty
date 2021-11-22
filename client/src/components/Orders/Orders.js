@@ -7,12 +7,12 @@ import * as orderService from '../../services/orderService';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../store/loader';
 import { showAlert } from '../../store/alert-slice';
+import { addProduct } from '../../store/order-slice';
 
 const Orders = (props) => {
     const dispatch = useDispatch();
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState()
     const [pages, setPages] = useState([]);
-
     useEffect(() => {
         const page = props.location?.search.split('=')[1];
         let category = props.match.params.category;
@@ -78,7 +78,7 @@ const Orders = (props) => {
                         <ul>
                             {products?.length >= 1 ? products.map(x => {
 
-                                return <OrdersListItem key={x._id} productImage={x.images[0].imageURL} productName={x.productName} productDescription={x.productDescription} productPrice={x.productPrice} addToCart={props.setCheckOutItems} />
+                                return <OrdersListItem key={x._id} productImage={x.images[0].imageURL} productName={x.productName} productDescription={x.productDescription} productPrice={x.productPrice} id={x._id} />
                             }) : ""}
 
                         </ul>

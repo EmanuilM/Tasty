@@ -1,12 +1,36 @@
-.order-check-out-item { 
-    margin: 0;
-    padding: 0px 10px;
-    border: 1px solid gray;
+.checkout-page-ordered-product-wrapper { 
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.checkout-page-ordered-product-wrapper img { 
+    width: 100px;
     height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.checkout-page-remove-add-product-buttons-wrapper { 
     display: flex;
     align-items: center;
 }
 
-.check-out-item-name {
-    width: 168px;
+.checkout-page-product-quantity{ 
+    padding: 0px 3px 0px 3px;
+ }
+
+ .checkout-page-product-price { 
+    margin-left: 7px;
+}
+
+.checkout-page-remove-product { 
+    color: gray;
+    margin: 15px 0px 0px 10px;
+    height: 15px;
+    
+}
+
+.checkout-page-remove-product:hover { 
+    color: tomato;
 }

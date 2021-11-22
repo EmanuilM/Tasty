@@ -1,9 +1,12 @@
 .main-menu-product-price { 
     position: absolute;
-    right: 0;
-    top: -58px;
+    right: -13px;
+    top: -40px;
     font-size: 27px;
-    color: #CEB38C;
+    background: #CEB38C;
+    color: white;
+    padding: 10px;
+    border-radius: 33px;
 }
 
 

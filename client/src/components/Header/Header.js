@@ -1,17 +1,18 @@
 import './Header.css';
-import { Link, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../store';
 import { handleLogOut } from '../../store/auth-slice';
 import { useDispatch } from 'react-redux';
 import * as authService from '../../services/authService';
-import { useEffect } from 'react';
 import * as dailyMenuService from '../../services/dailyMenuService';
+
 
 const Header = () => {
     const dispatch = useDispatch();
     const [isActive, setActive] = useState(false);
     const [dailyMenuProducts, setDailyMenuProducts] = useState();
+    const orderState = useAppSelector(state => state.order);
 
     const activateSmallScreenView = () => {
         setActive(!isActive);
@@ -27,7 +28,7 @@ const Header = () => {
             .catch(error => {
                 console.log(error);
             })
-    } , [])
+    }, [])
 
     const logoutHandler = () => {
         authService.logout()
@@ -68,14 +69,12 @@ const Header = () => {
                                 : ""
                         }
 
-                        <Route path="/order">
-                            <li className="order-cart">
+                        {orderState?.length >= 1 ? <li className="order-cart">
+                            <Link to="/order-check-out" ><i className="fas fa-shopping-cart"></i> </Link>
+                        </li> : ""}
 
-                                <Link to="/order-check-out" >
-                                    <i className="fas fa-shopping-cart"></i>
-                                </Link>
-                            </li>
-                        </Route>
+
+
                         <li>
                             <Link to="#" onClick={() => logoutHandler()}>
                                 <span>Logout</span>

@@ -20,12 +20,18 @@ import { Alert } from './components/shared/Alert/Alert';
 import { Loader } from './components/shared/Loader/Loader';
 import { loader } from './store/loader';
 import * as authService from './services/authService';
+import * as orderService from './services/orderService';
+import { addProduct, getProducts } from './store/order-slice';
+import { getProductByID } from './services/dailyMenuService';
 
 function App() {
-  const [currentCheckOutItems, setCheckOutItems] = useState([]);
+
   const authState = useAppSelector(state => state.auth);
   const alertState = useAppSelector(state => state.alert);
   const isLoading = useSelector(state => state.loader);
+  const orderState = useSelector(state => state.order);
+
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,13 +42,18 @@ function App() {
         if (response) {
           dispatch(handleAuthenticate(response))
         }
+
       })
       .catch((error) => {
         dispatch(loader());
         console.log(error);
       })
 
+    dispatch(getProducts());
+
   }, [])
+
+
 
   return (
 
@@ -58,14 +69,13 @@ function App() {
         <Route path="/menu" component={Menu} exact />
         <Route path="/menu/categories/:category" component={ProductCategories} />
         <Route path="/reservation/:page" component={Reservation} />
-        <Route path="/order" component={Orders} exact>
-          
-        </Route>
+        <Route path="/order" component={Orders} exact />
+
+
         <Route path="/order/categories/:category" component={Orders} exact />
 
-        <Route path="/order-check-out" component={OrderCheckOut}>
-          <OrderCheckOut currentCheckOutItems={currentCheckOutItems} />
-        </Route>
+        <Route path="/order-check-out" component={OrderCheckOut} />
+
         <Route path="/admin-panel" component={AdminPanel}>
           <AdminPanel />
         </Route>
