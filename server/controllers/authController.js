@@ -2,11 +2,12 @@ const { Router } = require('express');
 const router = Router();
 const authService = require('../services/authService');
 const jwt = require('jsonwebtoken');
-const auth  = require('../middlewares/auth');
+const auth = require('../middlewares/auth');
 
 
-router.get('/',  async (req, res) => {
-    // console.log(req.cookies.AUTHENTICATION_COOKIE);
+const orders = jwt.sign({ orderedProducts: [] }, process.env.SECRET_WORD);
+
+router.get('/', async (req, res) => {
 
     if (req.cookies.AUTHENTICATION_COOKIE) {
         try {
@@ -26,7 +27,7 @@ router.post('/register', async (req, res) => {
         if (process.env.NODE_ENV === 'production') {
             res.cookie(process.env.AUTH_COOKIE, data.token, { httpOnly: true, secure: true, maxAge: 86400000 });
         } else {
-            res.cookie(process.env.AUTH_COOKIE, data.token, { httpOnly: true, maxAge: 86400000 });
+            res.cookie(process.env.AUTH_COOKIE, data.token, { httpOnly: true, secure: true, maxAge: 86400000 });
         }
         res.status(200).json(data);
     } catch (error) {
@@ -50,6 +51,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', (req, res) => {
     res.clearCookie(process.env.AUTH_COOKIE);
+    res.clearCookie(process.env.ORDER_COOKIE);
     res.status(200).json({});
 });
 
