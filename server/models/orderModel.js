@@ -8,12 +8,12 @@ const orderModel = new mongoose.Schema({
     street: { type: String, required: true },
     flatNumber: { type: String },
     note: { type: String },
-    orderedProducts: [],
-    status: { type: String },
-    totalPrice : {type : Number , required : true},
-    // discount : {type : Number },
     shipping : {type : Number , required : true},
+    // discount : {type : Number },
+    totalPrice : {type : Number , required : true},
     orderCreated : {type : String , required : true},
+    status: { type: String , required : true },
+    orderedProducts: [],
 })
 
 module.exports = mongoose.model('order', orderModel);

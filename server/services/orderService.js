@@ -34,17 +34,13 @@ async function makeOrder(orderDetails , orderedProducts) {
         throw {message : "Phone number must be exactly 10 numbers!"};
     }
 
-    let totalPrice;
-    let shipping = 7;
 
     orderedProducts.map(x => { 
-        totalPrice = x.quantity * x.productPrice;
+        if(x.quantity <= 0 ) { 
+            throw({message : "Invalid product quantity!"})
+        }
     })
     
-    if(totalPrice >= 10 ) { 
-        shipping = 0;
-    }
-
     
     const order = new orderModel({
         firstName: orderDetails.firstName,
@@ -55,10 +51,10 @@ async function makeOrder(orderDetails , orderedProducts) {
         flatNumber : orderDetails.flatNumber,
         note : orderDetails.note,
         orderedProducts : orderedProducts,
-        totalPrice : totalPrice,
+        totalPrice : orderDetails.totalPrice,
         orderCreated : new Date().toString().split(' ').slice(1,5).join(' '),
-        shipping : shipping,
-        status : orderDetails.status,
+        shipping : orderDetails.shipping,
+        status : "Pending",
     })
 
 
@@ -66,16 +62,28 @@ async function makeOrder(orderDetails , orderedProducts) {
 
     return order;
 
-    
-
-   
 }
 
+async function getAllOrders() { 
+    return await orderModel.find();
+}
+
+
+async function getOrderByID(id) { 
+    return await orderModel.findById(id);
+}
+
+async function deleteOrderByID(id) { 
+    return await orderModel.deleteOne({_id : id});
+}
 
 
 module.exports = {
     getAllProducts,
     getProductByID,
     makeOrder,
+    getAllOrders,
+    getOrderByID,
+    deleteOrderByID
 
 }
