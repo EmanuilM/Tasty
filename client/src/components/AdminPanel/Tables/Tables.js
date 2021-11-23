@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { loader } from '../../../store/loader';
 import { showAlert } from '../../../store/alert-slice';
 import { Fragment } from 'react';
-import { DeleteTableModal } from './DeleteTableModal/DeleteTableModal';
 import { Table } from './Table/Table'
 
 const Tables = () => {

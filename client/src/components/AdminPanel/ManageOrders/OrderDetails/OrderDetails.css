@@ -4,8 +4,47 @@
 
 .admin-panel-orders-details >  h1 { 
     margin: 19px 0px 19px 43px;
+}
+
+.order-details-buttons-wrapper { 
+    margin: 19px 0px 19px 10px;
+}
+
+.change-order-status-button { 
+    cursor: pointer;
+    background: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 160px;
 
 }
+
+.change-order-status-button:hover { 
+    background: rgb(23, 185, 23);
+}
+
+.delete-order-button { 
+    cursor: pointer;
+    background: rgb(233, 58, 58);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    font-weight: bold;
+    width: 160px;
+
+}
+
+
+.delete-order-button:hover { 
+    background: red;
+}
+
 
 .admin-panel-orders-details h1 span { 
     color: #FE6D6F;
@@ -137,6 +176,7 @@
 .order-summary div { 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0px 10px;
 }
 

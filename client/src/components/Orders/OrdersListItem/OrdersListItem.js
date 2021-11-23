@@ -21,9 +21,6 @@ const OrdersListItem = ({ productImage, productName, productDescription, product
     }
     function addItemToCart(id) {
 
-
-        console.log(id);
-
         dispatch(loader());
         orderService.getProductByID(id)
             .then(res => {

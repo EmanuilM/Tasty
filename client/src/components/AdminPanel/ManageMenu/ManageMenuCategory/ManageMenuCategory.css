@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 
-.manage-menu-category-wrapper h1  { 
+.manage-menu-category-wrapper >  h1  { 
     text-align: center;
     font-size: 40px;
 }

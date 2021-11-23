@@ -6,7 +6,6 @@ import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
 import * as menuService from '../../../../services/menuService';
 import { useState } from 'react';
-import { Fragment } from 'react/cjs/react.development';
 import { MenuProduct } from '../ManageMenuCategory/MenuProduct/MenuProduct';
 
 

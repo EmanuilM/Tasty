@@ -21,7 +21,7 @@ import { Fragment , useState } from 'react';
                 </Link>
                 <i className="fas fa-trash deleteIcon" onClick={showDeleteModal}></i>
             </li>
-            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal}  id={id} deleteItem={deleteItem} />
+            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal}  id={id} deleteItem={deleteItem} text="product" />
         </Fragment>
 
     )

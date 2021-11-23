@@ -40,11 +40,11 @@ const ManageOrders = () => {
                         </li>
                         <li>
                             <i className="fas fa-box box"></i>
-                            Product Name
+                            Products
                         </li>
                         <li>
                             <i className="fas fa-dollar-sign price"></i>
-                            Product Price
+                            Total Price
                         </li>
                         <li>
                             <i className="fas fa-signal status"></i>

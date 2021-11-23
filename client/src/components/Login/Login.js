@@ -12,11 +12,7 @@ import { loader } from '../../store/loader';
 const Login = ({ history }) => {
     const [loading, setLoader] = useState(true);
     const dispatch = useDispatch();
-    const [fields, setFields] = useState({
-        username: '',
-        password: '',
-    })
-
+   
     const [errors, setErrors] = useState({
         username: false,
         password: false,
@@ -30,7 +26,6 @@ const Login = ({ history }) => {
         } else {
             setErrors(state => ({ ...state, [name]: value === "" }));
         }
-        setFields(state => ({ ...state, [name]: value }));
     }
 
     const loginSubmitHandler = (e) => {

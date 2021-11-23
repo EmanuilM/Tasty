@@ -34,8 +34,41 @@ async function makeOrder(orderDetails , orderedProducts) {
     return await api.httpRequest(`/orders/make`, options)
 }
 
+async function getAllOrders() { 
+    const options = {
+        headers : { 
+            'Content-Type' : 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/orders`, options)
+}
+
+async function getOrderByID(id) { 
+    const options = {
+        headers : { 
+            'Content-Type' : 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/orders/${id}`, options)
+}
+
+async function deleteOrderByID(id) { 
+    const options = {
+        method : 'DELETE',
+        headers : { 
+            'Content-Type' : 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/orders/delete/${id}`, options)
+}
 export { 
     getAllProducts,
     getProductByID,
     makeOrder,
+    getAllOrders,
+    getOrderByID,
+    deleteOrderByID
 }

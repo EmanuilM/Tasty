@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
-import { DeleteTableModal } from "../DeleteTableModal/DeleteTableModal";
+import DeleteModal from "../../../shared/DeleteModal/DeleteModal";
 import * as tablesService from '../../../../services/tablesService';
 import { useDispatch } from "react-redux";
 import { loader } from "../../../../store/loader";
@@ -42,7 +42,7 @@ export const Table = ({ data , deleteTable}) => {
                         <i className="fas fa-edit"></i>
                     </Link>
                     <i className="fas fa-trash" onClick={showModal}></i>
-                    <DeleteTableModal show={modal} closeModal={hideModal} id={data._id} deleteTable={deleteTable} />
+                    <DeleteModal show={modal} handleClose={hideModal} id={data._id} deleteItem={deleteTable} text="table" />
 
                 </div>
             </td>

@@ -57,6 +57,12 @@
    
 }
 
+.make-order-button:disabled { 
+    background: gray;
+    opacity: 0.7;
+    cursor: auto;
+}
+
 .ordered-products-section-wrapper { 
     height: 475px;
     overflow: auto;

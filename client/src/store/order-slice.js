@@ -70,7 +70,11 @@ const orderSlice = createSlice({
             state = JSON.parse(localStorage.getItem('orders'));
             state.map(x => {
                 if (x._id === action.payload) {
-                    x.quantity -= 1;
+                    if (x.quantity <= 1) {
+                        x.quantity = 1;
+                    } else {
+                        x.quantity -= 1;
+                    }
                     localStorage.setItem('orders', JSON.stringify(state));
                 }
             })

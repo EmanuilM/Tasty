@@ -1,36 +1,80 @@
 import './OrderDetails.css';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { loader } from '../../../../store/loader';
+import * as orderService from '../../../../services/orderService';
+import { useState } from 'react';
+import DeleteModal from '../../../shared/DeleteModal/DeleteModal';
 
-const OrderDetails = () => {
+const OrderDetails = ({ match , history }) => {
+    const dispatch = useDispatch();
+    const [orderDetails, setOrderDetails] = useState([]);
+    const [isDeleteModalActive, setDeleteModal] = useState(false);
+    useEffect(() => {
+        dispatch(loader());
+        orderService.getOrderByID(match.params.id)
+            .then(res => {
+                dispatch(loader());
+                setOrderDetails(res);
+                console.log(res);
+
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
+    }, [])
+
+    function showDeleteModal() { 
+        setDeleteModal(true);
+    }
+
+    function hideDeleteModal() { 
+        setDeleteModal(false);
+    }
+
+    function deleteOrder() { 
+        dispatch(loader());
+        orderService.deleteOrderByID(match.params.id)
+        .then(res => { 
+            dispatch(loader());
+            history.push('/admin-panel/manage/orders/all-orders')
+        })
+        .catch(error => { 
+            dispatch(loader());
+            console.log(error);
+        })
+
+    }
+
     return (
         <section className="admin-panel-orders-details">
             <h1>Order Number <span>#123123123</span></h1>
+            <div className="order-details-buttons-wrapper">
+                <button className="change-order-status-button">Change order status</button>
+                <button className="delete-order-button" onClick={showDeleteModal}>Delete order</button>
+            </div>
+            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} text="order" deleteItem={deleteOrder} / >
             <section className="order-details-wrapper">
                 <section className="order-products-and-customer-information-wrapper">
                     <article className="ordered-products-list">
                         <div className="ordered-products-list-headings">
                             <p>Items summary</p>
                             <p>QTY</p>
-                            <p>Price</p>
+                            <p>Product price</p>
                             <p>Total price</p>
                         </div>
-                        <div className="ordered-products">
-                            <p>Product name</p>
-                            <p>x 3</p>
-                            <p>130 $</p>
-                            <p>130 $</p>
-                        </div>
-                        <div className="ordered-products">
-                            <p>Product name</p>
-                            <p>x 3</p>
-                            <p>130 $</p>
-                            <p>130 $</p>
-                        </div>
-                        <div className="ordered-products">
-                            <p>asdasdasdasdasdasdasdasd</p>
-                            <p>x 3</p>
-                            <p>130 $</p>
-                            <p>130 $</p>
-                        </div>
+
+                        {orderDetails.orderedProducts?.map(x => {
+                            return <div key={x._id} className="ordered-products">
+                                <p>{x.productName}</p>
+                                <p>x {x.quantity}</p>
+                                <p>{x.productPrice} $</p>
+                                <p>{x.productPrice * x.quantity} $</p>
+                            </div>
+                        })}
+
+
                     </article>
 
                     <article className="customer-and-order-details">
@@ -38,11 +82,11 @@ const OrderDetails = () => {
                         <div className="order-product-and-customer-details">
                             <div>
                                 <h3>Customer name:</h3>
-                                <p>Name</p>
+                                <p>{orderDetails.firstName + ' ' + orderDetails.lastName}</p>
                             </div>
                             <div>
                                 <h3>Phone Number:</h3>
-                                <p>0000000000</p>
+                                <p>{orderDetails.phoneNumber}</p>
                             </div>
                             <div>
                                 <h3>Type:</h3>
@@ -63,32 +107,38 @@ const OrderDetails = () => {
                         <h1>Order summary</h1>
                         <div>
                             <h3>Order Created:</h3>
-                            <p>Date</p>
+                            <p>{orderDetails.orderCreated}</p>
                         </div>
                         <div>
                             <h3>Order time:</h3>
                             <p>asdasdasd</p>
                         </div>
                         <div>
+                            <h3>Shipping:</h3>
+                            <p>{orderDetails.shipping}$</p>
+                        </div>
+                        <div>
                             <h3>Total:</h3>
-                            <p>130$</p>
+                            <p>{orderDetails.totalPrice}$</p>
                         </div>
                     </article>
 
                     <article className="order-delivery-details">
                         <h1>Delivery Adress</h1>
                         <div>
-                            <h3>Adress line :</h3>
-                            <p>asdasdasd</p>
+                            <h3>Street name:</h3>
+                            <p>{orderDetails.street}</p>
+                        </div>
+                        <div>
+                            <h3>House number :</h3>
+                            <p>{orderDetails.houseNumber}</p>
                         </div>
                         <div>
                             <h3>Flat/Building name:</h3>
-                            <p>asdasdasd</p>
+                            <p>{orderDetails.flatNumber ? orderDetails.flatNumber : "None"}</p>
                         </div>
-                        <div>
-                            <h3>Street name:</h3>
-                            <p>asdasdasd</p>
-                        </div>
+                       
+
                     </article>
                 </section>
             </section>
