@@ -34,14 +34,14 @@ async function makeOrder(orderDetails , orderedProducts) {
     return await api.httpRequest(`/orders/make`, options)
 }
 
-async function getAllOrders() { 
+async function getAllOrders(page) { 
     const options = {
         headers : { 
             'Content-Type' : 'application/json',
         },
         credentials: 'include'
     }
-    return await api.httpRequest(`/orders`, options)
+    return await api.httpRequest(`/orders?page=${page}`, options)
 }
 
 async function getOrderByID(id) { 
@@ -64,11 +64,27 @@ async function deleteOrderByID(id) {
     }
     return await api.httpRequest(`/orders/delete/${id}`, options)
 }
+
+
+async function updateOrder(id , status) { 
+    const options = {
+        method : 'PATCH',
+        headers : { 
+            'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify([status]),
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/orders/update/${id}`, options)
+}
+
+
 export { 
     getAllProducts,
     getProductByID,
     makeOrder,
     getAllOrders,
     getOrderByID,
-    deleteOrderByID
+    deleteOrderByID,
+    updateOrder
 }

@@ -6,11 +6,14 @@ import { loader } from '../../../store/loader';
 import { showAlert } from '../../../store/alert-slice';
 import * as orderService from '../../../services/orderService';
 import { addProduct } from '../../../store/order-slice';
+import { useAppSelector } from '../../../store';
+
 
 
 const OrdersListItem = ({ productImage, productName, productDescription, productPrice, id }) => {
 
     const dispatch = useDispatch();
+
 
     const [isOrderPageActive, activeOrderPage] = useState(false);
     function showModal() {

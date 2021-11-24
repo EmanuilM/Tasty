@@ -6,10 +6,11 @@ import * as orderService from '../../../../services/orderService';
 import { useState } from 'react';
 import DeleteModal from '../../../shared/DeleteModal/DeleteModal';
 
-const OrderDetails = ({ match , history }) => {
+const OrderDetails = ({ match, history }) => {
     const dispatch = useDispatch();
     const [orderDetails, setOrderDetails] = useState([]);
     const [isDeleteModalActive, setDeleteModal] = useState(false);
+    const [showChangeStatus, setChangeStatus] = useState(false);
     useEffect(() => {
         dispatch(loader());
         orderService.getOrderByID(match.params.id)
@@ -17,7 +18,6 @@ const OrderDetails = ({ match , history }) => {
                 dispatch(loader());
                 setOrderDetails(res);
                 console.log(res);
-
             })
             .catch(error => {
                 dispatch(loader());
@@ -25,36 +25,67 @@ const OrderDetails = ({ match , history }) => {
             })
     }, [])
 
-    function showDeleteModal() { 
+
+    function show() {
+        setChangeStatus((state) => !state);
+    }
+
+    function showDeleteModal() {
         setDeleteModal(true);
     }
 
-    function hideDeleteModal() { 
+    function hideDeleteModal() {
         setDeleteModal(false);
     }
 
-    function deleteOrder() { 
+    function deleteOrder() {
         dispatch(loader());
         orderService.deleteOrderByID(match.params.id)
-        .then(res => { 
-            dispatch(loader());
-            history.push('/admin-panel/manage/orders/all-orders')
-        })
-        .catch(error => { 
-            dispatch(loader());
-            console.log(error);
-        })
+            .then(res => {
+                dispatch(loader());
+                history.push('/admin-panel/manage/orders/all-orders')
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
+    }
 
+    function updateOrder(e) {
+        e.preventDefault();
+        dispatch(loader());
+        orderService.updateOrder(match.params.id, e.target.orderStatus.value)
+            .then(res => {
+                dispatch(loader());
+                history.push('/admin-panel/manage/orders/all-orders')
+            })
+            .catch(error => {
+                dispatch(loader());
+            })
     }
 
     return (
         <section className="admin-panel-orders-details">
-            <h1>Order Number <span>#123123123</span></h1>
+            <h1>Order Number <span>#{orderDetails._id}</span></h1>
             <div className="order-details-buttons-wrapper">
-                <button className="change-order-status-button">Change order status</button>
+                <button className="change-order-status-button" onClick={show}>Change order status</button>
                 <button className="delete-order-button" onClick={showDeleteModal}>Delete order</button>
             </div>
-            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} text="order" deleteItem={deleteOrder} / >
+
+            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} text="order" deleteItem={deleteOrder} />
+            {showChangeStatus ? <div className="order-details-change-order-status-wrapper" >
+                <h3>Change order status</h3>
+                <form onSubmit={updateOrder}>
+                    <select name="orderStatus">
+                        <option>Pending</option>
+                        <option>Delivered</option>
+                        <option>Cancalled</option>
+                    </select>
+                    <button className="change-order-status">Change status</button>
+                </form>
+            </div> : ""}
+
+
             <section className="order-details-wrapper">
                 <section className="order-products-and-customer-information-wrapper">
                     <article className="ordered-products-list">
@@ -137,8 +168,6 @@ const OrderDetails = ({ match , history }) => {
                             <h3>Flat/Building name:</h3>
                             <p>{orderDetails.flatNumber ? orderDetails.flatNumber : "None"}</p>
                         </div>
-                       
-
                     </article>
                 </section>
             </section>

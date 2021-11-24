@@ -79,6 +79,11 @@ const orderSlice = createSlice({
                 }
             })
             return state;
+        },
+        clearOrderState(state) {
+            state = JSON.parse(localStorage.getItem('orders')).splice(0);
+            localStorage.setItem('orders', JSON.stringify(state));
+            return state;
         }
     }
 })
@@ -88,7 +93,8 @@ export const {
     removeProduct,
     getProducts,
     increateProductQuantity,
-    decreseProductQuantity
+    decreseProductQuantity,
+    clearOrderState
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

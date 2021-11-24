@@ -2,3 +2,27 @@
     list-style: none;
     padding: 0;
 }
+
+.admin-panel-orders-pagginator { 
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.admin-panel-orders-pagginator li { 
+    margin: 10px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.admin-panel-orders-pagginator li:hover { 
+    border: 1px solid #CEB38C;
+    color: #CEB38C;
+}
+
+.admin-panel-orders-pagginator li a { 
+    text-decoration: none;
+    color: black;
+}

@@ -4,16 +4,16 @@ import { OrderItems } from './OrderItems/OrderItems';
 import * as orderService from '../../../services/orderService';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../../store/loader';
-import { addProduct } from '../../../store/order-slice';
+import { clearOrderState} from '../../../store/order-slice';
 import { useAppSelector } from '../../../store/index';
 
 const OrderCheckOut = ({ history }) => {
     const dispatch = useDispatch();
     const orderState = useAppSelector(state => state.order);
+ 
     if (orderState?.length <= 0) {
         history.push('/order')
     }
-
     let subtotal = 0;
     let discount = 0;
     let shipping = 7;
@@ -72,6 +72,8 @@ const OrderCheckOut = ({ history }) => {
         orderService.makeOrder(makeOrderFormFields, orderState)
             .then(res => {
                 dispatch(loader());
+                dispatch(clearOrderState());
+                history.push('/order');
                 console.log(res);
 
             })
