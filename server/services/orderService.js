@@ -64,8 +64,11 @@ async function makeOrder(orderDetails , orderedProducts) {
 
 }
 
-async function getAllOrders() { 
-    return await orderModel.find();
+async function getAllOrders(page) { 
+    return Promise.all([
+        await orderModel.find().sort({_id : -1}),
+        await orderModel.find().skip((page - 1) * 10).limit(10).sort({_id : -1}),
+    ])
 }
 
 
@@ -77,6 +80,12 @@ async function deleteOrderByID(id) {
     return await orderModel.deleteOne({_id : id});
 }
 
+async function updateOrder(id , status) { 
+    return await orderModel.updateOne({_id : id } , {status : status[0]});
+}
+
+
+
 
 module.exports = {
     getAllProducts,
@@ -84,6 +93,7 @@ module.exports = {
     makeOrder,
     getAllOrders,
     getOrderByID,
-    deleteOrderByID
+    deleteOrderByID,
+    updateOrder
 
 }

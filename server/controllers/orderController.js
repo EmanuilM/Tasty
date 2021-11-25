@@ -6,7 +6,7 @@ const orderService = require('../services/orderService');
 
 router.get('/' , async (req,res) => { 
     try {
-        const data = await orderService.getAllOrders();
+        const data = await orderService.getAllOrders(Number(req.query.page));
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);
@@ -53,6 +53,15 @@ router.get('/:id' ,  async (req,res) => {
 router.delete('/delete/:id' , async (req,res) => { 
     try {
         const data = await orderService.deleteOrderByID(req.params.id);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.patch('/update/:id' , async (req,res) => { 
+    try {
+        const data = await orderService.updateOrder(req.params.id , req.body);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);
