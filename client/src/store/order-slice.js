@@ -81,7 +81,8 @@ const orderSlice = createSlice({
             return state;
         },
         clearOrderState(state) {
-            state = JSON.parse(localStorage.getItem('orders')).splice(0);
+            state = JSON.parse(localStorage.getItem('orders'));
+            state.splice(0);
             localStorage.setItem('orders', JSON.stringify(state));
             return state;
         }

@@ -23,6 +23,7 @@ import * as authService from './services/authService';
 import * as orderService from './services/orderService';
 import { addProduct, getProducts } from './store/order-slice';
 import { getProductByID } from './services/dailyMenuService';
+import SuccessAlert from './components/shared/SuccessAlert/SuccessAlert';
 
 function App() {
 
@@ -84,7 +85,7 @@ function App() {
       <Footer />
 
       {isLoading ? <Loader /> : ""}
-      {alertState.shown ? <Alert message={alertState.message} /> : ""}
+      {alertState.alert ? <Alert message={alertState.message} /> : ""}
     </div>
   );
 

@@ -12,7 +12,7 @@ const SuccessAlert = ({ message }) => {
         setTimeout(() => {
            dispatch(clearAlert());
        }, 3000);
-   }, [alert.shown])
+   }, [])
 
     return (
         <div className="success-alert-wrapper">

@@ -29,7 +29,6 @@ const AllOrders = ({ location }) => {
 
     }, [location.search])
 
-    console.log(pages);
     return (
         <Fragment>
             <div className="manage-orders-list">

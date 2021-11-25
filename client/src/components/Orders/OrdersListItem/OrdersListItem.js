@@ -7,6 +7,7 @@ import { showAlert } from '../../../store/alert-slice';
 import * as orderService from '../../../services/orderService';
 import { addProduct } from '../../../store/order-slice';
 import { useAppSelector } from '../../../store';
+import SuccessAlert from '../../shared/SuccessAlert/SuccessAlert';
 
 
 
@@ -33,11 +34,6 @@ const OrdersListItem = ({ productImage, productName, productDescription, product
                     productPrice: res.productPrice,
                     images: res.images,
                     quantity: 1,
-                    // subtotal : 0,
-                    // discount : 0,
-                    // totalPrice : 0,
-                    // shipping : 0,
-
                 };
                 dispatch(loader());
                 dispatch(addProduct(data));
@@ -67,8 +63,8 @@ const OrdersListItem = ({ productImage, productName, productDescription, product
                 <p className="order-menu-product-price">{productPrice} $</p>
 
             </li>
+            {isOrderPageActive ? <ProductDetails show={isOrderPageActive}  id={id} handleClose={hideModal} /> : ""}
 
-            <ProductDetails show={isOrderPageActive} handleClose={hideModal} />
         </Fragment>
     )
 }
