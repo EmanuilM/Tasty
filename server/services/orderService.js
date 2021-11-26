@@ -54,6 +54,7 @@ async function makeOrder(orderDetails , orderedProducts) {
         totalPrice : orderDetails.totalPrice,
         orderCreated : new Date().toString().split(' ').slice(1,5).join(' '),
         shipping : orderDetails.shipping,
+        discount : orderDetails.discount,
         status : "Pending",
     })
 
@@ -87,6 +88,8 @@ async function updateOrder(id , status) {
 
 
 
+
+
 module.exports = {
     getAllProducts,
     getProductByID,
@@ -94,6 +97,5 @@ module.exports = {
     getAllOrders,
     getOrderByID,
     deleteOrderByID,
-    updateOrder
-
+    updateOrder,
 }

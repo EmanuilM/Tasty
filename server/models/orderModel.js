@@ -9,7 +9,7 @@ const orderModel = new mongoose.Schema({
     flatNumber: { type: String },
     note: { type: String },
     shipping : {type : Number , required : true},
-    // discount : {type : Number },
+    discount : {type : Number },
     totalPrice : {type : Number , required : true},
     orderCreated : {type : String , required : true},
     status: { type: String , required : true },
