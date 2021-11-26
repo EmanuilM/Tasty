@@ -15,6 +15,7 @@ import AddProductToCategory from './ManageMenu/AddProductToCategory/AddProductTo
 import EditMenuProduct from './ManageMenu/EditMenuProduct/EditMenuProduct';
 import ManageOrders from './ManageOrders/ManageOrders';
 import OrderDetails from './ManageOrders/OrderDetails/OrderDetails';
+import ManageDiscounts from './ManageDiscounts/ManagaDiscounts';
 
 const AdminPanel = () => {
     return (
@@ -37,6 +38,7 @@ const AdminPanel = () => {
             <Route path="/admin-panel/manage/menu/product/edit/:id" component={EditMenuProduct} exact />
             <Route path="/admin-panel/manage/orders/:page" component={ManageOrders} exact />
             <Route path="/admin-panel/manage/order/details/:id" component={OrderDetails} exact />
+            <Route path="/admin-panel/discounts" component={ManageDiscounts}  />
             
             </Switch>
             </section>

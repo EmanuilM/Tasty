@@ -158,6 +158,22 @@
     padding: 0px 10px;
 }
 
+.order-product-and-customer-details div:last-child { 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    margin: 0px 10px;
+    padding: 0px 10px;
+}
+
+.order-product-and-customer-details div:last-child  p { 
+    width: 100%;
+    text-align: left;
+    word-break: break-all;
+}
+
 
 .order-product-and-customer-details div h3 { 
   width: 170px;

@@ -55,7 +55,7 @@ const AllOrders = ({ location }) => {
 
 
                 {pages.map(x => {
-                    return <li>
+                    return <li key={x}>
                         <Link to={`/admin-panel/manage/orders/all-orders?page=${x}`}>{x}</Link>
                     </li>
                 })}

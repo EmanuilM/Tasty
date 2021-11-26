@@ -11,6 +11,7 @@ const OrderDetails = ({ match, history }) => {
     const [orderDetails, setOrderDetails] = useState([]);
     const [isDeleteModalActive, setDeleteModal] = useState(false);
     const [showChangeStatus, setChangeStatus] = useState(false);
+    let subtotal = 0;
     useEffect(() => {
         dispatch(loader());
         orderService.getOrderByID(match.params.id)
@@ -43,7 +44,7 @@ const OrderDetails = ({ match, history }) => {
         orderService.deleteOrderByID(match.params.id)
             .then(res => {
                 dispatch(loader());
-                history.push('/admin-panel/manage/orders/all-orders')
+                history.push('/admin-panel/manage/orders/all-orders');
             })
             .catch(error => {
                 dispatch(loader());
@@ -125,7 +126,7 @@ const OrderDetails = ({ match, history }) => {
                             </div>
                             <div>
                                 <h3>Note:</h3>
-                                <p>N/A</p>
+                                <p>{orderDetails.note ? orderDetails.note : "N/A"}</p>
                             </div>
                         </div>
                     </article>
@@ -145,8 +146,18 @@ const OrderDetails = ({ match, history }) => {
                             <p>asdasdasd</p>
                         </div>
                         <div>
+                            <h3>Subtotal:</h3>
+                            <p>{orderDetails.orderedProducts?.map(x => { 
+                                return x.productPrice * x.quantity
+                            })}$</p>
+                        </div>
+                        <div>
                             <h3>Shipping:</h3>
                             <p>{orderDetails.shipping}$</p>
+                        </div>
+                        <div>
+                            <h3>Discount:</h3>
+                            <p>{orderDetails.discount?.toFixed(2)}$</p>
                         </div>
                         <div>
                             <h3>Total:</h3>

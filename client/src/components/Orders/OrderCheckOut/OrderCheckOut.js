@@ -4,25 +4,26 @@ import { OrderItems } from './OrderItems/OrderItems';
 import * as orderService from '../../../services/orderService';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../../store/loader';
-import { clearOrderState} from '../../../store/order-slice';
+import { clearOrderState } from '../../../store/order-slice';
 import { useAppSelector } from '../../../store/index';
+import * as discountService from '../../../services/discountService';
 
 const OrderCheckOut = ({ history }) => {
     const dispatch = useDispatch();
     const orderState = useAppSelector(state => state.order);
- 
+    const [discount , setDiscount] = useState(0);
+
     if (orderState?.length <= 0) {
         history.push('/order')
     }
     let subtotal = 0;
-    let discount = 0;
     let shipping = 7;
     let total = 0;
 
     orderState?.map(x => {
         subtotal += x.productPrice * x.quantity;
         shipping = subtotal >= 10 ? shipping = 0 : shipping = 7;
-        total = subtotal + shipping;
+        total = (subtotal + shipping) -  discount;
     })
 
     const [errors, setErrors] = useState({
@@ -66,6 +67,7 @@ const OrderCheckOut = ({ history }) => {
             shipping: shipping,
             totalPrice: total,
             discount: discount,
+            note : e.target.note.value,
         }
 
         dispatch(loader());
@@ -84,6 +86,17 @@ const OrderCheckOut = ({ history }) => {
             })
     }
 
+    async function checkPromoCode(e) {
+        e.preventDefault();
+        discountService.checkPromoCode(e.target.promoCode.value)
+        .then(res => {
+            setDiscount(res.percent ? (res.percent / 100) * subtotal + shipping : 0);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     return (
         <main>
             <section className="order-page-wrapper">
@@ -93,7 +106,7 @@ const OrderCheckOut = ({ history }) => {
                         <form onSubmit={makeOrder}>
                             <div>
                                 <label>
-                                    First Name
+                                    First Name * 
                                     <input type="text" name="firstName" onChange={onInputChangeHandler} />
                                     <div className="form-error-message">
                                         {errors.firstName ? <small>First name is required!</small> : ""}
@@ -103,7 +116,7 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <label>
-                                    Last Name
+                                    Last Name *
                                     <input type="text" name="lastName" onChange={onInputChangeHandler} />
                                     <div className="form-error-message">
                                         {errors.lastName ? <small>Last name is required!</small> : ""}
@@ -112,7 +125,7 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <label>
-                                    Phone Number
+                                    Phone Number *
                                     <input type="text" name="phoneNumber" onChange={onInputChangeHandler} />
                                     <div className="form-error-message">
                                         {errors.phoneNumber ? <small>Phone number is must be exactly 10 characters long!</small> : ""}
@@ -121,7 +134,7 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <label>
-                                    House Number
+                                    House Number *
                                     <input type="text" name="houseNumber" onChange={onInputChangeHandler} />
                                     <div className="form-error-message">
                                         {errors.houseNumber ? <small>House number is required!</small> : ""}
@@ -130,7 +143,7 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <label>
-                                    Street
+                                    Street *
                                     <input type="text" name="street" onChange={onInputChangeHandler} />
                                     <div className="form-error-message">
                                         {errors.street ? <small>House number is required!</small> : ""}
@@ -139,9 +152,15 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <label>
-                                    Flat number *
+                                    Flat number
                                     <input type="text" name="flatNumber" />
                                 </label>
+                            </div>
+                            <div>
+                            <label>
+                                Leave a note
+                            <textarea name="note" className="order-checkout-note"></textarea>
+                            </label>
                             </div>
                             <button className="make-order-button" disabled={!isFormValid}>Order now</button>
 
@@ -168,9 +187,12 @@ const OrderCheckOut = ({ history }) => {
                         <article className="checkout-page-discount-code">
                             <h3>Gift card / Discount code</h3>
                             <div>
-                                <input type="text" placeholder="Enter your promo code" />
-                                <button>Apply</button>
+                                <form onSubmit={checkPromoCode}>
+                                    <input type="text" placeholder="Enter your promo code" name="promoCode" />
+                                    <button>Apply</button>
+                                </form>
                             </div>
+
                         </article>
 
                         <article className="checkout-page-order-price-wrapper">
@@ -180,7 +202,7 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <p>Discount : </p>
-                                <p>0.00 $</p>
+                                <p>{discount.toFixed(2)} $</p>
                             </div>
                             <div>
                                 <p>Shipping</p>

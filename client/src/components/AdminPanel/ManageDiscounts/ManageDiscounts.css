@@ -1,0 +1,97 @@
+.admin-page-manage-discount-wrapper { 
+    width: 100%;
+}
+
+.admin-page-manage-discount-wrapper h1 { 
+    text-align: center;
+    font-size: 30px;
+}
+
+.admin-page-manage-discount-wrapper h3 { 
+    text-align: center;
+}
+
+
+.create-discount-wrapper  , .edit-promo-code-wrapper{ 
+    flex-basis: 50%;
+    margin: 10px;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 7px;
+}
+
+.discounts-wrapper { 
+    display: flex;
+}
+
+.create-discount-wrapper form , .edit-promo-code-wrapper form  {
+    margin: 10px;
+}
+
+
+.create-discount-wrapper form label , .edit-promo-code-wrapper form label {
+    display: flex;
+    flex-direction: column; 
+}
+
+.create-discount-wrapper form label input , .edit-promo-code-wrapper form label input{
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid;
+    height: 23px;
+    padding-left: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+.create-promo-code-button  , .edit-promo-code-button{ 
+    cursor: pointer;
+    background: #61DF96;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.promo-codes-list-wrapper ul:nth-child(1)  {
+    list-style: none;
+    display: flex;
+    background: gainsboro;
+    text-align: center;
+    padding: 0;
+}
+.promo-codes-list-wrapper ul:nth-child(2){
+   padding: 0;
+}
+
+
+.promo-codes-list-wrapper ul:nth-child(2) li{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.promo-codes-list-wrapper ul:nth-child(2) li p , .promo-codes-list-wrapper ul:nth-child(1) li{
+    flex: 1 1 0;
+}
+
+.promo-codes-list-wrapper ul:nth-child(2) li p:nth-child(1) { 
+    word-break: break-all;
+}
+
+.edit-discount { 
+    cursor: pointer;
+    color: blue;
+}
+
+.delete-discount:hover { 
+    cursor: pointer;
+    color: tomato;
+}
+
+@media screen and (max-width:660px) {
+    .discounts-wrapper { 
+        flex-direction: column;
+    }
+}

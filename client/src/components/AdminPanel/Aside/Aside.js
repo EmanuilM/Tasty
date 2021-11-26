@@ -39,14 +39,14 @@ const Aside = () => {
                         </li>
                         <li>
                             <Link to="/admin-panel/manage/orders/all-orders">
-                            <i className="fas fa-shopping-cart admin-panel-icon"></i>
+                                <i className="fas fa-shopping-cart admin-panel-icon"></i>
                                 Manage Orders
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin-panel/dashboard">
-                                <i className="fas fa-tachometer-alt admin-panel-icon"></i>
-                                Dashboard
+                            <Link to="/admin-panel/discounts">
+                                <i className="fas fa-coins admin-panel-icon"></i>
+                                Manage Discounts
                             </Link>
                         </li>
                         <li>

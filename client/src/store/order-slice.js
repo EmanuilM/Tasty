@@ -22,7 +22,7 @@ const orderSlice = createSlice({
 
                     if (x._id === action.payload._id) {
                         isExists = true;
-                        x.quantity += 1;
+                        x.quantity += action.payload.quantity;
                         localStorage.setItem('orders', JSON.stringify(data));
                         state = JSON.parse(localStorage.getItem('orders'));
                     }

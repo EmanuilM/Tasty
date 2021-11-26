@@ -56,5 +56,6 @@
 }
 
 .editIcon:hover , .deleteIcon:hover { 
+    cursor: pointer;
     color: tomato; 
  }
