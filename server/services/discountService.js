@@ -1,44 +1,64 @@
 const discountModel = require('../models/discountModel');
 
-async function getAllDiscounts() { 
-       return await discountModel.find();
+async function getAllDiscounts(page) {
+
+    return Promise.all([
+        await discountModel.find(),
+        await discountModel.find().skip((page - 1) * 10).limit(10)
+    ])
 }
 
-async function createPromoCode(data) { 
+async function getPromoCodeByID(id) {
+    return await discountModel.findById(id);
+}
 
-    if(!data.promoCode) { 
-        throw ({message : "Promo code is required!"});
+async function createPromoCode(data) {
+
+    const isPromoCodeExist = await discountModel.findOne({ promocode: data });
+    if (isPromoCodeExist) {
+        throw ({ message: "This promo code already exist!" });
     }
 
-    if(!data.percent) { 
-        throw ({message : "Something went wrong!"});
+    if (!data.promoCode) {
+        throw ({ message: "Promo code is required!" });
+    }
+
+    if (!data.percent) {
+        throw ({ message: "Something went wrong!" });
 
     }
 
-    const discount = new discountModel({ 
-        promoCode : data.promoCode,
-        percent : data.percent,
+    const discount = new discountModel({
+        promoCode: data.promoCode,
+        percent: data.percent,
     })
 
     discount.save();
     return discount;
 }
 
-
-async function checkPromoCode(code) { 
-    if(code === 'undefined') { 
-        return ({message : "Invalid promo code!"});
+async function checkPromoCode(code) {
+    if (code === 'undefined') {
+        return ({ message: "Invalid promo code!" });
     }
-    return await discountModel.findOne({promoCode : code});
+    return await discountModel.findOne({ promoCode: code });
 }
 
-async function deletePromoCode(id) { 
-    return await discountModel.deleteOne({_id : id});
+async function deletePromoCode(id) {
+    await discountModel.deleteOne({ _id: id });
+    return await discountModel.find();
 }
 
-module.exports = { 
+async function updatePromoCode(id, data) {
+    await discountModel.updateOne({ _id: id }, { promoCode: data.promoCode, percent: data.percent });
+    return await discountModel.find();
+}
+
+module.exports = {
     getAllDiscounts,
+    getPromoCodeByID,
     createPromoCode,
     checkPromoCode,
     deletePromoCode,
+    updatePromoCode,
 }
