@@ -54,6 +54,12 @@
     margin-top: 10px;
 }
 
+.create-promo-code-button:disabled  , .edit-promo-code-button:disabled{ 
+   background: gray;
+   opacity: 0.7;
+   cursor: auto;
+}
+
 .promo-codes-list-wrapper ul:nth-child(1)  {
     list-style: none;
     display: flex;
@@ -61,23 +67,10 @@
     text-align: center;
     padding: 0;
 }
-.promo-codes-list-wrapper ul:nth-child(2){
-   padding: 0;
-}
 
 
-.promo-codes-list-wrapper ul:nth-child(2) li{
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-}
-
-.promo-codes-list-wrapper ul:nth-child(2) li p , .promo-codes-list-wrapper ul:nth-child(1) li{
+.promo-codes-list-wrapper ul:nth-child(1) li{
     flex: 1 1 0;
-}
-
-.promo-codes-list-wrapper ul:nth-child(2) li p:nth-child(1) { 
-    word-break: break-all;
 }
 
 .edit-discount { 
@@ -85,9 +78,37 @@
     color: blue;
 }
 
+.edit-discount:hover { 
+    color: tomato;
+}
+
 .delete-discount:hover { 
     cursor: pointer;
     color: tomato;
+}
+
+.admin-panel-discounts-pagginator { 
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.admin-panel-discounts-pagginator li { 
+    margin: 10px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.admin-panel-discounts-pagginator li:hover { 
+    border: 1px solid #CEB38C;
+    color: #CEB38C;
+}
+
+.admin-panel-discounts-pagginator li a { 
+    text-decoration: none;
+    color: black;
 }
 
 @media screen and (max-width:660px) {

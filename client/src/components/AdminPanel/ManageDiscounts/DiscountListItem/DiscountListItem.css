@@ -1,0 +1,18 @@
+.promo-codes-list-wrapper ul:nth-child(2){
+    padding: 0;
+ }
+ 
+ .promo-codes-list-wrapper ul:nth-child(2) li{
+     display: flex;
+     justify-content: space-evenly;
+     text-align: center;
+ }
+ 
+ .promo-codes-list-wrapper ul:nth-child(2) li p{
+     flex: 1 1 0;
+ }
+ 
+
+ .promo-codes-list-wrapper ul:nth-child(2) li p:nth-child(1) { 
+    word-break: break-all;
+}

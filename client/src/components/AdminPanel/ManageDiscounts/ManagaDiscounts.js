@@ -3,31 +3,54 @@ import { useDispatch } from 'react-redux';
 import { loader } from '../../../store/loader';
 import * as discountService from '../../../services/discountService';
 import { useEffect, useState } from 'react';
-import DeleteModal from '../../shared/DeleteModal/DeleteModal';
+import DiscountListItem from './DiscountListItem/DiscountListItem';
+import { Link } from 'react-router-dom';
 
-const ManageDiscounts = () => {
+const ManageDiscounts = ({ location }) => {
 
     const dispatch = useDispatch();
 
     const [discounts, setDiscounts] = useState([]);
-    const [isDeleteModalActive, setDeleteModal] = useState(false);
+    const [pages, setPages] = useState([]);
+    const [isUpdateShown, setIsUpdateShown] = useState(false);
+    const [updateDiscountData, setUpdateDiscountData] = useState({});
+    const [errorsCreateDiscounts, setErrorsCreateDiscount] = useState({
+        discountCode: false,
+        discount: false,
+    });
+
+    const [errorsUpdateDiscounts, setErrorsUpdateDiscount] = useState({
+        discountCodeUpdate: false,
+        discountUpdate: false,
+    });
+
+    const [createFields, setCreateFileds] = useState({
+        discountCode: '',
+        discount: '',
+    });
+
+    const [updateFields, setUpdateFileds] = useState({
+        discountCodeUpdate: '',
+        discountUpdate: '',
+    });
 
 
+    const page = location.search.split('=')[1];
     useEffect(() => {
         dispatch(loader());
-        discountService.getAllDiscounts()
-            .then(res => {
+        discountService.getAllDiscounts(page || 1)
+            .then(([allDiscounts, filteredDiscounts]) => {
                 dispatch(loader());
-                console.log(res);
-                setDiscounts(res);
+                setDiscounts(filteredDiscounts);
+                setPages(Array.from({ length: Math.ceil(allDiscounts.length / 10) }, (v, i) => i + 1))
             })
             .catch(error => {
                 dispatch(loader());
                 console.log(error);
-
             })
 
-    }, [])
+    }, [location.search])
+
 
 
     function createPromoCode(e) {
@@ -40,27 +63,93 @@ const ManageDiscounts = () => {
         discountService.createDiscount(formData)
             .then(res => {
                 dispatch(loader());
-                console.log(res);
+                setDiscounts((state) => [...state, res]);
             })
             .catch(error => {
                 dispatch(loader());
                 console.log(error);
-
             })
 
     }
 
     function deletePromoCode(id) {
-        console.log(id);
+        dispatch(loader());
+        discountService.deletePromoCode(id)
+            .then(res => {
+                dispatch(loader());
+                setDiscounts(res);
+
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
     }
 
-    function showDeleteModal() {
-        setDeleteModal(true);
+
+    async function onInputCreateChangeHandler(e) {
+        const { name, value } = e.target;
+        if (name === 'discountCode') {
+            setErrorsCreateDiscount((state) => ({ ...state, [name]: value === '' ? true : false }));
+        }
+        if (name === 'discount') {
+            setErrorsCreateDiscount((state) => ({ ...state, [name]: value === '' ? true : false }));
+        }
+
+        setCreateFileds((state) => ({ ...state, [name]: value }));
     }
 
-    function hideDeleteModal() {
-        setDeleteModal(false);
+    async function onInputUpdateChangeHandler(e) {
+        const { name, value } = e.target;
+
+        if (name === 'discountCodeUpdate') {
+            setErrorsUpdateDiscount((state) => ({ ...state, [name]: value === '' ? true : false }));
+        }
+        if (name === 'discountUpdate') {
+            setErrorsUpdateDiscount((state) => ({ ...state, [name]: value === '' ? true : false }));
+        }
+
+        setUpdateFileds((state) => ({ ...state, [name]: value }));
     }
+
+    const isCreateDiscountValid = Object.values(createFields).every(x => x !== '') && Object.values(errorsCreateDiscounts).every(x => x === false);
+    const isUpdateDiscountValid = Object.values(updateFields).every(x => x !== '') && Object.values(errorsUpdateDiscounts).every(x => x === false);
+
+
+    function showUpdatePromoCodeMenu(id) {
+        setIsUpdateShown(true);
+        dispatch(loader())
+        discountService.getPromoCodeByID(id)
+            .then(res => {
+                dispatch(loader());
+                setUpdateDiscountData(res);
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
+
+    }
+
+    async function updatePromoCode(e) {
+        e.preventDefault();
+        const formData = {
+            promoCode: e.target.discountCodeUpdate.value,
+            percent: e.target.discountUpdate.value,
+        }
+        dispatch(loader())
+        discountService.updatePromoCode(updateDiscountData._id, formData)
+            .then(res => {
+                dispatch(loader());
+                setDiscounts(res);
+                setIsUpdateShown(false);
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
+    }
+
 
     return (
         <section className="admin-page-manage-discount-wrapper">
@@ -72,31 +161,38 @@ const ManageDiscounts = () => {
                     <form onSubmit={createPromoCode}>
                         <label>
                             Code
-                            <input type="text" placeholder="DISCOUNT" name="discountCode" />
+                            <input type="text" placeholder="DISCOUNT" name="discountCode" onChange={onInputCreateChangeHandler} />
+                            <div className="form-error-message">
+                                {errorsCreateDiscounts.discountCode ? <small>Required!</small> : ""}
+                            </div>
                         </label>
                         <label>
                             Discount (%)
-                            <input type="number" min="1" max="100" name="discount" />
+                            <input type="number" min="1" max="100" name="discount" onChange={onInputCreateChangeHandler} />
+                            <div className="form-error-message">
+                                {errorsCreateDiscounts.discount ? <small>Required!</small> : ""}
+                            </div>
                         </label>
-                        <button className="create-promo-code-button">Create promo code</button>
+                        <button className="create-promo-code-button" disabled={!isCreateDiscountValid}>Create promo code</button>
                     </form>
                 </article>
 
-                <article className="edit-promo-code-wrapper">
-                    <h3>Edit Promo Code : asdasdasd</h3>
-                    <form>
+                {isUpdateShown ? <article className="edit-promo-code-wrapper">
+                    <h3>Edit Promo Code : {updateDiscountData.promoCode}</h3>
+                    <form onSubmit={updatePromoCode}>
                         <label>
                             Code
-                            <input type="text" />
+                            <input type="text" name="discountCodeUpdate" onChange={onInputUpdateChangeHandler} defaultValue={updateDiscountData.promoCode} />
                         </label>
                         <label>
                             Discount (%)
-                            <input type="text" />
+                            <input type="number" min="1" max="100" name="discountUpdate" onChange={onInputUpdateChangeHandler} defaultValue={updateDiscountData.percent} />
                         </label>
-                        <button className="edit-promo-code-button">Save Changes</button>
+                        <button className="edit-promo-code-button" disabled={!isUpdateDiscountValid}>Save Changes</button>
                     </form>
 
-                </article>
+                </article> : ""}
+
             </section>
 
             <section className="promo-codes-list-wrapper">
@@ -108,23 +204,32 @@ const ManageDiscounts = () => {
                 </ul>
 
                 <ul>
-                    {discounts.map(x => {
-                        return <li key={x._id}>
-                            <p>{x.promoCode}</p>
-                            <p>{x.percent}%</p>
-                            <p>
-                                <i className="fas fa-highlighter edit-discount"></i>
-                            </p>
-                            <p>
-                                <i className="fas fa-trash delete-discount" onClick={showDeleteModal}></i>
-                            </p>
-                            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} text="discount" deleteItem={deletePromoCode} id={x._id} />
-                        </li>
-                    })}
+                    {discounts.length >= 1 ? discounts.map(x => {
+                        return <DiscountListItem key={x._id} promoCode={x.promoCode} percent={x.percent} id={x._id} deletePromoCode={deletePromoCode} showUpdate={showUpdatePromoCodeMenu} />
+                    }) : <h1>There's no discounts yet!</h1>}
 
 
                 </ul>
             </section>
+            <ul className="admin-panel-discounts-pagginator">
+                {discounts.length ? <li>
+                    <Link to={`/admin-panel/discounts?page=${Number(location.search.split('=')[1]) - 1 ? Number(location.search.split('=')[1]) - 1 : 1}`}>
+                        <i className="fas fa-arrow-left"></i>
+                    </Link>
+                </li> : ""}
+
+                {pages.map(x => {
+                    return <li key={x}>
+                        <Link to={`/admin-panel/discounts?page=${x}`}>{x}</Link>
+                    </li>
+                })}
+
+                {discounts.length >= 10 ? <li>
+                    <Link to={`/admin-panel/discounts?page=${Number(location.search.split('=')[1]) + 1 ? Number(location.search.split('=')[1]) + 1 : 2}`}>
+                        <i className="fas fa-arrow-right"></i>
+                    </Link>
+                </li> : ""}
+            </ul>
         </section>
     )
 }

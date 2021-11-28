@@ -13,19 +13,6 @@ const OrderCheckOut = ({ history }) => {
     const orderState = useAppSelector(state => state.order);
     const [discount , setDiscount] = useState(0);
 
-    if (orderState?.length <= 0) {
-        history.push('/order')
-    }
-    let subtotal = 0;
-    let shipping = 7;
-    let total = 0;
-
-    orderState?.map(x => {
-        subtotal += x.productPrice * x.quantity;
-        shipping = subtotal >= 10 ? shipping = 0 : shipping = 7;
-        total = (subtotal + shipping) -  discount;
-    })
-
     const [errors, setErrors] = useState({
         firstName: false,
         lastName: false,
@@ -42,6 +29,21 @@ const OrderCheckOut = ({ history }) => {
         street: '',
     });
 
+
+    if (orderState?.length <= 0) {
+        history.push('/order')
+    }
+    let subtotal = 0;
+    let shipping = 7;
+    let total = 0;
+
+    orderState?.map(x => {
+        subtotal += x.productPrice * x.quantity;
+        shipping = subtotal >= 10 ? shipping = 0 : shipping = 7;
+        total = (subtotal + shipping) -  discount;
+    })
+
+  
     function onInputChangeHandler(e) {
         const { name, value } = e.target;
         if (name === 'firstName' || name === 'lastName' || name === 'houseNumber' || name === 'street') {
@@ -110,7 +112,6 @@ const OrderCheckOut = ({ history }) => {
                                     <input type="text" name="firstName" onChange={onInputChangeHandler} />
                                     <div className="form-error-message">
                                         {errors.firstName ? <small>First name is required!</small> : ""}
-
                                     </div>
                                 </label>
                             </div>

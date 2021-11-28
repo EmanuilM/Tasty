@@ -18,7 +18,6 @@ const OrderDetails = ({ match, history }) => {
             .then(res => {
                 dispatch(loader());
                 setOrderDetails(res);
-                console.log(res);
             })
             .catch(error => {
                 dispatch(loader());
