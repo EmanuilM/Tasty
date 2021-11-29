@@ -5,6 +5,7 @@ import * as discountService from '../../../services/discountService';
 import { useEffect, useState } from 'react';
 import DiscountListItem from './DiscountListItem/DiscountListItem';
 import { Link } from 'react-router-dom';
+import { showAlert } from '../../../store/alert-slice';
 
 const ManageDiscounts = ({ location }) => {
 
@@ -69,6 +70,7 @@ const ManageDiscounts = ({ location }) => {
             })
             .catch(error => {
                 dispatch(loader());
+                dispatch(showAlert(error));
                 console.log(error);
             })
 

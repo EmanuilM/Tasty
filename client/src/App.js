@@ -32,8 +32,6 @@ function App() {
   const isLoading = useSelector(state => state.loader);
   const orderState = useSelector(state => state.order);
 
-
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -85,7 +83,7 @@ function App() {
       <Footer />
 
       {isLoading ? <Loader /> : ""}
-      {alertState.alert ? <Alert message={alertState.message} /> : ""}
+      {alertState.shown ? <Alert message={alertState.message} /> : ""}
     </div>
   );
 
