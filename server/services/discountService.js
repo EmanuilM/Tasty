@@ -14,7 +14,7 @@ async function getPromoCodeByID(id) {
 
 async function createPromoCode(data) {
 
-    const isPromoCodeExist = await discountModel.findOne({ promocode: data });
+    const isPromoCodeExist = await discountModel.findOne({ promoCode: data.promoCode });
     if (isPromoCodeExist) {
         throw ({ message: "This promo code already exist!" });
     }
@@ -50,6 +50,9 @@ async function deletePromoCode(id) {
 }
 
 async function updatePromoCode(id, data) {
+    if(!data.promoCode || !data.percent) { 
+        throw({message : "All fields are required!"});
+    }
     await discountModel.updateOne({ _id: id }, { promoCode: data.promoCode, percent: data.percent });
     return await discountModel.find();
 }
