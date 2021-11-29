@@ -37,7 +37,7 @@ const ManageMenuCategory = ({ match, history }) => {
             })
             .catch(error => {
                 dispatch(loader());
-                dispatch(showAlert());
+                dispatch(showAlert(error));
                 console.log(error);
             })
     }

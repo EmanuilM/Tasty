@@ -42,7 +42,7 @@ const EditMenuProduct = ({ match , history }) => {
         })
         .catch(error => { 
             dispatch(loader());
-            dispatch(showAlert());
+            dispatch(showAlert(error));
             console.log(error);
         })
     }
@@ -65,7 +65,7 @@ const EditMenuProduct = ({ match , history }) => {
             })
             .catch(error => {
                 dispatch(loader());
-                dispatch(showAlert());
+                dispatch(showAlert(error));
             })
     }
 

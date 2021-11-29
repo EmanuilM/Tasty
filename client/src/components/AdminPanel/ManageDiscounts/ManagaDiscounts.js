@@ -87,7 +87,8 @@ const ManageDiscounts = ({ location }) => {
             })
             .catch(error => {
                 dispatch(loader());
-                console.log(error);
+                dispatch(showAlert(error));
+                
             })
     }
 
