@@ -20,9 +20,7 @@ import { Alert } from './components/shared/Alert/Alert';
 import { Loader } from './components/shared/Loader/Loader';
 import { loader } from './store/loader';
 import * as authService from './services/authService';
-import * as orderService from './services/orderService';
-import { addProduct, getProducts } from './store/order-slice';
-import SuccessAlert from './components/shared/SuccessAlert/SuccessAlert';
+import { getProducts } from './store/order-slice';
 
 function App() {
 
