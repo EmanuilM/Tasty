@@ -2,9 +2,11 @@ const { Router } = require('express');
 const router = Router();
 const menuService = require('../services/menuService');
 const orderService = require('../services/orderService');
+const auth = require('../middlewares/auth');
+const isAdmin = require('../middlewares/isAdmin');
 
 
-router.get('/' , async (req,res) => { 
+router.get('/' , auth , isAdmin , async (req,res) => { 
     try {
         const data = await orderService.getAllOrders(Number(req.query.page));
         res.status(200).json(data);
@@ -32,7 +34,7 @@ router.get('/product/:id', async (req, res) => {
 })
 
 
-router.post('/make' , async (req,res) => { 
+router.post('/make' , auth , async (req,res) => { 
     try {
         const data = await orderService.makeOrder(req.body[0] , req.body[1]);
         res.status(200).json(data);
@@ -41,7 +43,7 @@ router.post('/make' , async (req,res) => {
     }
 })
 
-router.get('/:id' ,  async (req,res) => { 
+router.get('/:id' , auth ,  async (req,res) => { 
     try {
         const data = await orderService.getOrderByID(req.params.id);
         res.status(200).json(data);
@@ -50,7 +52,7 @@ router.get('/:id' ,  async (req,res) => {
     }
 })
 
-router.delete('/delete/:id' , async (req,res) => { 
+router.delete('/delete/:id' , auth , isAdmin ,  async (req,res) => { 
     try {
         const data = await orderService.deleteOrderByID(req.params.id);
         res.status(200).json(data);
@@ -59,7 +61,7 @@ router.delete('/delete/:id' , async (req,res) => {
     }
 })
 
-router.patch('/update/:id' , async (req,res) => { 
+router.patch('/update/:id' , auth , isAdmin ,  async (req,res) => { 
     try {
         const data = await orderService.updateOrder(req.params.id , req.body);
         res.status(200).json(data);

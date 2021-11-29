@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const dailyMenuService = require('../services/dailyMenuService');
-const isAuthorized = require('../middlewares/isAuthorized');
+const isAdmin = require('../middlewares/isAdmin');
 const auth = require('../middlewares/auth');
 
 router.get('/', async (req, res) => {
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/create-product', auth , isAuthorized ,   async (req, res) => {
+router.post('/create-product', auth , isAdmin ,   async (req, res) => {
     try {
         const data = await dailyMenuService.createProduct(req.body);
         res.status(200).json(data);
@@ -22,7 +22,7 @@ router.post('/create-product', auth , isAuthorized ,   async (req, res) => {
     }
 });
 
-router.delete('/delete-product/:id' , auth , isAuthorized , async (req,res) => {
+router.delete('/delete-product/:id' , auth , isAdmin , async (req,res) => {
     try {
         const data = await dailyMenuService.deleteProduct(req.params.id);
         res.status(200).json(data);
@@ -31,7 +31,7 @@ router.delete('/delete-product/:id' , auth , isAuthorized , async (req,res) => {
     }
 });
 
-router.patch('/edit-product/:id' ,  auth , isAuthorized ,async (req,res) => { 
+router.patch('/edit-product/:id' ,  auth , isAdmin ,async (req,res) => { 
     try {
         const data = await dailyMenuService.editProduct(req.params.id , req.body);
         res.status(200).json(data);
@@ -40,7 +40,7 @@ router.patch('/edit-product/:id' ,  auth , isAuthorized ,async (req,res) => {
     }
 });
 
-router.get('/product/:id' , auth , isAuthorized , async (req,res) => { 
+router.get('/product/:id' , auth , isAdmin , async (req,res) => { 
     try {
         const data = await dailyMenuService.getProductByID(req.params.id);
         res.status(200).json(data);

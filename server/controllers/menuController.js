@@ -4,6 +4,8 @@ const menuService = require('../services/menuService');
 const formidable = require('formidable');
 const { parseForm } = require('../utils/parseForm');
 const { deleteImageFromCloudinary } = require('../services/cloudinaryService');
+const auth = require('../middlewares/auth');
+const isAdmin = require('../middlewares/isAdmin');
 
 router.get('/:category', async (req, res) => {
     try {
@@ -14,7 +16,7 @@ router.get('/:category', async (req, res) => {
     }
 })
 
-router.post('/create-product', async (req, res) => {
+router.post('/create-product', auth , isAdmin , async (req, res) => {
     try {
         const form = formidable({ multiples: true });
         const [fields, files] = await parseForm(req, form);
@@ -27,7 +29,7 @@ router.post('/create-product', async (req, res) => {
 })
 
 
-router.post('/delete-product/:id' ,  async (req,res) => { 
+router.post('/delete-product/:id' , auth , isAdmin ,  async (req,res) => { 
     try {
         const data = menuService.deleteProduct(req.params.id);
         res.status(200).json(data);
@@ -46,7 +48,7 @@ router.get('/product/:id' , async (req,res) => {
 })
 
 
-router.post('/edit-product/:id' , async (req,res) => { 
+router.post('/edit-product/:id' , auth , isAdmin ,  async (req,res) => { 
     try {
         const data = await menuService.editProduct(req.params.id , req.body);
         res.status(200).json(data);
@@ -55,7 +57,7 @@ router.post('/edit-product/:id' , async (req,res) => {
     }
 })
 
-router.post('/delete-image/:id' , async (req,res) => { 
+router.post('/delete-image/:id' , auth , isAdmin , async (req,res) => { 
     try {
         const data = await deleteImageFromCloudinary(req.params.id);
         res.status(200).json(data);
@@ -64,7 +66,7 @@ router.post('/delete-image/:id' , async (req,res) => {
     }
 })
 
-router.patch('/update-product/:id' ,  async (req,res) => { 
+router.patch('/update-product/:id' , auth , isAdmin ,  async (req,res) => { 
     try {
         const data = await menuService.updateProduct(req.params.id , req.body[0]);
         res.status(200).json(data);

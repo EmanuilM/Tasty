@@ -51,7 +51,6 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', (req, res) => {
     res.clearCookie(process.env.AUTH_COOKIE);
-    res.clearCookie(process.env.ORDER_COOKIE);
     res.status(200).json({});
 });
 
