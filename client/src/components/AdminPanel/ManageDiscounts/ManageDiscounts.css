@@ -31,7 +31,8 @@
 
 .create-discount-wrapper form label , .edit-promo-code-wrapper form label {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+    align-items: center;
 }
 
 .create-discount-wrapper form label input , .edit-promo-code-wrapper form label input{
@@ -109,6 +110,11 @@
 .admin-panel-discounts-pagginator li a { 
     text-decoration: none;
     color: black;
+}
+
+
+.create-and-update-promo-code-button-wrapper { 
+    text-align: center;
 }
 
 @media screen and (max-width:660px) {

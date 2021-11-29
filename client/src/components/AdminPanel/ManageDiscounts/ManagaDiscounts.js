@@ -35,6 +35,7 @@ const ManageDiscounts = ({ location }) => {
     });
 
 
+
     const page = location.search.split('=')[1];
     useEffect(() => {
         dispatch(loader());
@@ -64,6 +65,7 @@ const ManageDiscounts = ({ location }) => {
             .then(res => {
                 dispatch(loader());
                 setDiscounts((state) => [...state, res]);
+                setCreateFileds((state) => ({ ...state, discountCode: '', discount: '' }))
             })
             .catch(error => {
                 dispatch(loader());
@@ -78,6 +80,7 @@ const ManageDiscounts = ({ location }) => {
             .then(res => {
                 dispatch(loader());
                 setDiscounts(res);
+                setIsUpdateShown(false);
 
             })
             .catch(error => {
@@ -112,9 +115,9 @@ const ManageDiscounts = ({ location }) => {
         setUpdateFileds((state) => ({ ...state, [name]: value }));
     }
 
+
     const isCreateDiscountValid = Object.values(createFields).every(x => x !== '') && Object.values(errorsCreateDiscounts).every(x => x === false);
     const isUpdateDiscountValid = Object.values(updateFields).every(x => x !== '') && Object.values(errorsUpdateDiscounts).every(x => x === false);
-
 
     function showUpdatePromoCodeMenu(id) {
         setIsUpdateShown(true);
@@ -123,6 +126,10 @@ const ManageDiscounts = ({ location }) => {
             .then(res => {
                 dispatch(loader());
                 setUpdateDiscountData(res);
+
+                setUpdateFileds((state) => ({ ...state, discountCodeUpdate: res.promoCode, discountUpdate: res.percent }));
+                setErrorsUpdateDiscount((state) => ({ ...state, discountCodeUpdate: res.promoCode === '' ? true : false, discountUpdate: res.percent === '' ? true : false }));
+
             })
             .catch(error => {
                 dispatch(loader());
@@ -130,6 +137,8 @@ const ManageDiscounts = ({ location }) => {
             })
 
     }
+
+
 
     async function updatePromoCode(e) {
         e.preventDefault();
@@ -161,19 +170,21 @@ const ManageDiscounts = ({ location }) => {
                     <form onSubmit={createPromoCode}>
                         <label>
                             Code
-                            <input type="text" placeholder="DISCOUNT" name="discountCode" onChange={onInputCreateChangeHandler} />
+                            <input type="text" placeholder="DISCOUNT" name="discountCode" value={createFields.discountCode} onChange={onInputCreateChangeHandler} />
                             <div className="form-error-message">
                                 {errorsCreateDiscounts.discountCode ? <small>Required!</small> : ""}
                             </div>
                         </label>
                         <label>
                             Discount (%)
-                            <input type="number" min="1" max="100" name="discount" onChange={onInputCreateChangeHandler} />
+                            <input type="number" min="1" max="100" name="discount" value={createFields.discount} onChange={onInputCreateChangeHandler} />
                             <div className="form-error-message">
                                 {errorsCreateDiscounts.discount ? <small>Required!</small> : ""}
                             </div>
                         </label>
-                        <button className="create-promo-code-button" disabled={!isCreateDiscountValid}>Create promo code</button>
+                        <div className="create-and-update-promo-code-button-wrapper">
+                            <button className="create-promo-code-button" disabled={!isCreateDiscountValid}>Create promo code</button>
+                        </div>
                     </form>
                 </article>
 
@@ -182,13 +193,21 @@ const ManageDiscounts = ({ location }) => {
                     <form onSubmit={updatePromoCode}>
                         <label>
                             Code
-                            <input type="text" name="discountCodeUpdate" onChange={onInputUpdateChangeHandler} defaultValue={updateDiscountData.promoCode} />
+                            <input type="text" name="discountCodeUpdate" onChange={onInputUpdateChangeHandler} value={updateFields.discountCodeUpdate} />
+                            <div className="form-error-message">
+                                {errorsUpdateDiscounts.discountCodeUpdate ? <small>Required!</small> : ""}
+                            </div>
                         </label>
                         <label>
                             Discount (%)
-                            <input type="number" min="1" max="100" name="discountUpdate" onChange={onInputUpdateChangeHandler} defaultValue={updateDiscountData.percent} />
+                            <input type="number" min="1" max="100" name="discountUpdate" onChange={onInputUpdateChangeHandler} value={updateFields.discountUpdate} />
+                            <div className="form-error-message">
+                                {errorsUpdateDiscounts.discountUpdate ? <small>Required!</small> : ""}
+                            </div>
                         </label>
-                        <button className="edit-promo-code-button" disabled={!isUpdateDiscountValid}>Save Changes</button>
+                        <div className="create-and-update-promo-code-button-wrapper">
+                            <button className="edit-promo-code-button" disabled={!isUpdateDiscountValid}>Save Changes</button>
+                        </div>
                     </form>
 
                 </article> : ""}
