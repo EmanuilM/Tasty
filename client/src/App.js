@@ -69,12 +69,8 @@ function App() {
         <Route path="/menu/categories/:category" component={ProductCategories} />
         <Route path="/reservation/:page" component={Reservation} />
         <Route path="/order" component={Orders} exact />
-
-
         <Route path="/order/categories/:category" component={Orders} exact />
-
         <Route path="/order-check-out" component={OrderCheckOut} />
-
         <Route path="/admin-panel" component={AdminPanel}>
           <AdminPanel />
         </Route>
