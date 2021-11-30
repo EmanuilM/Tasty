@@ -3,9 +3,9 @@ const router = Router();
 const authService = require('../services/authService');
 const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/auth');
+const isAdmin = require('../middlewares/isAdmin');
 
 
-const orders = jwt.sign({ orderedProducts: [] }, process.env.SECRET_WORD);
 
 router.get('/', async (req, res) => {
 
@@ -54,5 +54,14 @@ router.post('/logout', (req, res) => {
     res.status(200).json({});
 });
 
+
+router.post('/create' , auth , isAdmin , async (req,res) => { 
+    try {
+        const data = await authService.createAccountForWorkers(req.body);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
 
 module.exports = router;
