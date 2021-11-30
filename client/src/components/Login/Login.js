@@ -12,6 +12,11 @@ import { loader } from '../../store/loader';
 const Login = ({ history }) => {
     const [loading, setLoader] = useState(true);
     const dispatch = useDispatch();
+
+    const [fields, setFields] = useState({
+        username: '',
+        password: '',
+    })
    
     const [errors, setErrors] = useState({
         username: false,
@@ -26,7 +31,10 @@ const Login = ({ history }) => {
         } else {
             setErrors(state => ({ ...state, [name]: value === "" }));
         }
+        setFields(state => ({ ...state, [name]: value }));
     }
+
+    const isFormValid = Object.values(fields).every(x => x !== '') && fields.username.length >= 4;
 
     const loginSubmitHandler = (e) => {
         e.preventDefault();
@@ -77,7 +85,7 @@ const Login = ({ history }) => {
                                 </div>
                             </label>
 
-                            <button className="login-btn">Sign in</button>
+                            <button className="login-btn" disabled={!isFormValid}>Sign in</button>
                         </form>
                         <Link to="sign-up" className="login-link">
                             <p>You don't have an account?</p>

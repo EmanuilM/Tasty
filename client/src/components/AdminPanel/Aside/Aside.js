@@ -50,9 +50,9 @@ const Aside = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin-panel/dashboard">
-                                <i className="fas fa-tachometer-alt admin-panel-icon"></i>
-                                Dashboard
+                            <Link to="/admin-panel/make-account">
+                                <i className="far fa-user admin-panel-icon"></i>
+                                Make account
                             </Link>
                         </li>
 

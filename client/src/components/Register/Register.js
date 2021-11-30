@@ -7,6 +7,7 @@ import * as authService from '../../services/authService';
 import { useState } from 'react';
 import emailRegex from '../../utils/emailRegex';
 import { loader } from '../../store/loader';
+import { showAlert } from '../../store/alert-slice';
 
 
 
@@ -41,6 +42,8 @@ const Register = ({ history }) => {
         setFields(state => ({ ...state, [name]: value }));
     }
 
+    const isFormValid = Object.values(fields).every(x => x !== '') && emailRegex.test(fields.email);
+
 
     const registerSubmitHandler = async (e) => {
         e.preventDefault();
@@ -64,6 +67,7 @@ const Register = ({ history }) => {
             })
             .catch((error) => {
                 dispatch(loader());
+                dispatch(showAlert(error));
                 console.log(error);
             })
     }
@@ -108,7 +112,7 @@ const Register = ({ history }) => {
 
                             </label>
 
-                            <button className="register-btn">Sign up</button>
+                            <button className="register-btn" disabled={!isFormValid}>Sign up</button>
                         </form>
                         <Link to="sign-in" className="login-link">
                             <p>Got an account?</p>

@@ -42,9 +42,22 @@ async function getUser() {
     });
 }
 
+async function createAccountForWorkers(data) { 
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body : JSON.stringify(data),
+        credentials: 'include'
+    }
+    return await api.httpRequest('/auth/create', options);
+}
+
 export {
     register,
     login,
     logout,
     getUser,
+    createAccountForWorkers,
 }
