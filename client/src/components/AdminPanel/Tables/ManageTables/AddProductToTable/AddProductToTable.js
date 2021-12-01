@@ -1,31 +1,57 @@
 import './AddProductToTable.css';
-const AddProductToTable = () => {
-    const randomData = {
-        category: [
-            "Pizza",
-            "Drinks",
-            "Burger"
-        ],
-        products: [
-            "Mediterranean Shrimp Pizza",
-            "Sicilian Pizza",
-            "Detroit Pizza",
-        ]
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loader } from '../../../../../store/loader';
+import * as menuService from '../../../../../services/menuService';
+
+const AddProductToTable = ({ productsCategory }) => {
+    console.log(productsCategory);
+    const dispatch = useDispatch();
+    const [productsName, setProductsName] = useState([]);
+
+    useEffect(() => {
+        dispatch(loader());
+        menuService.getProductsByMenuCategory(productsCategory[0])
+            .then(res => {
+                dispatch(loader());
+                setProductsName(res);
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
+
+    }, [])
+
+
+
+
+    function onCategoryChange(e) {
+        dispatch(loader());
+        menuService.getProductsByMenuCategory(e.target.value)
+            .then(res => {
+                dispatch(loader());
+                setProductsName(res);
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
     }
 
     return (
         <section className="admin-page-manage-table-add-product">
-            <select className="manage-table-select-product-category" name="productCategory">
-                {randomData.category.map(x => {
-                    return <option>{x}</option>
+            <select className="manage-table-select-product-category" name="productCategory" onChange={onCategoryChange}>
+                {productsCategory.map((x, i) => {
+                    return <option key={i}>{x}</option>
                 })}
             </select>
             <select className="manage-table-select-product" name="productName">
-                {randomData.products.map(x => {
-                    return <option value={x}>{x}</option>
+                {productsName.map((x, i) => {
+                    return <option key={i}>{x.productName}</option>
                 })}
             </select>
-            <input type="number" className="manage-table-product-quantity" name="productQuantity" />
+            <input type="number" className="manage-table-product-quantity" name="productQuantity" min="1" defaultValue="1" />
             {/* <i className="fas fa-times remove-item"></i> */}
         </section>
 

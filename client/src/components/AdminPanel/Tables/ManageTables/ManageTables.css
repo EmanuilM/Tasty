@@ -28,6 +28,7 @@
 }
 
 .manage-table-add-product-button { 
+    cursor: pointer;
     padding: 10px;
     border: none;
     background: green;
@@ -40,6 +41,10 @@
 
 .manage-table-add-product-button:hover { 
     background: rgb(17, 160, 17);
+}
+
+.no-products-message { 
+    text-align: center;
 }
 
 .change-table-status p  { 
@@ -65,6 +70,7 @@
 
 
 .admin-page-manage-tables-save-changes-button { 
+    cursor: pointer;
     padding: 10px 30px;
     border: none;
     background: green;
@@ -77,7 +83,14 @@
     background: rgb(17, 160, 17);
 }
 
+.admin-page-manage-tables-save-changes-button:disabled { 
+    background: gray;
+    opacity: 0.7;
+    cursor: auto;
+}
+
 .admin-page-manage-tables-back-button { 
+    cursor: pointer;
     padding: 10px 30px;
     border: none;
     background: #ff1414;

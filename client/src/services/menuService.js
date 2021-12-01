@@ -1,5 +1,16 @@
 import * as api from '../utils/api';
 
+
+async function getAllProducts() { 
+    const options = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/menu/all-products`, options)
+}
+
 async function getProductsByMenuCategory(category , page) { 
     const options = {
         headers: {
@@ -8,6 +19,16 @@ async function getProductsByMenuCategory(category , page) {
         credentials: 'include'
     }
     return await api.httpRequest(`/menu/${category}?page=${page}`, options)
+}
+
+async function getProductByName(productName) { 
+    const options = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/menu/product-name/${productName}`, options)
 }
 
 
@@ -85,7 +106,9 @@ async function update(id , imageID) {
 
 
 export { 
+    getAllProducts,
     getProductsByMenuCategory,
+    getProductByName,
     createProduct,
     getProductByID,
     deleteProduct,

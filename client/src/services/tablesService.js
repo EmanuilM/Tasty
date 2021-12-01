@@ -10,6 +10,16 @@ async function getTables() {
     return await api.httpRequest(`/tables`, options)
 }
 
+async function getTableByID(id) { 
+    const options = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/tables/table/${id}`, options)
+}
+
 async function createTable(data) { 
     const options = {
         method: 'POST',
@@ -46,9 +56,25 @@ async function addProduct(id , data , status) {
     return await api.httpRequest(`/tables/add-product`, options)
 }
 
+
+async function deleteProduct(id , produtToDelete) { 
+    const options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body : JSON.stringify([produtToDelete]),
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/tables/delete-product/${id}`, options)
+}
+
+
 export { 
     getTables,
+    getTableByID,
     createTable,
     deleteTable,
     addProduct,
+    deleteProduct,
 }

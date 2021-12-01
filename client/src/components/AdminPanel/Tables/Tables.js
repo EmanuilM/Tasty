@@ -44,12 +44,7 @@ const Tables = () => {
             console.log(error);
         })
     }
-    function showModal() {
-        setModal(true);
-    }
-    function hideModal() {
-        setModal(false);
-    }
+  
 
     return (
             <section className="admin-page-manage-tables-wrapper">

@@ -10,10 +10,19 @@
 
 .admin-page-table-details-info li img { 
     width: 100px;
-    object-fit: contain;
+    height: 100px;
+    object-fit: cover;
     border-radius: 17px;
+    flex: 1 1 0;
 }
 
+.admin-page-table-details-info li p { 
+    flex: 1 1 0;
+    text-align: center;
+}
+
+
 .remove-item:hover { 
+    cursor: pointer;
     color: tomato;
 }
