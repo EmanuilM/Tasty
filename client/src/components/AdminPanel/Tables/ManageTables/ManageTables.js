@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
 import * as menuService from '../../../../services/menuService';
+import produce from '@reduxjs/toolkit/node_modules/immer';
 
 
 const ManageTables = ({ history, match }) => {
@@ -56,7 +57,7 @@ const ManageTables = ({ history, match }) => {
         }
     }
     function addProduct() {
-        setProductToTable(oldState => [...oldState, <AddProductToTable productsCategory={productsCategory} />]);
+        setProductToTable(oldState => [...oldState, <AddProductToTable productsCategory={productsCategory ? productsCategory : ""} />]);
     }
     function goBack() {
         return history.goBack();
@@ -66,55 +67,19 @@ const ManageTables = ({ history, match }) => {
     const manageTable = (e) => {
         e.preventDefault();
         let products = [];
-            for (let index = 0; index < Array.from(e.target.productName).length; index++) {
-                if (!Array.from(e.target.productName).length && !Array.from(e.target.productQuantity).length) {
-                    products.push({productName : e.target.productName.value, quantity : Number(e.target.productQuantity.value)});
-                    continue;
-                } 
-    
-                if(!Array.from(e.target.productName).length) { 
-                    products.push({productName : e.target.productName.value, quantity : Number(e.target.productQuantity[index].value)});
-                    continue;
-                }
-                if(!Array.from(e.target.productQuantity).length) { 
-                    products.push({productName : e.target.productName[index].value, quantity : Number(e.target.productQuantity.value)});
-                    continue;
-                }
-    
-                products.push({productName : e.target.productName[index].value, quantity :  Number(e.target.productQuantity[index].value)});
 
+        if(product.length === 1) { 
+            products.push({productName : e.target.productName.value , quantity : Number(e.target.productQuantity.value)});
+        }else { 
 
+            products = Array.from(e.target.productName).map(x => { 
+                return {productName : x.value};
+            })
+            Array.from(e.target.productQuantity).map((x,i) => {
+                products[i].quantity = Number(x.value);
+            })
 
-
-
-
-
-
-
-
-
-
-                // if (!Array.from(e.target.productName).length && !Array.from(e.target.productQuantity).length) {
-                //     products.push([ e.target.productName.value,  e.target.productQuantity.value]);
-                //     continue;
-                // } 
-    
-                // if(!Array.from(e.target.productName).length) { 
-                //     products.push([ e.target.productName.value,  e.target.productQuantity[index].value]);
-                //     continue;
-                // }
-                // if(!Array.from(e.target.productQuantity).length) { 
-                //     products.push([ e.target.productName[index].value,  e.target.productQuantity.value]);
-                //     continue;
-                // }
-    
-                // products.push([ e.target.productName[index].value, e.target.productQuantity[index].value]);
-    
-            }
-        
-
-
-
+        }
         const tableStatus = e.target.tableStatus.value;
 
         dispatch(loader());
@@ -137,7 +102,8 @@ const ManageTables = ({ history, match }) => {
             <h1>Managing table {tableDetails.name}</h1>
             <div className="admin-page-add-product-button-wrapper">
                 <p>Add product to table</p>
-                <button className="manage-table-add-product-button" onClick={addProduct}>Add product</button>
+                
+                <button className="manage-table-add-product-button" onClick={addProduct} disabled={productsCategory.length ? false : true} >Add product</button>
             </div>
             <div className="admin-page-manage-table-titles">
                 <h3>Category</h3>

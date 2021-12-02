@@ -9,7 +9,7 @@ import * as tableService from '../../../../services/tablesService';
 
 
 
-const TableDetails = (props) => {
+const TableDetails = ({ match }) => {
     const dispatch = useDispatch();
 
     const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ const TableDetails = (props) => {
 
     useEffect(() => {
         dispatch(loader());
-        tableService.getTableByID(props.match.params.tableID)
+        tableService.getTableByID(match.params.tableID)
             .then(res => {
                 dispatch(loader());
                 setProducts(res.products);
@@ -46,14 +46,16 @@ const TableDetails = (props) => {
     }, [products]);
 
 
+
     return (
         <section className="table-details-wrapper">
-            <h1>Details of table {props.match.params.tableID}</h1>
+            <h1>Details of table {match.params.tableID}</h1>
             <ul className="admin-page-table-details-info">
                 {productDetails.map((x,i) => {
                    return <TableDetailsProductList
                         key={i}
                         id={x._id}
+                        tableID={match.params.tableID}
                         productImage={x.images[0].imageURL}
                         productName={x.productName}
                         productQuantity={products[i].quantity}

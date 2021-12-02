@@ -7,9 +7,27 @@ const { deleteImageFromCloudinary } = require('../services/cloudinaryService');
 const auth = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
 
+router.get('/all-products' , auth , isAdmin , async (req,res) => { 
+    try {
+        const data = await menuService.getAllProducts();
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
 router.get('/:category', async (req, res) => {
     try {
         const data = Number(req.query.page) ? await menuService.getNext( req.params.category , Number(req.query.page)) : await menuService.getProductsByMenuCategory(req.params.category);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.get('/product-name/:product' , auth , isAdmin , async (req,res) => { 
+    try {
+        const data = await menuService.getProductByName(req.params.product);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);

@@ -3,7 +3,7 @@ import DeleteModal from '../../../../shared/DeleteModal/DeleteModal';
 import { useState } from 'react';
 import * as tableService from '../../../../../services/tablesService';
 
-const TableDetailsProductList = ({productImage , productName , productQuantity , productPrice , id}) => {
+const TableDetailsProductList = ({productImage , productName , productQuantity , productPrice , tableID }) => {
     const [isDeleteModalActive , setDeleteModalActive] = useState(false);
     function showDeleteModal() { 
         setDeleteModalActive(true);
@@ -11,9 +11,10 @@ const TableDetailsProductList = ({productImage , productName , productQuantity ,
     function hideDeleteModal() { 
         setDeleteModalActive(false);
     }
-
-    function deleteProduct(id) { 
-        tableService.deleteProduct(id , productName)
+  
+    function deleteProduct(tableID) { 
+        console.log(tableID);
+        tableService.deleteProduct(tableID , productName)
         .then(res => { 
             console.log(res);
         })
@@ -29,7 +30,7 @@ const TableDetailsProductList = ({productImage , productName , productQuantity ,
             
             <p>{productPrice}$</p>
             <i className="fas fa-times remove-item" onClick={showDeleteModal}></i>
-            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} id={id} deleteItem={deleteProduct} text="product" / >
+            <DeleteModal show={isDeleteModalActive} handleClose={hideDeleteModal} id={tableID} deleteItem={deleteProduct} text="product" / >
         </li>
     )
 }

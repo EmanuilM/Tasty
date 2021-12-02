@@ -1,35 +1,59 @@
 const tablesModel = require('../models/tablesModel');
 
-async function getTables() { 
+async function getTables() {
     return await tablesModel.find();
 }
 
-async function createTable(data) { 
-    if(!data.tableName || !data.tableCapacity || !data.tableStatus) { 
-        throw({message : "All fields are required!"});
+async function getTableByID(id) {
+    return await tablesModel.findById(id);
+}
+
+async function createTable(data) {
+    if (!data.tableName || !data.tableCapacity || !data.tableStatus) {
+        throw ({ message: "All fields are required!" });
     }
     const table = new tablesModel({
-        name : data.tableName,
-        capacity : data.tableCapacity,
-        status : data.tableStatus,
+        name: data.tableName,
+        capacity: data.tableCapacity,
+        status: data.tableStatus,
     });
     table.save();
     return table;
 }
 
-async function deleteTable(id) { 
-     await tablesModel.deleteOne({_id : id});
-     return getTables();
+async function deleteTable(id) {
+    await tablesModel.deleteOne({ _id: id });
+    return getTables();
 }
 
-async function addProduct(data) { 
-    return await tablesModel.updateOne({_id : data[0] } , {status : data[2]} ,  {$push : {products : data[1]}});
-   
+async function addProduct([id, products, status]) {
+
+    const test = await tablesModel.findById(id).lean();
+    console.log(test.products)
+    const productsToPush = products.reduce((prevValue, currentValue, index) => {
+        if (prevValue.length) {
+            const isExists  = prevValue.findIndex(x => x.productName === currentValue.productName);
+            if (isExists !== -1) {
+                prevValue[isExists].quantity += Number(currentValue.quantity);
+            } else {
+                prevValue.push(currentValue);
+            }
+        } else {
+            prevValue.push(currentValue);
+        }
+        return prevValue;
+    }, test.products);
+    return await tablesModel.updateOne({ _id: id }, { status: status,  products: productsToPush  });
 }
 
-module.exports =  { 
+async function deleteProduct(id, productsToDelete) {
+    return await tablesModel.updateOne({ _id: id }, { $pull: { products: { productName: productsToDelete[0]} } });
+}
+module.exports = {
     getTables,
+    getTableByID,
     createTable,
     deleteTable,
-    addProduct
+    addProduct,
+    deleteProduct
 }

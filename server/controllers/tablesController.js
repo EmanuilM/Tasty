@@ -14,6 +14,15 @@ router.get('/' , auth , isAdmin ,  async (req,res) => {
     }
 });
 
+router.get('/table/:id' , auth , isAdmin ,  async (req,res) => { 
+    try {
+        const data = await tablesService.getTableByID(req.params.id);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
 
 router.post('/create' , auth , isAdmin ,  async (req,res) => { 
     try {
@@ -38,6 +47,15 @@ router.post('/add-product' , auth , isAdmin , async (req,res) => {
     try {
         const data = await tablesService.addProduct(req.body);
         res.status(200).json(data)        
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.patch('/delete-product/:id' , async (req,res) => { 
+    try {
+        const data = await tablesService.deleteProduct(req.params.id , req.body);
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);
     }

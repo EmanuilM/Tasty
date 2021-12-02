@@ -43,12 +43,12 @@ const AddProductToTable = ({ productsCategory }) => {
         <section className="admin-page-manage-table-add-product">
             <select className="manage-table-select-product-category" name="productCategory" onChange={onCategoryChange}>
                 {productsCategory.map((x, i) => {
-                    return <option key={i}>{x}</option>
+                    return <option key={i} value={x}>{x}</option>
                 })}
             </select>
-            <select className="manage-table-select-product" name="productName">
+            <select className="manage-table-select-product" name="productName" >
                 {productsName.map((x, i) => {
-                    return <option key={i}>{x.productName}</option>
+                    return <option key={i} value={x.productName}>{x.productName}</option>
                 })}
             </select>
             <input type="number" className="manage-table-product-quantity" name="productQuantity" min="1" defaultValue="1" />

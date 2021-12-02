@@ -2,8 +2,16 @@ const menuModel = require("../models/menuModel");
 const cloudinaryService = require("./cloudinaryService");
 const { uploadImageToCloudinary } = require("../services/cloudinaryService");
 
+async function getAllProducts() { 
+  return await menuModel.find();
+}
+
 async function getProductsByMenuCategory(category) {
   return await menuModel.find({ category: category });
+}
+
+async function getProductByName(productName) { 
+  return await menuModel.findOne({productName});
 }
 
 async function getNext(category , page) { 
@@ -17,6 +25,10 @@ async function getNext(category , page) {
 
 async function createProduct(data, files) {
   const imageCollection = [];
+  const isProductExist = await menuModel.findOne({productName : data.productName});
+  if(isProductExist) { 
+    throw({message : "This product already exist!"});
+  }
   if (typeof data.productPrice === "string") {
     throw { message: "Product price must be a number" };
   }
@@ -117,7 +129,9 @@ async function updateProduct(id, deleteImageID) {
 
 
 module.exports = {
+  getAllProducts,
   getProductsByMenuCategory,
+  getProductByName,
   createProduct,
   deleteProduct,
   getProductByID,
