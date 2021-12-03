@@ -52,7 +52,7 @@ router.post('/add-product' , auth , isAdmin , async (req,res) => {
     }
 })
 
-router.patch('/delete-product/:id' , async (req,res) => { 
+router.patch('/delete-product/:id' , auth , isAdmin ,  async (req,res) => { 
     try {
         const data = await tablesService.deleteProduct(req.params.id , req.body);
         res.status(200).json(data);

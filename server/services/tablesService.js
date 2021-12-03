@@ -28,11 +28,10 @@ async function deleteTable(id) {
 
 async function addProduct([id, products, status]) {
 
-    const test = await tablesModel.findById(id).lean();
-    console.log(test.products)
+    const currentProducts = await tablesModel.findById(id).lean();
     const productsToPush = products.reduce((prevValue, currentValue, index) => {
         if (prevValue.length) {
-            const isExists  = prevValue.findIndex(x => x.productName === currentValue.productName);
+            const isExists = prevValue.findIndex(x => x.productName === currentValue.productName);
             if (isExists !== -1) {
                 prevValue[isExists].quantity += Number(currentValue.quantity);
             } else {
@@ -42,12 +41,13 @@ async function addProduct([id, products, status]) {
             prevValue.push(currentValue);
         }
         return prevValue;
-    }, test.products);
-    return await tablesModel.updateOne({ _id: id }, { status: status,  products: productsToPush  });
+    }, currentProducts.products);
+    return await tablesModel.updateOne({ _id: id }, { status: status, products: productsToPush });
 }
 
 async function deleteProduct(id, productsToDelete) {
-    return await tablesModel.updateOne({ _id: id }, { $pull: { products: { productName: productsToDelete[0]} } });
+    await tablesModel.updateOne({ _id: id }, { $pull: { products: { productName: productsToDelete[0] } } });
+    return await tablesModel.findById(id);
 }
 module.exports = {
     getTables,

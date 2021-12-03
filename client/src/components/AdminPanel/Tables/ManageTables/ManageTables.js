@@ -62,20 +62,20 @@ const ManageTables = ({ history, match }) => {
     function goBack() {
         return history.goBack();
     }
-   
+
 
     const manageTable = (e) => {
         e.preventDefault();
         let products = [];
 
-        if(product.length === 1) { 
-            products.push({productName : e.target.productName.value , quantity : Number(e.target.productQuantity.value)});
-        }else { 
+        if (product.length === 1) {
+            products.push({ productName: e.target.productName.value, quantity: Number(e.target.productQuantity.value) });
+        } else {
 
-            products = Array.from(e.target.productName).map(x => { 
-                return {productName : x.value};
+            products = Array.from(e.target.productName).map(x => {
+                return { productName: x.value };
             })
-            Array.from(e.target.productQuantity).map((x,i) => {
+            Array.from(e.target.productQuantity).map((x, i) => {
                 products[i].quantity = Number(x.value);
             })
 
@@ -102,7 +102,7 @@ const ManageTables = ({ history, match }) => {
             <h1>Managing table {tableDetails.name}</h1>
             <div className="admin-page-add-product-button-wrapper">
                 <p>Add product to table</p>
-                
+
                 <button className="manage-table-add-product-button" onClick={addProduct} disabled={productsCategory.length ? false : true} >Add product</button>
             </div>
             <div className="admin-page-manage-table-titles">
@@ -111,15 +111,14 @@ const ManageTables = ({ history, match }) => {
                 <h3>Quantity</h3>
             </div>
             <form onSubmit={manageTable}>
-                {product.length >= 1 ? product.map((x, i) => {
+                    {product.length >= 1 ? product.map((x, i) => {
 
-                    return <Fragment key={i}>{x}</Fragment>
+                        return <Fragment key={i}>{x}</Fragment>
 
-                }) : <div className="no-products-message">
-                    <h1>There's no products yet!</h1>
-                    <p>Click add product button to add product</p>
-                </div>}
-
+                    }) : <div className="no-products-message">
+                        <h1>There's no products yet!</h1>
+                        <p>Click add product button to add product</p>
+                    </div>}
                 <article className="change-table-status">
                     <p>Change table status</p>
                     <select name="tableStatus" onChange={reservedFunction} defaultValue={tableDetails.status} >

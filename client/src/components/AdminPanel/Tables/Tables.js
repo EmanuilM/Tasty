@@ -66,7 +66,6 @@ const Tables = () => {
                                 <th>Table capacity</th>
                                 <th>Status</th>
                                 <th>Action</th>
-
                             </tr>
                         </thead>
                         <tbody>

@@ -5,7 +5,6 @@ import { loader } from '../../../../../store/loader';
 import * as menuService from '../../../../../services/menuService';
 
 const AddProductToTable = ({ productsCategory }) => {
-    console.log(productsCategory);
     const dispatch = useDispatch();
     const [productsName, setProductsName] = useState([]);
 

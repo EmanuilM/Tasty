@@ -2,6 +2,7 @@
     max-width: 700px;
     width: 100%;
     margin: 0 auto;
+    word-break: break-all;
 }
 
 .table-details-wrapper h1 { 
@@ -17,6 +18,7 @@
 
 
 .table-details-pay-button { 
+    cursor: pointer;
     background: #FE942B;
     color: white;
     font-weight: bold;
@@ -38,6 +40,26 @@
 
 .table-details-total-price-info h3{ 
   font-size: 30px;
+}
+
+.table-details-back-button-wrapper { 
+    text-align: center;
+}
+
+.table-details-back-button { 
+    cursor: pointer;
+    background: rgb(238, 10, 10);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+.table-details-back-button:hover { 
+    background: rgb(226, 50, 50);
+   
 }
 
 

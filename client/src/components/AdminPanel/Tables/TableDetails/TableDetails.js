@@ -9,108 +9,68 @@ import * as tableService from '../../../../services/tablesService';
 
 
 
-const TableDetails = ({ match }) => {
+const TableDetails = ({ match, history }) => {
     const dispatch = useDispatch();
 
-    const [products, setProducts] = useState([]);
+    const [tableProducts, setTableProducts] = useState([]);
     const [productDetails, setProductDetails] = useState([]);
+    const [tableName, setTableName] = useState();
+    let totalPrice = 0;
 
     useEffect(() => {
         dispatch(loader());
         tableService.getTableByID(match.params.tableID)
             .then(res => {
                 dispatch(loader());
-                setProducts(res.products);
+                setTableProducts(res.products);
+                setTableName(res.name);
+                res.products.map(x => {
+                    menuService.getProductByName(x.productName)
+                        .then(tableProducts => {
+                            setProductDetails((state) => [...state, tableProducts]);
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+                })
             })
             .catch(error => {
                 dispatch(loader());
-                console.log(error);
             })
-
     }, [])
-
-    useEffect(() => {
-        products.map(x => {
-            console.log(x);
-            menuService.getProductByName(x.productName)
-                .then(res => {
-                    console.log(res)
-                    setProductDetails((state) => [...state, res]);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        })
-
-
-    }, [products]);
 
 
 
     return (
         <section className="table-details-wrapper">
-            <h1>Details of table {match.params.tableID}</h1>
+            <h1>Details of table {tableName}</h1>
             <ul className="admin-page-table-details-info">
-                {productDetails.map((x,i) => {
-                   return <TableDetailsProductList
+
+                {tableProducts.length ? tableProducts.map((x, i) => {
+                    totalPrice += productDetails[i]?.productPrice * x.quantity;
+                    return <TableDetailsProductList
                         key={i}
                         id={x._id}
                         tableID={match.params.tableID}
-                        productImage={x.images[0].imageURL}
+                        productImage={productDetails[i]?.images[0].imageURL}
                         productName={x.productName}
-                        productQuantity={products[i].quantity}
-                        productPrice={x.productPrice * products[i].quantity}
+                        productQuantity={x.quantity}
+                        productPrice={productDetails[i]?.productPrice * x.quantity}
+                        setTableProducts={setTableProducts}
                     />
-                })}
-
-                {/* <TableDetailsProductList
-                    productImage="https://img.bestrecipes.com.au/i9G5gwYE/w643-h428-cfill-q90/br/2019/04/frozen-golden-gaytime-cheesecake-951597-1.jpg"
-                    productName="Mediterranean Pizza"
-                    productQuantity="3"
-                    message="asdasdasd" productPrice="17.30"
-                />
-                <TableDetailsProductList
-                    productImage="https://media.istockphoto.com/photos/vegetable-soup-picture-id1092632852?k=20&m=1092632852&s=612x612&w=0&h=ewsOVIVzqVKQcapu14UluNDwoIyf3Yq_R6U2Q8Xt2CY="
-                    productName="Mediterranean Pizza"
-                    productQuantity="3"
-                    message="asdasdasd" productPrice="17.30"
-                />
-                <TableDetailsProductList
-                    productImage="https://media.istockphoto.com/photos/vegetable-soup-picture-id1092632852?k=20&m=1092632852&s=612x612&w=0&h=ewsOVIVzqVKQcapu14UluNDwoIyf3Yq_R6U2Q8Xt2CY="
-                    productName="Mediterranean Pizza"
-                    productQuantity="3"
-                    message="asdasdasd" productPrice="17.30"
-                />
-                <TableDetailsProductList
-                    productImage="https://media.istockphoto.com/photos/vegetable-soup-picture-id1092632852?k=20&m=1092632852&s=612x612&w=0&h=ewsOVIVzqVKQcapu14UluNDwoIyf3Yq_R6U2Q8Xt2CY="
-                    productName="Mediterranean Pizza"
-                    productQuantity="3"
-                    message="asdasdasd" productPrice="17.30"
-                />
-                <TableDetailsProductList
-                    productImage="https://media.istockphoto.com/photos/vegetable-soup-picture-id1092632852?k=20&m=1092632852&s=612x612&w=0&h=ewsOVIVzqVKQcapu14UluNDwoIyf3Yq_R6U2Q8Xt2CY="
-                    productName="Mediterranean Pizza"
-                    productQuantity="3"
-                    message="asdasdasd" productPrice="17.30"
-                />
-                <TableDetailsProductList
-                    productImage="https://media.istockphoto.com/photos/vegetable-soup-picture-id1092632852?k=20&m=1092632852&s=612x612&w=0&h=ewsOVIVzqVKQcapu14UluNDwoIyf3Yq_R6U2Q8Xt2CY="
-                    productName="Mediterranean Pizza"
-                    productQuantity="3"
-                    message="asdasdasd" productPrice="17.30"
-                />
-                <TableDetailsProductList
-                    productImage="https://media.istockphoto.com/photos/vegetable-soup-picture-id1092632852?k=20&m=1092632852&s=612x612&w=0&h=ewsOVIVzqVKQcapu14UluNDwoIyf3Yq_R6U2Q8Xt2CY="
-                    productName="Mediterranean Pizza"
-                    productQuantity="3"
-                    message="asdasdasd" productPrice="17.30"
-                /> */}
+                }) : <h1>There's no products on this table yet!</h1>}
 
             </ul>
-            <div className="table-details-total-price-info">
-                <h3>Total price : 100 $</h3>
-                <button className="table-details-pay-button">Check as paid</button>
-            </div>
+            {tableProducts.length ?
+                <div className="table-details-total-price-info">
+                    <h3>Total price : {totalPrice} $</h3>
+                    <button className="table-details-pay-button">Check as paid</button>
+                </div> :
+                <div className="table-details-back-button-wrapper">
+                    <button className="table-details-back-button" onClick={history.goBack}>Go back</button>
+                </div>
+            }
+
         </section>
     )
 }
