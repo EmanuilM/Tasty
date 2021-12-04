@@ -12,6 +12,20 @@ const AddProductToCategory = ({ history }) => {
     const dispatch = useDispatch();
     const [filesList, setFilesList] = useState([]);
 
+    const [fields, setFields] = useState({
+        productName: '',
+        productPrice: '',
+        productDescription: '',
+    })
+
+
+    const [errors, setErrors] = useState({
+        productName: false,
+        productPrice: false,
+        productDescription: false,
+    })
+
+
 
     const addProductHandler = async (e) => {
         e.preventDefault();
@@ -62,6 +76,18 @@ const AddProductToCategory = ({ history }) => {
     }
 
 
+    const onInputChangeHandler = (e) => {
+        const { name, value } = e.target;
+
+        if (name === 'productPrice') {
+            setErrors(state => ({ ...state, [name]: value < 0 ? true : false }));
+        } else {
+            setErrors(state => ({ ...state, [name]: value === "" }));
+        }
+        setFields(state => ({ ...state, [name]: value }));
+    }
+
+    const isFormValid = Object.values(fields).every(x => x !== '') && Object.values(errors).every(x => x !== true);
 
 
     return (
@@ -71,7 +97,10 @@ const AddProductToCategory = ({ history }) => {
                 <form onSubmit={addProductHandler}>
                     <div className="menu-product-name">
                         <p>Product Name</p>
-                        <input type="text" name="productName" />
+                        <input type="text" name="productName" onChange={onInputChangeHandler} />
+                        <div className="form-error-message">
+                            {errors.productName ? <small>Product name is required!</small> : ""}
+                        </div>
                     </div>
 
                     <div className="menu-product-category">
@@ -91,17 +120,22 @@ const AddProductToCategory = ({ history }) => {
                     </div>
                     <div className="menu-product-price">
                         <p>Product Price</p>
-                        <input type="number" step="any" min="0" name="productPrice" />
+                        <input type="number" step="any" min="0" name="productPrice" onChange={onInputChangeHandler} />
+                        <div className="form-error-message">
+                            {errors.productPrice ? <small>Price cannot be negative number!</small> : ""}
+                        </div>
                     </div>
                     <div className="menu-product-description">
                         <p>Description</p>
-                        <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription"></textarea>
+                        <textarea cols="70" rows="10" style={{ resize: "none", width: "300px" }} name="productDescription" onChange={onInputChangeHandler}></textarea>
+                        <div className="form-error-message">
+                            {errors.productDescription ? <small>Product description is required!</small> : ""}
+                        </div>
                     </div>
                     <FileUploader onFileDrop={onFileDrop} fileRemove={fileRemove} filesList={filesList} />
                     <div className="menu-add-product-button-wrapper">
-                        <button>Add product to menu</button>
+                        <button disabled={!isFormValid}>Add product to menu</button>
                     </div>
-                    {/* <input type="file" multiple onChange={handleChange} /> */}
                 </form>
 
 

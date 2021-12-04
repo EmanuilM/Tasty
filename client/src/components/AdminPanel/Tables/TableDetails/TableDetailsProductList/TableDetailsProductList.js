@@ -15,7 +15,6 @@ const TableDetailsProductList = ({ productImage, productName, productQuantity, p
     function deleteProduct(tableID) {
         tableService.deleteProduct(tableID, productName)
             .then(res => {
-                console.log(res.products);
                 setTableProducts(res.products);
                 hideDeleteModal();
             })

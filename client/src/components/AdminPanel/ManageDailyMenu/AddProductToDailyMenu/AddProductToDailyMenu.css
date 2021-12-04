@@ -25,6 +25,7 @@
 }
 
 .daily-menu-add-product-button-wrapper button {
+    cursor: pointer;
     margin-top: 30px; 
     padding: 10px 30px;
     border: none;
@@ -37,3 +38,16 @@
 .daily-menu-add-product-button-wrapper button:hover { 
     background: rgb(17, 160, 17);
 }
+
+
+.daily-menu-add-product-button-wrapper button:disabled { 
+    background: gray;
+    opacity: 0.7;
+    cursor: auto;
+}
+
+
+.daily-menu-add-product-button-wrapper button:disabled:hover { 
+    background: gray;
+}
+

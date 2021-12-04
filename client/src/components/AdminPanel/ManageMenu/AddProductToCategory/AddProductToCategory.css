@@ -25,6 +25,7 @@
 }
 
 .menu-add-product-button-wrapper button {
+    cursor: pointer;
     margin-top: 30px; 
     padding: 10px 30px;
     border: none;
@@ -36,4 +37,16 @@
 
 .menu-add-product-button-wrapper button:hover { 
     background: rgb(17, 160, 17);
+}
+
+
+.menu-add-product-button-wrapper button:disabled { 
+    background: gray;
+    opacity: 0.7;
+    cursor: auto;
+}
+
+
+.menu-add-product-button-wrapper button:disabled:hover { 
+    background: gray;
 }
