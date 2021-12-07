@@ -1,13 +1,13 @@
 import './ReservationDetails.css';
 
-const ReservationDetails = () => {
+const ReservationDetails = ({ onInputChangeHandler , createReservation }) => {
     return (
         <article className="reservation-details-wrapper">
             <form>
-                <input type="text" placeholder="First name" />
-                <input type="text" placeholder="Last name" />
-                <input type="text" placeholder="Phone number" />
-                <button className="confirm-reservation-btn">Confirm reservation</button>
+                <input type="text" placeholder="First name" name="firstName" onChange={onInputChangeHandler} />
+                <input type="text" placeholder="Last name" name="lastName" onChange={onInputChangeHandler} />
+                <input type="text" placeholder="Phone number" name="phoneNumber" onChange={onInputChangeHandler} />
+                <button className="confirm-reservation-btn" onClick={createReservation}>Confirm reservation</button>
             </form>
 
         </article>

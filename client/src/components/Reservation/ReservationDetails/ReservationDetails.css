@@ -12,7 +12,8 @@
   font-weight: bold;
 }
 
-.confirm-reservation-btn { 
+.confirm-reservation-btn {
+    cursor: pointer; 
     background: rgb(218, 55, 67);
     color: white;
     padding: 10px 40px;

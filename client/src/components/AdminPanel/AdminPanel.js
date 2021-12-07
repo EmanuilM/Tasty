@@ -17,6 +17,8 @@ import ManageOrders from './ManageOrders/ManageOrders';
 import OrderDetails from './ManageOrders/OrderDetails/OrderDetails';
 import ManageDiscounts from './ManageDiscounts/ManagaDiscounts';
 import MakeAccount from './MakeAccount/MakeAccount';
+import ManageReservations from './ManageReservations/ManageReservations';
+import EditReservation from './ManageReservations/EditReservation/EditReservation';
 
 const AdminPanel = () => {
     return (
@@ -41,6 +43,8 @@ const AdminPanel = () => {
             <Route path="/admin-panel/manage/order/details/:id" component={OrderDetails} exact />
             <Route path="/admin-panel/discounts" component={ManageDiscounts}  />
             <Route path="/admin-panel/make-account" component={MakeAccount}  />
+            <Route path="/admin-panel/reservations" component={ManageReservations} exact  />
+            <Route path="/admin-panel/reservations/edit/:id" component={EditReservation} exact />
             
             </Switch>
             </section>

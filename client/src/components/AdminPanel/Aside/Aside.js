@@ -55,6 +55,12 @@ const Aside = () => {
                                 Make account
                             </Link>
                         </li>
+                        <li>
+                            <Link to="/admin-panel/reservations">
+                                <i className="fas fa-book-open admin-panel-icon"></i>
+                                Manage Reservations
+                            </Link>
+                        </li>
 
 
                     </ul>

@@ -19,6 +19,7 @@
 
 
 .find-table-btn { 
+    cursor: pointer;
     padding: 10px 20px;
     background: rgb(218, 55, 67);
     color: white;
@@ -30,8 +31,15 @@
     background: #931B23;
 }
 
+.find-table-btn:disabled { 
+    background: gray;
+    opacity: 0.7;
+    cursor: auto;
+}
+
 
 .free-reservation-btn { 
+    cursor: pointer;
     margin: 10px;
     background: rgb(218, 55, 67);
     padding: 7px 30px;
