@@ -45,8 +45,6 @@ const Reservation = () => {
             })
     }
 
-    console.log(formData);
-    const isFindTableValid = formData.people !== '' && formData.date !== '' && formData.time !== '';
 
 
     return (

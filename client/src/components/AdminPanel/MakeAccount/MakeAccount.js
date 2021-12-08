@@ -6,7 +6,7 @@ import { showAlert } from '../../../store/alert-slice';
 import emailRegex from '../../../utils/emailRegex';
 import { useState } from 'react';
 
-const MakeAccount = () => { 
+const MakeAccount = () => {
 
     const dispatch = useDispatch();
 
@@ -26,10 +26,11 @@ const MakeAccount = () => {
 
 
 
-    function onInputChangeHandler(e) { 
-        const {name , value} = e.target;
+    function onInputChangeHandler(e) {
+        const { name, value } = e.target;
         if (name === 'email') {
             setErrors(state => ({ ...state, [name]: !emailRegex.test(value) }));
+          
         } else if (name === 'repeatPassword') {
             setErrors(state => ({ ...state, [name]: value !== fields.password }));
         } else {
@@ -38,49 +39,63 @@ const MakeAccount = () => {
         setFields(state => ({ ...state, [name]: value }));
     }
 
-    const isFormValid = Object.values(fields).every(x => x !== '');
+    const isFormValid = Object.values(fields).every(x => x !== '') && emailRegex.test(fields.email) && Object.values(fields)[2] === Object.values(fields)[3];
 
-    async function createAcccount(e) { 
+
+    async function createAcccount(e) {
         e.preventDefault();
-        const formData = { 
-            email  : e.target.email.value,
-            username : e.target.username.value,
-            password : e.target.password.value,
-            repeatPassword : e.target.repeatPassword.value,
-            accountType : e.target.accountType.value,
+        const formData = {
+            email: e.target.email.value,
+            username: e.target.username.value,
+            password: e.target.password.value,
+            repeatPassword: e.target.repeatPassword.value,
+            accountType: e.target.accountType.value,
         }
         dispatch(loader());
         authService.createAccountForWorkers(formData)
-        .then(res => { 
-            dispatch(loader());
-            console.log(res);
-        })
-        .catch(error => {
-            dispatch(loader());
-            dispatch(showAlert(error));
-            console.log(error);
-        })
+            .then(res => {
+                dispatch(loader());
+                console.log(res);
+            })
+            .catch(error => {
+                dispatch(loader());
+                dispatch(showAlert(error));
+                console.log(error);
+            })
     }
 
-    return(
+
+    return (
         <section className="admin-panel-make-account-wrapper">
             <article className="make-account-form-wrapper">
                 <form onSubmit={createAcccount}>
                     <label>
                         Email
                         <input type="text" name="email" onChange={onInputChangeHandler} />
+                        <div className="form-error-message">
+                            {errors.email ? <small>Invalid email!</small> : ""}
+                        </div>
                     </label>
                     <label>
                         Username
-                        <input type="text" name="username"onChange={onInputChangeHandler} />
+                        <input type="text" name="username" onChange={onInputChangeHandler} />
+                        <div className="form-error-message">
+                            {errors.username ? <small >Username is required!</small> : ""}
+                        </div>
                     </label>
                     <label>
                         Password
                         <input type="text" name="password" onChange={onInputChangeHandler} />
+                        <div className="form-error-message">
+                            {errors.password ? <small>Password is required!</small> : ""}
+                        </div>
                     </label>
                     <label>
                         Repeat password
                         <input type="text" name="repeatPassword" onChange={onInputChangeHandler} />
+                        <div className="form-error-message">
+                            {errors.repeatPassword ? <small>Passwords does not match!</small> : ""}
+                        </div>
                     </label>
                     <label>
                         Account type

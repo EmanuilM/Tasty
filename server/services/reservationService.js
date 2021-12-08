@@ -1,5 +1,6 @@
 const tableModel = require('../models/tablesModel');
 const reservationModel = require('../models/reservationModel');
+const userModel = require('../models/userModel');
 
 
 
@@ -16,7 +17,7 @@ async function getFreeTables() {
     return await tableModel.find({status : "Active"});
 }
 
-async function createReservation(reservationDetails) { 
+async function createReservation(reservationDetails , userID) { 
     if(!reservationDetails.firstName || !reservationDetails.lastName || !reservationDetails.phoneNumber || !reservationDetails.time || !reservationDetails.date || !reservationDetails.people) { 
         throw({message : "All fields are required!"});
     }
@@ -38,6 +39,7 @@ async function createReservation(reservationDetails) {
     })
 
     reservation.save();
+    await  userModel.updateOne({_id : userID} , {$push : {reservations : reservation}});
     return reservation;
 }
 
@@ -47,6 +49,9 @@ async function deleteReservation(id) {
 }
 
 async function updateReservation(id , data) { 
+    if(!data.firstName || !data.lastName || !data.date || !data.people || !data.time) { 
+        throw({message : "All fields are required!"});
+    }
     return reservationModel.updateOne({_id : id} , {firstName : data.firstName , lastName : data.lastName , people : data.people , date : data.date , time : data.time });
 }
 

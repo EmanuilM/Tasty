@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
     isWorker: {
         type: Boolean,
         default: false,
-    }
+    },
+    reservations : []
 })
 
 

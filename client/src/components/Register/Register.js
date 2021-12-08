@@ -34,6 +34,7 @@ const Register = ({ history }) => {
 
         if (name === 'email') {
             setErrors(state => ({ ...state, [name]: !emailRegex.test(value) }));
+         
         } else if (name === 'repeatPassword') {
             setErrors(state => ({ ...state, [name]: value !== fields.password }));
         } else {
@@ -42,8 +43,9 @@ const Register = ({ history }) => {
         setFields(state => ({ ...state, [name]: value }));
     }
 
-    const isFormValid = Object.values(fields).every(x => x !== '') && emailRegex.test(fields.email);
-
+    
+    const isFormValid = Object.values(fields).every(x => x !== '') && emailRegex.test(fields.email) && Object.values(fields)[2] === Object.values(fields)[3];
+    
 
     const registerSubmitHandler = async (e) => {
         e.preventDefault();

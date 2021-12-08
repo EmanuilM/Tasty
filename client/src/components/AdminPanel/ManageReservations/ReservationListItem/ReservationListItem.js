@@ -28,6 +28,7 @@ const ReservationListItem = ({ firstName, lastName, people, date, time, phoneNum
                 dispatch(loader());
                 console.log(res);
                 setReservations(res);
+                hideDeleteModal();
             })
             .catch(error => {
                 dispatch(loader());
