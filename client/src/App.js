@@ -9,7 +9,7 @@ import Reservation from './components/Reservation/Reservation';
 import Orders from './components/Orders/Orders';
 import OrderCheckOut from './components/Orders/OrderCheckOut/OrderCheckOut';
 import Footer from './components/Footer/Footer';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import ProductCategories from './components/Menu/ProductCategories/ProductCategories';
 import { useEffect, useState } from 'react';
 import AdminPanel from './components/AdminPanel/AdminPanel';
@@ -32,6 +32,8 @@ function App() {
   const orderState = useSelector(state => state.order);
   const [dailyMenuProducts, setDailyMenuProducts] = useState([]);
 
+
+  console.log(authState.userAuthState.isAdmin);
 
   const dispatch = useDispatch();
 
@@ -63,27 +65,30 @@ function App() {
   }, [])
 
 
-
   return (
-
     <div className="App">
 
       <Header dailyMenuProducts={dailyMenuProducts} />
 
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/sign-up" component={Register} />
-        <Route path="/sign-in" component={Login} />
+        {!authState.isAuthenticated && <Route path="/sign-up" component={Register} />}
+        {!authState.isAuthenticated && <Route path="/sign-in" component={Login} />}
         <Route path="/daily-menu" component={DailyMenu} />
         <Route path="/menu" component={Menu} exact />
         <Route path="/menu/categories/:category" component={ProductCategories} />
-        <Route path="/reservation/:page" component={Reservation} />
-        <Route path="/order" component={Orders} exact />
-        <Route path="/order/categories/:category" component={Orders} exact />
-        <Route path="/order-check-out" component={OrderCheckOut} />
-        <Route path="/my-profile" component={Profile} / >
-        <Route path="/admin-panel" component={AdminPanel}>
+        {authState.isAuthenticated && <Route path="/reservation/:page" component={Reservation} />}
+        {authState.isAuthenticated && <Route path="/order" component={Orders} exact />}
+        {authState.isAuthenticated && <Route path="/order/categories/:category" component={Orders} exact />}
+        {authState.isAuthenticated && <Route path="/order-check-out" component={OrderCheckOut} />}
+        {authState.isAuthenticated && <Route path="/my-profile" component={Profile} />}
+
+        {authState.userAuthState.isAdmin && <Route path="/admin-panel" component={AdminPanel}>
           <AdminPanel setDailyMenuProducts={setDailyMenuProducts} />
+        </Route>}
+
+        <Route path="*">
+          <Redirect path='/' />
         </Route>
       </Switch>
       <Footer />
@@ -93,7 +98,6 @@ function App() {
     </div>
   );
 
+
 }
-
-
 export default App;
