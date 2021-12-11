@@ -3,9 +3,24 @@ const bcrypt = require('bcrypt');
 
 
 const userSchema = new mongoose.Schema({
+    firstName: {
+        tpye: String,
+    },
+    lastName: {
+        type: String,
+    },
+    phoneNumber: {
+        type: Number,
+    },
+    houseNumber : { 
+        type: String,
+    },
     email: {
         type: String,
         required: true,
+    },
+    street : {
+        tpye : String,
     },
     username: {
         type: String,
@@ -23,7 +38,8 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    reservations : []
+    reservations: [],
+    orders : []
 })
 
 

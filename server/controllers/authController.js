@@ -64,4 +64,22 @@ router.post('/create' , auth , isAdmin , async (req,res) => {
     }
 })
 
+router.get('/user/:id' , async (req,res) => {
+    try {
+        const data = await authService.getUserByID(req.params.id);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.patch('/user/update/:id' , async (req,res) => { 
+    try {
+        const data = await authService.updateUser(req.body , req.params.id );
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
 module.exports = router;

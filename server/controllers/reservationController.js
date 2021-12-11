@@ -34,7 +34,7 @@ router.get('/find-tables' , auth , async (req,res) => {
     }
 })
 
-router.post('/create' , auth , isAdmin ,  async (req,res) => { 
+router.post('/create' , auth , async (req,res) => { 
     try {
         const data = await reservationService.createReservation(req.body , req.user._id);
         res.status(200).json(data);

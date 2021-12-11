@@ -1,5 +1,6 @@
 const menuModel = require('../models/menuModel');
 const orderModel = require('../models/orderModel');
+const userModel = require('../models/userModel');
 
 async function getAllProducts(category, page) {
     if (category === 'undefined') {
@@ -21,68 +22,81 @@ async function getProductByID(id) {
 }
 
 
-async function makeOrder(orderDetails , orderedProducts) {
+async function makeOrder(orderDetails, orderedProducts, userID) {
     if (!orderDetails.firstName || !orderDetails.lastName || !orderDetails.phoneNumber || !orderDetails.houseNumber || !orderDetails.street) {
         throw { message: "Invalid request!" };
     }
 
-    if(typeof orderDetails.phoneNumber === "string") { 
-        throw {message : "Phone number filed must be a number"};
+    if (typeof orderDetails.phoneNumber === "string") {
+        throw { message: "Phone number filed must be a number" };
     }
 
-    if(orderDetails.phoneNumber.toString().length < 10 || orderDetails.phoneNumber.toString().length > 10) { 
-        throw {message : "Phone number must be exactly 10 numbers!"};
+    if (orderDetails.phoneNumber.toString().length < 10 || orderDetails.phoneNumber.toString().length > 10) {
+        throw { message: "Phone number must be exactly 10 numbers!" };
     }
 
 
-    orderedProducts.map(x => { 
-        if(x.quantity <= 0 ) { 
-            throw({message : "Invalid product quantity!"})
+    orderedProducts.map(x => {
+        if (x.quantity <= 0) {
+            throw ({ message: "Invalid product quantity!" })
         }
     })
-    
-    
+
+
     const order = new orderModel({
         firstName: orderDetails.firstName,
         lastName: orderDetails.lastName,
         phoneNumber: orderDetails.phoneNumber,
-        houseNumber : orderDetails.houseNumber,
-        street : orderDetails.street,
-        flatNumber : orderDetails.flatNumber,
-        note : orderDetails.note,
-        orderedProducts : orderedProducts,
-        totalPrice : orderDetails.totalPrice,
-        orderCreated : new Date().toString().split(' ').slice(1,5).join(' '),
-        shipping : orderDetails.shipping,
-        discount : orderDetails.discount,
-        status : "Pending",
+        houseNumber: orderDetails.houseNumber,
+        street: orderDetails.street,
+        flatNumber: orderDetails.flatNumber,
+        note: orderDetails.note,
+        orderedProducts: orderedProducts,
+        totalPrice: orderDetails.totalPrice,
+        orderCreated: new Date().toString().split(' ').slice(1, 5).join(' '),
+        shipping: orderDetails.shipping,
+        discount: orderDetails.discount,
+        status: "Pending",
     })
 
 
     order.save();
 
+    await userModel.updateOne(
+        { _id: userID },
+        {
+            firstName: orderDetails.firstName,
+            lastName: orderDetails.lastName,
+            phoneNumber: orderDetails.phoneNumber,
+            houseNumber : orderDetails.houseNumber,
+            street: orderDetails.street,
+            $push: { orders: order }
+        },
+
+    );
+
     return order;
 
 }
 
-async function getAllOrders(page) { 
+async function getAllOrders(page, category) {
     return Promise.all([
-        await orderModel.find().sort({_id : -1}),
-        await orderModel.find().skip((page - 1) * 10).limit(10).sort({_id : -1}),
+        await orderModel.find(category === "Pending" || category === "Delivered" || category === "Cancalled" ? { status: category } : {}).sort({ _id: -1 }),
+        await orderModel.find(category === "Pending" || category === "Delivered" || category === "Cancalled" ? { status: category } : {}).skip((page - 1) * 10).limit(10).sort({ _id: -1 }),
     ])
 }
 
 
-async function getOrderByID(id) { 
+async function getOrderByID(id) {
     return await orderModel.findById(id);
 }
 
-async function deleteOrderByID(id) { 
-    return await orderModel.deleteOne({_id : id});
+async function deleteOrderByID(id) {
+    return await orderModel.deleteOne({ _id: id });
 }
 
-async function updateOrder(id , status) { 
-    return await orderModel.updateOne({_id : id } , {status : status[0]});
+async function updateOrder(id, status) {
+    return await orderModel.updateOne({ _id: id }, { status: status[0] });
 }
 
 

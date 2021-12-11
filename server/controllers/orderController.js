@@ -8,7 +8,8 @@ const isAdmin = require('../middlewares/isAdmin');
 
 router.get('/' , auth , isAdmin , async (req,res) => { 
     try {
-        const data = await orderService.getAllOrders(Number(req.query.page));
+        const category = req.query.category.split('-')[0][0].toUpperCase() + req.query.category.split('-')[0].substring(1);
+        const data = await orderService.getAllOrders(Number(req.query.page) , category);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);
@@ -36,7 +37,7 @@ router.get('/product/:id', async (req, res) => {
 
 router.post('/make' , auth , async (req,res) => { 
     try {
-        const data = await orderService.makeOrder(req.body[0] , req.body[1]);
+        const data = await orderService.makeOrder(req.body[0] , req.body[1] , req.user._id);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);

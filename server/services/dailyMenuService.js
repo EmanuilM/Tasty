@@ -1,7 +1,6 @@
 const dailyMenuModel = require('../models/dailyMenuModel');
 
 async function getDailyMenu() {
-    // return await dailyMenuModel.find();
     const breakfastMenu = await dailyMenuModel.find({category : 'Breakfast'});
     const lunchMenu = await dailyMenuModel.find({category : 'Lunch'});
     const dinnerMenu = await dailyMenuModel.find({category : 'Dinner'});

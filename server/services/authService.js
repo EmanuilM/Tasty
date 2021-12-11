@@ -119,9 +119,52 @@ async function createAccountForWorkers({ email, username, password, repeatPasswo
 
 }
 
+async function getUserByID(id) { 
+    return await userModel.findById(id);
+}
+
+async function updateUser(data , id) { 
+    if (!data.email || !data.username || !data.currentPassword) {
+        throw ({ message: "All fields are required!" });
+    }
+    if (data.email.length < 4) {
+        throw ({ message: "Email must be at least 4 characters long!" });
+    }
+    if(!/[A-Za-z0-9_.-]{4,}@[A-Za-z0-9]+.[a-z]+/.test(data.email)) { 
+        throw ({message : "Invalid email format!"});
+    }
+    if (data.username.length < 4) {
+        throw ({ message: "Username must be at least 4 characters long!" });
+    }
+  
+
+    const currentUser = await userModel.findById(id);
+    const isEmailExist = await userModel.findOne({ email: data.email.toLowerCase().trim() })
+    const isUserExists = await userModel.findOne({ username: data.username.toLowerCase().trim() });
+  
+  
+    if (isEmailExist) {
+        throw ({ message: "This email is already taken!" });
+    }
+    if (isUserExists) {
+        throw ({ message: "This username is already taken!" });
+    }
+    
+    const isCurrentPasswordValid = await bcrypt.compare(data.currentPassword.trim(), currentUser.password.trim());
+    if (!isCurrentPasswordValid) {
+        throw ({ message: 'Invalid current password!' });
+    }
+
+   return await userModel.updateOne({_id : id} , {email : data.email , username : data.username });
+
+
+}
+
 
 module.exports = {
     register,
     login,
     createAccountForWorkers,
+    getUserByID,
+    updateUser,
 }
