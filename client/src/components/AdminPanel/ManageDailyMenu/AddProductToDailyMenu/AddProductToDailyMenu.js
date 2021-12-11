@@ -4,10 +4,13 @@ import { useDispatch } from 'react-redux';
 import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 
-const AddProductToDailyMenu = ({ history }) => {
+const AddProductToDailyMenu = ({ setDailyMenuProducts }) => {
 
     const dispatch = useDispatch();
+
+    let history = useHistory();
 
     const [fields, setFields] = useState({
         productName: '',
@@ -47,12 +50,28 @@ const AddProductToDailyMenu = ({ history }) => {
         dailyMenuService.createProduct(productFileds)
             .then(res => {
                 console.log(res)
+                dailyMenuService.getProducts()
+                    .then(res => {
+                        setDailyMenuProducts(res);
+
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
                 dispatch(loader());
                 history.push('/admin-panel/manage/daily-menu');
             })
             .catch((error) => {
                 dispatch(loader());
                 dispatch(showAlert(error))
+                console.log(error);
+            })
+
+        dailyMenuService.getProducts()
+            .then(res => {
+                setDailyMenuProducts(res);
+            })
+            .catch(error => {
                 console.log(error);
             })
 

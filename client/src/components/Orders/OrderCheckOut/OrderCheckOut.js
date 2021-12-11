@@ -7,11 +7,13 @@ import { loader } from '../../../store/loader';
 import { clearOrderState } from '../../../store/order-slice';
 import { useAppSelector } from '../../../store/index';
 import * as discountService from '../../../services/discountService';
+import * as authService from '../../../services/authService';
 
 const OrderCheckOut = ({ history }) => {
     const dispatch = useDispatch();
     const orderState = useAppSelector(state => state.order);
-    const [discount , setDiscount] = useState(0);
+    const [discount, setDiscount] = useState(0);
+    const authState = useAppSelector(state => state.auth);
 
     const [errors, setErrors] = useState({
         firstName: false,
@@ -29,6 +31,21 @@ const OrderCheckOut = ({ history }) => {
         street: '',
     });
 
+    useEffect(() => {
+        dispatch(loader());
+        authService.getUserByID(authState.userAuthState._id)
+            .then(res => {
+                dispatch(loader());
+                setFileds((state) => ({ ...state, firstName: res.firstName || "", lastName: res.lastName || "", phoneNumber: res.phoneNumber || "", houseNumber: res.houseNumber || "", street: res.street || "" }))
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
+    }, [])
+
+    console.log(fields);
+
 
     if (orderState?.length <= 0) {
         history.push('/order')
@@ -40,10 +57,10 @@ const OrderCheckOut = ({ history }) => {
     orderState?.map(x => {
         subtotal += x.productPrice * x.quantity;
         shipping = subtotal >= 10 ? shipping = 0 : shipping = 7;
-        total = (subtotal + shipping) -  discount;
+        total = (subtotal + shipping) - discount;
     })
 
-  
+
     function onInputChangeHandler(e) {
         const { name, value } = e.target;
         if (name === 'firstName' || name === 'lastName' || name === 'houseNumber' || name === 'street') {
@@ -69,8 +86,10 @@ const OrderCheckOut = ({ history }) => {
             shipping: shipping,
             totalPrice: total,
             discount: discount,
-            note : e.target.note.value,
+            note: e.target.note.value,
         }
+
+        console.log(makeOrderFormFields);
 
         dispatch(loader());
         orderService.makeOrder(makeOrderFormFields, orderState)
@@ -91,12 +110,12 @@ const OrderCheckOut = ({ history }) => {
     async function checkPromoCode(e) {
         e.preventDefault();
         discountService.checkPromoCode(e.target.promoCode.value)
-        .then(res => {
-            setDiscount(res.percent ? (res.percent / 100) * subtotal + shipping : 0);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(res => {
+                setDiscount(res.percent ? (res.percent / 100) * subtotal + shipping : 0);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
@@ -108,8 +127,8 @@ const OrderCheckOut = ({ history }) => {
                         <form onSubmit={makeOrder}>
                             <div>
                                 <label>
-                                    First Name * 
-                                    <input type="text" name="firstName" onChange={onInputChangeHandler} />
+                                    First Name *
+                                    <input type="text" name="firstName" onChange={onInputChangeHandler} defaultValue={fields.firstName} />
                                     <div className="form-error-message">
                                         {errors.firstName ? <small>First name is required!</small> : ""}
                                     </div>
@@ -118,7 +137,7 @@ const OrderCheckOut = ({ history }) => {
                             <div>
                                 <label>
                                     Last Name *
-                                    <input type="text" name="lastName" onChange={onInputChangeHandler} />
+                                    <input type="text" name="lastName" onChange={onInputChangeHandler} defaultValue={fields.lastName} />
                                     <div className="form-error-message">
                                         {errors.lastName ? <small>Last name is required!</small> : ""}
                                     </div>
@@ -127,7 +146,7 @@ const OrderCheckOut = ({ history }) => {
                             <div>
                                 <label>
                                     Phone Number *
-                                    <input type="text" name="phoneNumber" onChange={onInputChangeHandler} />
+                                    <input type="text" name="phoneNumber" onChange={onInputChangeHandler} defaultValue={fields.phoneNumber} />
                                     <div className="form-error-message">
                                         {errors.phoneNumber ? <small>Phone number is must be exactly 10 characters long!</small> : ""}
                                     </div>
@@ -136,7 +155,7 @@ const OrderCheckOut = ({ history }) => {
                             <div>
                                 <label>
                                     House Number *
-                                    <input type="text" name="houseNumber" onChange={onInputChangeHandler} />
+                                    <input type="text" name="houseNumber" onChange={onInputChangeHandler} defaultValue={fields.houseNumber} />
                                     <div className="form-error-message">
                                         {errors.houseNumber ? <small>House number is required!</small> : ""}
                                     </div>
@@ -145,7 +164,7 @@ const OrderCheckOut = ({ history }) => {
                             <div>
                                 <label>
                                     Street *
-                                    <input type="text" name="street" onChange={onInputChangeHandler} />
+                                    <input type="text" name="street" onChange={onInputChangeHandler} defaultValue={fields.street} />
                                     <div className="form-error-message">
                                         {errors.street ? <small>House number is required!</small> : ""}
                                     </div>
@@ -158,10 +177,10 @@ const OrderCheckOut = ({ history }) => {
                                 </label>
                             </div>
                             <div>
-                            <label>
-                                Leave a note
-                            <textarea name="note" className="order-checkout-note"></textarea>
-                            </label>
+                                <label>
+                                    Leave a note
+                                    <textarea name="note" className="order-checkout-note"></textarea>
+                                </label>
                             </div>
                             <button className="make-order-button" disabled={!isFormValid}>Order now</button>
 

@@ -1,0 +1,80 @@
+.my-profile-details-section-wrapper { 
+    width: 50%;
+}
+
+.my-profile-details-wrapper { 
+    background: white;
+    margin: 10px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 3px 1px grey;
+}
+
+.my-profile-details-heading-wrapper { 
+    background: orange;
+    height: 50px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+
+.my-profile-details-heading-wrapper p { 
+    margin: 0;
+    text-align: center;
+    padding-top: 15px;
+    color: white;
+    
+}
+
+.my-profile-details h1 { 
+    margin: 10px;
+    font-size: 20px;
+    color: gray;
+}
+
+.my-profile-details ul { 
+    list-style: none;
+}
+
+.my-profile-details ul li{ 
+    margin: 10px;
+}
+
+
+.reservatons-cards-wrapper  { 
+    display: flex;
+}
+
+.reservation-card { 
+    background: white;
+    margin: 10px;
+    width: 42%;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.reservation-card > div span:nth-child(2) { 
+    color: #E46B7F;
+}
+
+@media screen and (max-width : 900px) {
+    .profile-page-wrapper { 
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .my-profile { 
+        width: 100%;
+    }
+
+    .my-profile-details-section-wrapper { 
+        margin-top: 100px;
+        width: 100%;
+    }
+
+    .reservatons-cards-wrapper { 
+        flex-direction: column;
+    }
+
+    .reservation-card { 
+        width: 90%;
+    }
+}

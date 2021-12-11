@@ -7,7 +7,8 @@ import * as dailyMenuService from '../../../services/dailyMenuService';
 import { loader } from '../../../store/loader';
 
 
-const ManageDailyMenu = () => {
+const ManageDailyMenu = ({ setDailyMenuProducts }) => {
+    console.log(setDailyMenuProducts);
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -30,6 +31,7 @@ const ManageDailyMenu = () => {
             .then(res => {
                 dispatch(loader());
                 setData(res)
+                setDailyMenuProducts(res);
                 console.log(res)
             })
             .catch(error => {

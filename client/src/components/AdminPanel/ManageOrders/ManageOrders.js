@@ -1,7 +1,6 @@
 import './ManageOrders.css';
 import { NavLink , Route } from 'react-router-dom';
 import AllOrders from './AllOrders/AllOrders';
-import PendingOrders from './PendingOrders/PendingOrders';
 
 
 const ManageOrders = () => {
@@ -55,7 +54,9 @@ const ManageOrders = () => {
 
 
                 <Route path="/admin-panel/manage/orders/all-orders"  component={AllOrders}  exact />
-                <Route path="/admin-panel/manage/orders/pending-orders"  component={PendingOrders} exact />
+                <Route path="/admin-panel/manage/orders/pending-orders"  component={AllOrders} exact />
+                <Route path="/admin-panel/manage/orders/delivered-orders"  component={AllOrders} exact />
+                <Route path="/admin-panel/manage/orders/cancalled-orders"  component={AllOrders} exact />
                 
 
             </article>

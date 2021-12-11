@@ -26,6 +26,7 @@
 }
 
 .admin-page-manage-daily-menu-add-product-button-wrapper button { 
+    cursor: pointer;
     padding: 10px 30px;
     border: none;
     background: tomato;

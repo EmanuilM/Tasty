@@ -21,6 +21,8 @@ import { Loader } from './components/shared/Loader/Loader';
 import { loader } from './store/loader';
 import * as authService from './services/authService';
 import { getProducts } from './store/order-slice';
+import * as dailyMenuService from './services/dailyMenuService';
+import Profile from './components/Profile/Profile';
 
 function App() {
 
@@ -28,6 +30,8 @@ function App() {
   const alertState = useAppSelector(state => state.alert);
   const isLoading = useSelector(state => state.loader);
   const orderState = useSelector(state => state.order);
+  const [dailyMenuProducts, setDailyMenuProducts] = useState([]);
+
 
   const dispatch = useDispatch();
 
@@ -48,6 +52,14 @@ function App() {
 
     dispatch(getProducts());
 
+
+    dailyMenuService.getProducts()
+      .then(res => {
+        setDailyMenuProducts(res);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }, [])
 
 
@@ -56,7 +68,7 @@ function App() {
 
     <div className="App">
 
-      <Header />
+      <Header dailyMenuProducts={dailyMenuProducts} />
 
       <Switch>
         <Route path="/" component={HomePage} exact />
@@ -69,8 +81,9 @@ function App() {
         <Route path="/order" component={Orders} exact />
         <Route path="/order/categories/:category" component={Orders} exact />
         <Route path="/order-check-out" component={OrderCheckOut} />
+        <Route path="/my-profile" component={Profile} / >
         <Route path="/admin-panel" component={AdminPanel}>
-          <AdminPanel />
+          <AdminPanel setDailyMenuProducts={setDailyMenuProducts} />
         </Route>
       </Switch>
       <Footer />

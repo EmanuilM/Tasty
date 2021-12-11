@@ -54,10 +54,35 @@ async function createAccountForWorkers(data) {
     return await api.httpRequest('/auth/create', options);
 }
 
+async function getUserByID(id) { 
+    const options = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/auth/user/${id}`, options);
+}
+
+async function updateUser(data , id) { 
+    const options = {
+        method : 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body : JSON.stringify(data),
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/auth/user/update/${id}`, options);
+}
+
+
 export {
     register,
     login,
     logout,
     getUser,
     createAccountForWorkers,
+    getUserByID,
+    updateUser,
 }

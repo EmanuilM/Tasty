@@ -34,14 +34,14 @@ async function makeOrder(orderDetails , orderedProducts) {
     return await api.httpRequest(`/orders/make`, options)
 }
 
-async function getAllOrders(page) { 
+async function getAllOrders(page , category) { 
     const options = {
         headers : { 
             'Content-Type' : 'application/json',
         },
         credentials: 'include'
     }
-    return await api.httpRequest(`/orders?page=${page}`, options)
+    return await api.httpRequest(`/orders?page=${page}&category=${category}`, options)
 }
 
 async function getOrderByID(id) { 

@@ -20,18 +20,15 @@ const MakeReservation = ({ onInputChangeHandler , formData }) => {
             .then(res => {
                 dispatch(loader());
                 setFreeTables(res);
-                console.log(res);
             })
             .catch(error => {
                 dispatch(loader());
                 console.log(error);
-
             })
     }
 
    
     const isFindTableValid = formData.people !== '' && formData.date !== '' && formData.time !== '';
-    console.log(isFindTableValid);
 
     return (
         <Fragment>

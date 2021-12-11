@@ -5,13 +5,11 @@ import { useAppSelector } from '../../store';
 import { handleLogOut } from '../../store/auth-slice';
 import { useDispatch } from 'react-redux';
 import * as authService from '../../services/authService';
-import * as dailyMenuService from '../../services/dailyMenuService';
 
 
-const Header = () => {
+const Header = ({ dailyMenuProducts }) => {
     const dispatch = useDispatch();
     const [isActive, setActive] = useState(false);
-    const [dailyMenuProducts, setDailyMenuProducts] = useState();
     const orderState = useAppSelector(state => state.order);
 
     const activateSmallScreenView = () => {
@@ -20,16 +18,7 @@ const Header = () => {
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const isAdmin = useAppSelector(state => state.auth.userAuthState.isAdmin);
 
-    useEffect(() => {
-        dailyMenuService.getProducts()
-            .then(res => {
-                setDailyMenuProducts(res);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }, [])
-
+ 
     const logoutHandler = () => {
         authService.logout()
             .then(data => {
@@ -39,6 +28,7 @@ const Header = () => {
                 console.log(error);
             })
     }
+   
 
     if (isAuthenticated) {
         return (
@@ -49,9 +39,9 @@ const Header = () => {
                         <li>
                             <Link onClick={activateSmallScreenView} to="/">Home</Link>
                         </li>
-                        {/* {dailyMenuProducts[0]?.length >= 1 || dailyMenuProducts[1]?.length >= 1 || dailyMenuProducts[2]?.length >= 1 ? <li>
+                        {dailyMenuProducts.some(x => x.length > 0 ) ? <li>
                             <Link onClick={activateSmallScreenView} to="/daily-menu">Daily Menu</Link>
-                        </li> : ""} */}
+                        </li> : ""}
                         <li>
                             <Link onClick={activateSmallScreenView} to="/menu">Menu</Link>
                         </li>
@@ -73,7 +63,11 @@ const Header = () => {
                             <Link to="/order-check-out" ><i className="fas fa-shopping-cart"></i> </Link>
                         </li> : ""}
 
-
+                        <li>
+                            <Link to="/my-profile">
+                                <span>My Profile</span>
+                            </Link>
+                        </li>
 
                         <li>
                             <Link to="#" onClick={() => logoutHandler()}>
