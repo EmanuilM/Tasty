@@ -5,36 +5,32 @@ import { loader } from '../../../store/loader';
 import { useAppSelector } from '../../../store/index';
 import * as authService from '../../../services/authService';
 import image from '../../../assets/mealpicture.jpg';
-
+import { Link, useLocation } from 'react-router-dom';
 const ProfileOrders = ({ userData }) => {
 
-    const dispatch = useDispatch();
-
-
-
- 
-
-
-
+    const orders = userData.orders ? [...userData.orders].reverse().slice(0, 10) : [];
 
     return (
         <section className="profile-orders-wrapper">
-            <h1>My Orders</h1>
+            <h1>My last orders</h1>
             <article className="orders-list-wrapper">
                 <ul>
-                    {userData.orders?.map((x, i) => {
+                    {orders.map((x, i) => {
+                        let img = x.orderedProducts?.map(x => {
+                            return x.images[0].imageURL
+                        });
                         return <li key={i}>
-                            <img src={image} alt="image" />
+                            <img src={img} alt="image" />
                             <div>
                                 <p>{x.orderCreated}</p>
                                 <p>{x.street} {x.houseNumber}</p>
-                                <p>qwe</p>
+                                <p>{x.totalPrice}$</p>
                             </div>
                         </li>
                     })}
 
-
                 </ul>
+
             </article>
         </section>
     )

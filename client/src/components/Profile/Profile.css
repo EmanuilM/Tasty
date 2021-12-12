@@ -58,3 +58,14 @@
     color: gray;
 }
 
+@media screen and (max-width : 900px) {
+    .profile-page-wrapper { 
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .my-profile { 
+        width: 100%;
+    }
+
+}

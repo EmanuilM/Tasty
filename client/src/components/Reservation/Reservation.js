@@ -1,5 +1,5 @@
 import './Reservation.css';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Redirect } from 'react-router-dom';
 import MakeReservation from './MakeReservation/MakeReservation';
 import ReservationDetails from './ReservationDetails/ReservationDetails';
 import { useState } from 'react';
@@ -37,11 +37,12 @@ const Reservation = () => {
         } else if (name === 'phoneNumber') {
             setErrors(state => ({ ...state, [name]: value.length < 10 || value.length > 10 ? true : false }));
         }
-        
-            setFormData((state) => ({ ...state, [name]: value }));
-        
+
+        setFormData((state) => ({ ...state, [name]: value }));
+
     }
     const isFormValid = Object.values(errors).every(x => x === false);
+    const isFindTableCompleted = Object.values(formData)[0] !== '' && Object.values(formData)[1] !== '' && Object.values(formData)[2] !== '';
 
     async function createReservation(e) {
         e.preventDefault();
@@ -71,10 +72,11 @@ const Reservation = () => {
                     <Route path="/reservation/make" component={MakeReservation}>
                         <MakeReservation onInputChangeHandler={onInputChangeHandler} formData={formData} />
                     </Route>
-                    <Route path="/reservation/details" component={ReservationDetails}>
+                    {isFindTableCompleted ? <Route path="/reservation/details" component={ReservationDetails}>
                         <ReservationDetails onInputChangeHandler={onInputChangeHandler} createReservation={createReservation} isFormValid={isFormValid} errors={errors} />
-                    </Route>
+                    </Route> :   <Redirect to="/reservation/make" /> }
 
+                   
                 </article>
 
 

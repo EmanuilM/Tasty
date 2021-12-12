@@ -9,7 +9,7 @@ import Reservation from './components/Reservation/Reservation';
 import Orders from './components/Orders/Orders';
 import OrderCheckOut from './components/Orders/OrderCheckOut/OrderCheckOut';
 import Footer from './components/Footer/Footer';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation, BrowserRouter } from 'react-router-dom';
 import ProductCategories from './components/Menu/ProductCategories/ProductCategories';
 import { useEffect, useState } from 'react';
 import AdminPanel from './components/AdminPanel/AdminPanel';
@@ -33,9 +33,12 @@ function App() {
   const [dailyMenuProducts, setDailyMenuProducts] = useState([]);
 
 
-  console.log(authState.userAuthState.isAdmin);
+
+
+  // console.log(authState.userAuthState.isAdmin);
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(loader());
@@ -86,10 +89,8 @@ function App() {
         {authState.userAuthState.isAdmin && <Route path="/admin-panel" component={AdminPanel}>
           <AdminPanel setDailyMenuProducts={setDailyMenuProducts} />
         </Route>}
-
-        <Route path="*">
-          <Redirect path='/' />
-        </Route>
+        <Route path="*" component={HomePage} />
+        
       </Switch>
       <Footer />
 

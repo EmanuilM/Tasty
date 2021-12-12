@@ -1,7 +1,9 @@
 import './ProfileDetails.css';
 
 const ProfileDetails = ({ userData }) => {
-    console.log(userData);
+    
+    const reservations = userData.reservations ? [...userData.reservations].reverse().slice(0, 8) : [];
+
     return (
         <section className="my-profile-details-section-wrapper">
             <article className="my-profile-details-wrapper">
@@ -31,10 +33,10 @@ const ProfileDetails = ({ userData }) => {
                 </article>
 
             </article>
+                <h1 className="profile-reservation-heading">Last reservations</h1>
             <div className="reservatons-cards-wrapper">
-
-                {userData.reservations?.map(x => {
-                    return <article className="reservation-card">
+                {reservations.map((x,i) => {
+                    return <article className="reservation-card" key={i}>
                         <div>
                             <span>Name :</span>
                             <span>{x.firstName} {x.lastName}</span>

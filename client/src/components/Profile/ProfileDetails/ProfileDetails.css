@@ -9,6 +9,10 @@
     box-shadow: 0px 0px 3px 1px grey;
 }
 
+.my-profile-details { 
+    padding: 10px;
+}
+
 .my-profile-details-heading-wrapper { 
     background: orange;
     height: 50px;
@@ -36,11 +40,13 @@
 
 .my-profile-details ul li{ 
     margin: 10px;
+    word-break: break-all;
 }
 
 
 .reservatons-cards-wrapper  { 
     display: flex;
+    flex-wrap: wrap;
 }
 
 .reservation-card { 
@@ -55,15 +61,12 @@
     color: #E46B7F;
 }
 
-@media screen and (max-width : 900px) {
-    .profile-page-wrapper { 
-        flex-direction: column;
-        align-items: center;
-    }
+.profile-reservation-heading { 
+    text-align: center;
+    font-size: 30px;
+}
 
-    .my-profile { 
-        width: 100%;
-    }
+@media screen and (max-width : 900px) {
 
     .my-profile-details-section-wrapper { 
         margin-top: 100px;

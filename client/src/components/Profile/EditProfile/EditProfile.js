@@ -4,12 +4,16 @@ import emailRegex from '../../../utils/emailRegex';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../../store/loader';
 import * as authService from '../../../services/authService';
+import { showAlert } from '../../../store/alert-slice';
+import { useHistory } from 'react-router-dom';
 
 const EditProfile = ({ userData }) => {
 
-    console.log(userData);
 
     const dispatch = useDispatch();
+    const history = useHistory();
+
+
 
     const [errors, setErrors] = useState({
         email: false,
@@ -57,10 +61,12 @@ const EditProfile = ({ userData }) => {
         authService.updateUser(formData, userData._id)
             .then(res => {
                 dispatch(loader());
+                history.push('/my-profile');
                 console.log(res);
             })
             .catch(error => {
                 dispatch(loader());
+                dispatch(showAlert(error));
                 console.log(error);
             })
 
@@ -92,14 +98,6 @@ const EditProfile = ({ userData }) => {
                             <div className="form-error-message">
                                 {errors.currentPassword ? <small>Current password is required!</small> : ""}
                             </div>
-                        </label>
-
-                        <label>
-                            Account type
-                            <select name="accountType">
-                                <option>Admin account</option>
-                                <option>Worker account</option>
-                            </select>
                         </label>
                         <button className="edit-account-button" disabled={!isFormValid} >Edit account</button>
                     </form>

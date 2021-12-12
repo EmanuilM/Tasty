@@ -1,5 +1,5 @@
 .profile-orders-wrapper {
-    width: 50%;
+    width: 60%;
 }
 
 .profile-orders-wrapper h1 {
@@ -9,6 +9,7 @@
 
 .orders-list-wrapper ul {
     list-style: none;
+    padding: 0;
 }
 
 .orders-list-wrapper ul li {
@@ -21,10 +22,21 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    text-align: center;
+}
+
+.orders-list-wrapper ul li div p{
+   flex: 1 1 0;
 }
 
 .orders-list-wrapper ul li img {
     width: 100px;
     height: 100px;
     object-fit: cover;
+}
+
+@media screen and (max-width:900px) {
+    .profile-orders-wrapper { 
+        width: 100%;
+    }
 }

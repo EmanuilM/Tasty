@@ -64,6 +64,8 @@ const OrderDetails = ({ match, history }) => {
             })
     }
 
+    
+
     return (
         <section className="admin-panel-orders-details">
             <h1>Order Number <span>#{orderDetails._id}</span></h1>
@@ -147,8 +149,8 @@ const OrderDetails = ({ match, history }) => {
                         <div>
                             <h3>Subtotal:</h3>
                             <p>{orderDetails.orderedProducts?.map(x => { 
-                                return x.productPrice * x.quantity
-                            })}$</p>
+                                subtotal += Number(x.productPrice) * Number(x.quantity)
+                            })} {subtotal}$</p>
                         </div>
                         <div>
                             <h3>Shipping:</h3>
