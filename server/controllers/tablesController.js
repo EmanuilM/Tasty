@@ -3,9 +3,10 @@ const router = Router();
 const tablesService = require('../services/tablesService');
 const auth = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
+const isWorker = require('../middlewares/isWorker');
 
 
-router.get('/' , auth , isAdmin ,  async (req,res) => { 
+router.get('/' , auth , isWorker , async (req,res) => { 
     try {
         const data = await tablesService.getTables();
         res.status(200).json(data);
@@ -14,7 +15,7 @@ router.get('/' , auth , isAdmin ,  async (req,res) => {
     }
 });
 
-router.get('/table/:id' , auth , isAdmin ,  async (req,res) => { 
+router.get('/table/:id' , auth , isWorker ,  async (req,res) => { 
     try {
         const data = await tablesService.getTableByID(req.params.id);
         res.status(200).json(data);
@@ -43,7 +44,7 @@ router.post('/delete/:id' , auth , isAdmin , async (req,res) => {
     }
 })
 
-router.post('/add-product' , auth , isAdmin , async (req,res) => { 
+router.post('/add-product' , auth , isWorker , async (req,res) => { 
     try {
         const data = await tablesService.addProduct(req.body);
         res.status(200).json(data)        
@@ -52,7 +53,7 @@ router.post('/add-product' , auth , isAdmin , async (req,res) => {
     }
 })
 
-router.patch('/delete-product/:id' , auth , isAdmin ,  async (req,res) => { 
+router.patch('/delete-product/:id' , auth , isWorker ,  async (req,res) => { 
     try {
         const data = await tablesService.deleteProduct(req.params.id , req.body);
         res.status(200).json(data);

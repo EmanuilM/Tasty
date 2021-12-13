@@ -1,6 +1,7 @@
 const menuModel = require('../models/menuModel');
 const orderModel = require('../models/orderModel');
 const userModel = require('../models/userModel');
+const dashboardModel = require('../models/dashboardModel');
 
 async function getAllProducts(category, page) {
     if (category === 'undefined') {
@@ -75,6 +76,10 @@ async function makeOrder(orderDetails, orderedProducts, userID) {
 
     );
 
+    const dashboard = await dashboardModel.findOne({});
+    await dashboardModel.updateOne({_id : dashboard._id } , { $inc : {ordersReceived : 1}});
+    
+
     return order;
 
 }
@@ -98,8 +103,6 @@ async function deleteOrderByID(id) {
 async function updateOrder(id, status) {
     return await orderModel.updateOne({ _id: id }, { status: status[0] });
 }
-
-
 
 
 

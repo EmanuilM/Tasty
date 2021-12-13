@@ -4,9 +4,10 @@ const menuService = require('../services/menuService');
 const orderService = require('../services/orderService');
 const auth = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
+const isWorker = require('../middlewares/isWorker');
 
 
-router.get('/' , auth , isAdmin , async (req,res) => { 
+router.get('/' , auth , isWorker , async (req,res) => { 
     try {
         const category = req.query.category.split('-')[0][0].toUpperCase() + req.query.category.split('-')[0].substring(1);
         const data = await orderService.getAllOrders(Number(req.query.page) , category);
@@ -53,7 +54,7 @@ router.get('/:id' , auth ,  async (req,res) => {
     }
 })
 
-router.delete('/delete/:id' , auth , isAdmin ,  async (req,res) => { 
+router.delete('/delete/:id' , auth , isWorker ,  async (req,res) => { 
     try {
         const data = await orderService.deleteOrderByID(req.params.id);
         res.status(200).json(data);
@@ -62,9 +63,18 @@ router.delete('/delete/:id' , auth , isAdmin ,  async (req,res) => {
     }
 })
 
-router.patch('/update/:id' , auth , isAdmin ,  async (req,res) => { 
+router.patch('/update/:id' , auth , isWorker ,  async (req,res) => { 
     try {
         const data = await orderService.updateOrder(req.params.id , req.body);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
+router.get('/delivered' , async (req,res) => { 
+    try {
+        const data = await orderService.getAllDeliveredOrders();
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);

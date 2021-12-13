@@ -6,8 +6,9 @@ const { parseForm } = require('../utils/parseForm');
 const { deleteImageFromCloudinary } = require('../services/cloudinaryService');
 const auth = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
+const isWorker = require('../middlewares/isWorker');
 
-router.get('/all-products' , auth , isAdmin , async (req,res) => { 
+router.get('/all-products' , auth , isWorker , async (req,res) => { 
     try {
         const data = await menuService.getAllProducts();
         res.status(200).json(data);
@@ -25,7 +26,7 @@ router.get('/:category', async (req, res) => {
     }
 })
 
-router.get('/product-name/:product' , auth , isAdmin , async (req,res) => { 
+router.get('/product-name/:product' , auth , isWorker , async (req,res) => { 
     try {
         const data = await menuService.getProductByName(req.params.product);
         res.status(200).json(data);

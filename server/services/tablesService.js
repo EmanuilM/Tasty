@@ -42,11 +42,15 @@ async function addProduct([id, products, status]) {
         }
         return prevValue;
     }, currentProducts.products);
-    return await tablesModel.updateOne({ _id: id }, { status: status, products: productsToPush });
+    return await tablesModel.updateOne({ _id: id }, { status: status || "Busy" , products: productsToPush });
 }
 
 async function deleteProduct(id, productsToDelete) {
     await tablesModel.updateOne({ _id: id }, { $pull: { products: { productName: productsToDelete[0] } } });
+    const currentTable = await tablesModel.findOne({_id : id});
+    if(currentTable.products.length === 0) { 
+        await tablesModel.updateOne({_id : id} , {status : "Active"});
+    }
     return await tablesModel.findById(id);
 }
 module.exports = {
