@@ -1,6 +1,7 @@
 .admin-page-manage-table-add-product { 
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 10px;
 }
 

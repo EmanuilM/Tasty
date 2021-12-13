@@ -27,32 +27,35 @@
     font-size: 30px;
 }
 
-.managa-reservations-list li {
+
+.reservations-paggination { 
+    list-style: none;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    text-align: center;
-    background: white;
-    border-radius: 7px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.managa-reservations-list li p {
-    flex: 1 1 0;
-    text-align: center;
-}
-
-
-.editReservationIcon { 
-    color: blue;
+.reservations-paggination li { 
     margin: 10px;
+    border: 1px solid gray;
+    padding: 10px;
 }
 
- .deleteReservationIcon { 
-    margin: 10px;
+.reservations-paggination li:hover { 
+    border: 1px solid #CEB38C;
+    color: #CEB38C;
 }
 
-.editReservationIcon:hover , .deleteReservationIcon:hover { 
-    cursor: pointer;
-    color: tomato;
+
+.reservations-paggination li a { 
+    color: black;
+    text-decoration: none;
 }
+
+.reservations-paggination li a:hover { 
+    color: #CEB38C;
+    text-decoration: none;
+}
+
+
 

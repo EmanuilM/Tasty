@@ -1,7 +1,7 @@
 import './ReservationDetails.css';
 
 
-const ReservationDetails = ({ onInputChangeHandler, createReservation, isFormValid , errors }) => {
+const ReservationDetails = ({ onInputChangeHandler, createReservation, isFormValid  }) => {
 
     return (
         <article className="reservation-details-wrapper">

@@ -7,9 +7,12 @@ import * as reservationService from '../../services/reservationService';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../store/loader';
 
-const Reservation = () => {
+const Reservation = ({ history , location }) => {
+
 
     const dispatch = useDispatch();
+
+    console.log()
 
     const [formData, setFormData] = useState({
         people: '1',
@@ -47,9 +50,10 @@ const Reservation = () => {
     async function createReservation(e) {
         e.preventDefault();
         dispatch(loader());
-        reservationService.createReservation(formData)
+        reservationService.createReservation(formData , location.search.split('=')[1])
             .then(res => {
                 dispatch(loader());
+                history.push('/');
                 console.log(res);
             })
             .catch(error => {

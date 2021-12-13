@@ -15,7 +15,7 @@ const ProfileOrders = ({ userData }) => {
             <h1>My last orders</h1>
             <article className="orders-list-wrapper">
                 <ul>
-                    {orders.map((x, i) => {
+                    {orders.length ? orders.map((x, i) => {
                         let img = x.orderedProducts?.map(x => {
                             return x.images[0].imageURL
                         });
@@ -27,7 +27,7 @@ const ProfileOrders = ({ userData }) => {
                                 <p>{x.totalPrice}$</p>
                             </div>
                         </li>
-                    })}
+                    }) : <h1>There's no orders yet!</h1>}
 
                 </ul>
 

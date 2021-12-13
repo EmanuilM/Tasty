@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
 import * as menuService from '../../../../services/menuService';
-import produce from '@reduxjs/toolkit/node_modules/immer';
 
 
 const ManageTables = ({ history, match }) => {
@@ -50,6 +49,7 @@ const ManageTables = ({ history, match }) => {
     }, [])
 
 
+    console.log(product);
 
     function reservedFunction(e) {
         if (e.target.value === "Reserved") {
@@ -59,8 +59,11 @@ const ManageTables = ({ history, match }) => {
         }
     }
     function addProduct() {
-        setProductToTable(oldState => [...oldState, <AddProductToTable productsCategory={productsCategory ? productsCategory : ""} />]);
+        setProductToTable(oldState => [...oldState, <AddProductToTable productsCategory={productsCategory ? productsCategory : ""}  />]);
     }
+
+   
+
     function goBack() {
         return history.goBack();
     }

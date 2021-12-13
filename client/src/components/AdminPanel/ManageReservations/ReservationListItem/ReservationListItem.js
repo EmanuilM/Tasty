@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { loader } from '../../../../store/loader';
 import { Link } from 'react-router-dom';
 
-const ReservationListItem = ({ firstName, lastName, people, date, time, phoneNumber, id, setReservations }) => {
+const ReservationListItem = ({ firstName, lastName, people, date, time, phoneNumber, id, setReservations ,setPages }) => {
 
     const dispatch = useDispatch();
 
@@ -24,15 +24,14 @@ const ReservationListItem = ({ firstName, lastName, people, date, time, phoneNum
     function deleteReservation(id) {
         dispatch(loader());
         reservationService.deleteReservation(id)
-            .then(res => {
+            .then(([allReservations , filteredReservations]) => {
                 dispatch(loader());
-                console.log(res);
-                setReservations(res);
+                setReservations(filteredReservations);
+                setPages(Array.from({ length: Math.ceil(allReservations.length / 10) }, (v, i) => i + 1))
                 hideDeleteModal();
             })
             .catch(error => {
                 dispatch(loader());
-
                 console.log(error);
             })
     }

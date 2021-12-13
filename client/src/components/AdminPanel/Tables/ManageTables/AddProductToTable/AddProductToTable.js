@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { loader } from '../../../../../store/loader';
 import * as menuService from '../../../../../services/menuService';
 
-const AddProductToTable = ({ productsCategory }) => {
+const AddProductToTable = ({ productsCategory  }) => {
+    
     const dispatch = useDispatch();
     const [productsName, setProductsName] = useState([]);
 
@@ -21,7 +22,6 @@ const AddProductToTable = ({ productsCategory }) => {
             })
 
     }, [])
-
 
 
 

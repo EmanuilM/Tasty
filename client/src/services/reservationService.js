@@ -1,14 +1,14 @@
 import * as api from '../utils/api';
 
 
-async function getAllReservations() { 
+async function getAllReservations(page) { 
     const options = {
         headers : { 
             'Content-Type' : 'application/json',
         },
         credentials: 'include'
     }
-    return await api.httpRequest(`/reservation/all`, options)
+    return await api.httpRequest(`/reservation/all?page=${page}`, options)
 }
 
 async function getReservationByID() { 
@@ -33,7 +33,7 @@ async function getFreeTables() {
     return await api.httpRequest(`/reservation/find-tables`, options)
 }
 
-async function createReservation(data) { 
+async function createReservation(data , table) { 
     const options = {
         method : 'POST',
         headers : { 
@@ -42,7 +42,7 @@ async function createReservation(data) {
         body : JSON.stringify(data),
         credentials: 'include'
     }
-    return await api.httpRequest(`/reservation/create`, options)
+    return await api.httpRequest(`/reservation/create?table=${table}`, options)
 }
 
 

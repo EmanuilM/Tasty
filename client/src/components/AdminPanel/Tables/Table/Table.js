@@ -4,12 +4,16 @@ import DeleteModal from "../../../shared/DeleteModal/DeleteModal";
 import * as tablesService from '../../../../services/tablesService';
 import { useDispatch } from "react-redux";
 import { loader } from "../../../../store/loader";
+import { useAppSelector } from '../../../../store/index';
 
 
 
-export const Table = ({ data , deleteTable}) => {
+export const Table = ({ data, deleteTable }) => {
 
     const dispatch = useDispatch();
+    const authState = useAppSelector(state => state.auth);
+
+
 
 
     const [modal, setModal] = useState(false);
@@ -22,7 +26,7 @@ export const Table = ({ data , deleteTable}) => {
         setModal(false);
     }
 
-   
+
 
     return (
         <tr>
@@ -41,7 +45,8 @@ export const Table = ({ data , deleteTable}) => {
                     <Link to={`tables/manage/${data._id}`}>
                         <i className="fas fa-edit"></i>
                     </Link>
-                    <i className="fas fa-trash" onClick={showModal}></i>
+                    {authState.userAuthState.isAdmin ? <i className="fas fa-trash" onClick={showModal}></i> : ""}
+                    
                     <DeleteModal show={modal} handleClose={hideModal} id={data._id} deleteItem={deleteTable} text="table" />
 
                 </div>

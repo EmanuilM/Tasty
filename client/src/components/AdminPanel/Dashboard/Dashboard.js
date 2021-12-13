@@ -2,8 +2,34 @@ import './Dashboard.css';
 
 import { MultiLineChart } from './Charts/MultiLineChart';
 import { DoughnutChart } from './Charts/DoughnutChart';
+import { useEffect , useState } from 'react';
+import * as dashboardService from '../../../services/dashboardService';
+import { useDispatch } from 'react-redux';
+import { loader } from '../../../store/loader';
 
 const Dashboard = () => {
+
+    const dispatch = useDispatch();
+
+    const [dashboard , setDashboard] = useState({});
+
+    useEffect(() => { 
+        dispatch(loader());
+        dashboardService.getAllDiscounts()
+        .then(res => { 
+            dispatch(loader());
+            setDashboard(res);
+        })
+        .catch(error => { 
+            dispatch(loader());
+            console.log(error);
+        })
+
+     
+
+    },[])
+
+
 
     return (
         <section className="admin-page-main-content">
@@ -13,21 +39,21 @@ const Dashboard = () => {
                         <div className="stats delivery-stats">
                             <i className="fas fa-box-open admin-panel-dashboard-icon"></i>
                             <h1>Order Delivered</h1>
-                            <p>8000</p>
+                            <p>{dashboard.ordersDelivered}</p>
                         </div>
                     </li>
                     <li>
                         <div className="stats order-received-stats">
                             <i className="fas fa-box-open admin-panel-dashboard-icon"></i>
                             <h1>Order Received</h1>
-                            <p>10000</p>
+                            <p>{dashboard.ordersReceived}</p>
                         </div>
                     </li>
                     <li>
                         <div className="earnings-stats">
                             <i className="fas fa-box-open admin-panel-dashboard-icon"></i>
                             <h1>Earnings</h1>
-                            <p>30000</p>
+                            <p>{dashboard.earnings}</p>
                         </div>
                     </li>
                 </ul>
@@ -35,11 +61,11 @@ const Dashboard = () => {
             <section className="charts-wrapper">
                 <article className="line-chart-wrapper">
                     <h3>Activity</h3>
-                    <MultiLineChart />
+                    <MultiLineChart data={dashboard} />
                 </article >
                 <article className="doughnut-chart-wrapper">
                     <h3>Top Selling Products</h3>
-                    <DoughnutChart />
+                    <DoughnutChart data={dashboard} />
 
                 </article>
             </section>

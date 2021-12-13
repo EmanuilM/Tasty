@@ -1,0 +1,36 @@
+.managa-reservations-list li {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    background: white;
+    border-radius: 7px;
+    margin: 10px;
+}
+
+.managa-reservations-list li p {
+    flex: 1 1 0;
+    text-align: center;
+}
+
+
+.editReservationIcon { 
+    color: blue;
+    margin: 10px;
+}
+
+ .deleteReservationIcon { 
+    margin: 10px;
+}
+
+.editReservationIcon:hover , .deleteReservationIcon:hover { 
+    cursor: pointer;
+    color: tomato;
+}
+
+
+@media screen and (max-width:600px) {
+    .managa-reservations-list li { 
+        flex-direction: column;
+    }
+}

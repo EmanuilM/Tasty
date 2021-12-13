@@ -17,8 +17,9 @@ const Header = ({ dailyMenuProducts }) => {
     }
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const isAdmin = useAppSelector(state => state.auth.userAuthState.isAdmin);
+    const isWorker = useAppSelector(state => state.auth.userAuthState.isWorker);
 
- 
+
     const logoutHandler = () => {
         authService.logout()
             .then(data => {
@@ -28,7 +29,7 @@ const Header = ({ dailyMenuProducts }) => {
                 console.log(error);
             })
     }
-   
+
 
     if (isAuthenticated) {
         return (
@@ -39,7 +40,7 @@ const Header = ({ dailyMenuProducts }) => {
                         <li>
                             <Link onClick={activateSmallScreenView} to="/">Home</Link>
                         </li>
-                        {dailyMenuProducts.some(x => x.length > 0 ) ? <li>
+                        {dailyMenuProducts.some(x => x.length > 0) ? <li>
                             <Link onClick={activateSmallScreenView} to="/daily-menu">Daily Menu</Link>
                         </li> : ""}
                         <li>
@@ -52,12 +53,14 @@ const Header = ({ dailyMenuProducts }) => {
                             <Link onClick={activateSmallScreenView} to="/order">Order</Link>
                         </li>
                         {
-                            isAdmin ?
+                            isAdmin || isWorker ?
                                 <li>
-                                    <Link onClick={activateSmallScreenView} to="/admin-panel">Admin Panel</Link>
+                                    <Link onClick={activateSmallScreenView} to="/admin-panel">{isAdmin ? "Admin Panel" : "Worker Panel"}</Link>
                                 </li>
                                 : ""
                         }
+
+
 
                         {orderState?.length >= 1 ? <li className="order-cart">
                             <Link to="/order-check-out" ><i className="fas fa-shopping-cart"></i> </Link>

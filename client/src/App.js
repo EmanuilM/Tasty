@@ -35,7 +35,6 @@ function App() {
 
 
 
-  // console.log(authState.userAuthState.isAdmin);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -86,11 +85,13 @@ function App() {
         {authState.isAuthenticated && <Route path="/order-check-out" component={OrderCheckOut} />}
         {authState.isAuthenticated && <Route path="/my-profile" component={Profile} />}
 
-        {authState.userAuthState.isAdmin && <Route path="/admin-panel" component={AdminPanel}>
-          <AdminPanel setDailyMenuProducts={setDailyMenuProducts} />
-        </Route>}
+        {authState.userAuthState.isAdmin || authState.userAuthState.isWorker ?
+          <Route path="/admin-panel" component={AdminPanel}>
+            <AdminPanel setDailyMenuProducts={setDailyMenuProducts} />
+          </Route>
+          : ""}
         <Route path="*" component={HomePage} />
-        
+
       </Switch>
       <Footer />
 

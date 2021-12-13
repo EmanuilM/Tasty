@@ -54,7 +54,7 @@ const MakeReservation = ({ onInputChangeHandler , formData }) => {
 
             <article className="reservation-free-tables">
                 {freeTables.map(x => {
-                   return <Link key={x._id} to="details">
+                   return <Link key={x._id} to={`details?table=${x.name}`} >
                         <button className="free-reservation-btn">{x.name}</button>
                     </Link>
                 })}
