@@ -69,7 +69,7 @@ async function makeOrder(orderDetails, orderedProducts, userID) {
             firstName: orderDetails.firstName,
             lastName: orderDetails.lastName,
             phoneNumber: orderDetails.phoneNumber,
-            houseNumber : orderDetails.houseNumber,
+            houseNumber: orderDetails.houseNumber,
             street: orderDetails.street,
             $push: { orders: order }
         },
@@ -77,8 +77,8 @@ async function makeOrder(orderDetails, orderedProducts, userID) {
     );
 
     const dashboard = await dashboardModel.findOne({});
-    await dashboardModel.updateOne({_id : dashboard._id } , { $inc : {ordersReceived : 1}});
-    
+    await dashboardModel.updateOne({ _id: dashboard._id }, { $inc: { ordersReceived: 1 } });
+
 
     return order;
 
@@ -101,7 +101,12 @@ async function deleteOrderByID(id) {
 }
 
 async function updateOrder(id, status) {
-    return await orderModel.updateOne({ _id: id }, { status: status[0] });
+    await orderModel.updateOne({ _id: id }, { status: status[0] });
+    const order = await orderModel.findById(id);
+    if (order.status === "Delivered") {
+        await dashboardModel.updateOne({ $inc: { earnings: order.totalPrice } });
+    }
+    return order;
 }
 
 

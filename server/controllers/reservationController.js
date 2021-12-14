@@ -18,7 +18,8 @@ router.get('/all' , auth , isWorker ,  async (req,res) => {
 
 router.get('/reservation/:id' , auth , isAdmin , async (req,res) => { 
     try {
-        
+        const data = await reservationService.getReservationByID(req.params.id);
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);
     }
@@ -37,7 +38,6 @@ router.get('/find-tables' , auth , async (req,res) => {
 
 router.post('/create' , auth , async (req,res) => { 
     try {
-        console.log(req.query);
         const data = await reservationService.createReservation(req.body , req.user._id , req.query.table);
         res.status(200).json(data);
     } catch (error) {

@@ -72,14 +72,4 @@ router.patch('/update/:id' , auth , isWorker ,  async (req,res) => {
     }
 })
 
-router.get('/delivered' , async (req,res) => { 
-    try {
-        const data = await orderService.getAllDeliveredOrders();
-        res.status(200).json(data);
-    } catch (error) {
-        res.status(400).json(error);
-    }
-})
-
-
 module.exports = router;

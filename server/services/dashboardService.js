@@ -1,16 +1,17 @@
 const dashboardModel = require('../models/dashboardModel');
+const orderModel = require('../models/orderModel');
 
 
-async function getDashboardData() { 
+async function getDashboardData() {
     return await dashboardModel.findOne({});
 }
 
 
-async function createDashboard() { 
-    const dashboard = new dashboardModel({ 
-        ordersDelivered : 0,
-        ordersReceived : 0,
-        earnings : 0,
+async function createDashboard() {
+    const dashboard = new dashboardModel({
+        ordersDelivered: 0,
+        ordersReceived: 0,
+        earnings: 0,
     })
 
     dashboard.save();
@@ -18,7 +19,14 @@ async function createDashboard() {
 }
 
 
-module.exports = { 
+async function getDeliveredOrders() {
+    const orderedProducts = await orderModel.find({ status: "Delivered" });
+    return await dashboardModel.updateOne({ ordersDelivered : orderedProducts.length });
+}
+
+
+module.exports = {
     getDashboardData,
     createDashboard,
+    getDeliveredOrders,
 }
