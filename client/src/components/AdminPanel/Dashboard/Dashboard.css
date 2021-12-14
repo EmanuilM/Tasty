@@ -89,10 +89,11 @@
 
 .charts-wrapper { 
     display: flex;
+    justify-content: center;
 }
 
 .line-chart-wrapper {
-    width: 60%;
+    width: 80%;
     margin-left: 46px;
 }
 

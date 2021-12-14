@@ -5,6 +5,7 @@
 }
 
 .product-images-wrapper ul li i { 
+   cursor: pointer;
    position: absolute;
    right: 0;
    padding: 3px;

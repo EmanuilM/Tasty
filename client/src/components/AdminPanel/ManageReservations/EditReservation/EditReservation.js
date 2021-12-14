@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux';
 import { loader } from '../../../../store/loader';
 import * as reservationService from '../../../../services/reservationService';
 import { useEffect, useState } from 'react';
+import { showAlert } from '../../../../store/alert-slice';
 
 const EditReservation = ({ match, history }) => {
 
     const dispatch = useDispatch();
 
-    const [reservation, setReservation] = useState([]);
+    const [reservation, setReservation] = useState({});
 
     const [errors, setErrors] = useState({
         firstName: false,
@@ -34,22 +35,24 @@ const EditReservation = ({ match, history }) => {
             .then(res => {
                 dispatch(loader());
                 setReservation(res);
-                console.log(res);
+                setFields((state) => ({ ...state, firstName: res.firstName, lastName: res.lastName, date: res.date, people: `${res.people} people`, time: res.time }))
             })
             .catch(error => {
                 dispatch(loader());
-                console.log(error);
             })
 
     }, [])
 
-    function onInputChangeHandler(e) { 
-        const {name , value} = e.target;
-        setErrors(state => ({ ...state, [name]: value === "" }));
+
+    function onInputChangeHandler(e) {
+        const { name, value } = e.target;
+        setErrors(state => ({ ...state, [name]: value === "" ? true : false }));
         setFields(state => ({ ...state, [name]: value }));
     }
 
-    const isFormValid = Object.values(errors).some(x => x !== false);
+    const isFormValid = Object.values(errors).some(x => x === true);
+
+
 
     function updateReservation(e) {
         e.preventDefault();
@@ -70,7 +73,7 @@ const EditReservation = ({ match, history }) => {
             })
             .catch(error => {
                 dispatch(loader());
-                console.log(error);
+                dispatch(showAlert(error));
             })
 
     }
@@ -81,28 +84,28 @@ const EditReservation = ({ match, history }) => {
                 <form onSubmit={updateReservation}>
                     <label>
                         First name
-                        <input type="text" name="firstName" defaultValue={reservation[0]?.firstName} onChange={onInputChangeHandler} />
+                        <input type="text" name="firstName" defaultValue={reservation.firstName} onChange={onInputChangeHandler} />
                         <div className="form-error-message">
                             {errors.firstName ? <small>Required!</small> : ""}
                         </div>
                     </label>
                     <label>
                         Last name
-                        <input type="text" name="lastName" defaultValue={reservation[0]?.lastName} onChange={onInputChangeHandler} />
+                        <input type="text" name="lastName" defaultValue={reservation.lastName} onChange={onInputChangeHandler} />
                         <div className="form-error-message">
                             {errors.lastName ? <small>Required!</small> : ""}
                         </div>
                     </label>
                     <label>
                         Date
-                        <input type="date" name="date" defaultValue={reservation[0]?.date} onChange={onInputChangeHandler} />
+                        <input type="date" name="date" defaultValue={reservation.date} onChange={onInputChangeHandler} />
                         <div className="form-error-message">
                             {errors.date ? <small>Required!</small> : ""}
                         </div>
                     </label>
                     <label>
                         People
-                        <select name="people" defaultValue={reservation[0]?.people} onChange={onInputChangeHandler}>
+                        <select name="people" defaultValue={reservation.people} onChange={onInputChangeHandler}>
                             <option>1 person</option>
                             <option>2 people</option>
                             <option>3 people</option>
@@ -113,7 +116,7 @@ const EditReservation = ({ match, history }) => {
                     </label>
                     <label>
                         Time
-                        <select name="time" defaultValue={reservation[0]?.time} onChange={onInputChangeHandler}>
+                        <select name="time" defaultValue={reservation.time} onChange={onInputChangeHandler}>
                             <option>7 pm</option>
                             <option>8 pm</option>
                             <option>9 pm</option>

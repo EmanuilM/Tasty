@@ -31,7 +31,7 @@ const AdminPanel = ({ setDailyMenuProducts }) => {
                 <section className="admin-page-wrapper">
                     <Aside />
                     <Switch>
-                        <Route path="/admin-panel" component={authState.userAuthState.isAdmin ? Dashboard : WelcomeToPanel } exact />
+                        <Route path="/admin-panel" component={authState.userAuthState.isAdmin ? Dashboard : WelcomeToPanel} exact />
                         <Route path="/admin-panel/tables" component={Tables} exact />
                         <Route path="/admin-panel/tables/details/:tableID" component={TableDetails} />
                         <Route path="/admin-panel/tables/manage/:tableID" component={ManageTables} />
@@ -39,26 +39,19 @@ const AdminPanel = ({ setDailyMenuProducts }) => {
                         <Route path="/admin-panel/manage/order/details/:id" component={OrderDetails} exact />
                         <Route path="/admin-panel/reservations" component={ManageReservations} exact />
                         <Route path="/admin-panel/reservations/edit/:id" component={EditReservation} exact />
-                        {authState.userAuthState.isAdmin ?
-                            <>
-                                <Route path="/admin-panel/tables/create" component={CreateTable} />
-                                <Route path="/admin-panel/manage/daily-menu" component={ManageDailyMenu} >
-                                    <ManageDailyMenu setDailyMenuProducts={setDailyMenuProducts} />
-                                </Route>
-                                <Route path="/admin-panel/daily-menu/product/create" component={AddProductToDalyMenu}>
-                                    <AddProductToDalyMenu setDailyMenuProducts={setDailyMenuProducts} />
-                                </Route>
-                                <Route path="/admin-panel/daily-menu/product/edit/:id" component={EditProduct} />
-                                <Route path="/admin-panel/manage/menu" component={ManageMenu} exact />
-                                <Route path="/admin-panel/manage/menu/add-product" component={AddProductToCategory} exact />
-                                <Route path="/admin-panel/manage/menu/:category" component={ManageMenuCategory} exact />
-                                <Route path="/admin-panel/manage/menu/product/edit/:id" component={EditMenuProduct} exact />
-                                <Route path="/admin-panel/discounts" component={ManageDiscounts} />
-                                <Route path="/admin-panel/make-account" component={MakeAccount} />
-                            </>
-                            : ""}
-
-
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/manage/daily-menu" component={ManageDailyMenu} >
+                            <ManageDailyMenu setDailyMenuProducts={setDailyMenuProducts} />
+                        </Route> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/daily-menu/product/create" component={AddProductToDalyMenu}>
+                            <AddProductToDalyMenu setDailyMenuProducts={setDailyMenuProducts} />
+                        </Route> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/daily-menu/product/edit/:id" component={EditProduct} exact /> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/manage/menu" component={ManageMenu} exact /> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/manage/menu/add-product" component={AddProductToCategory} exact /> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/manage/menu/:category" component={ManageMenuCategory} exact /> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/manage/menu/product/edit/:id" component={EditMenuProduct} exact /> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/discounts" component={ManageDiscounts} /> : ""}
+                        {authState.userAuthState.isAdmin ? <Route path="/admin-panel/make-account" component={MakeAccount} /> : ""}
 
                         <Route path="*" component={Dashboard} >
                             <Redirect to="/admin-panel" />

@@ -11,14 +11,14 @@ async function getAllReservations(page) {
     return await api.httpRequest(`/reservation/all?page=${page}`, options)
 }
 
-async function getReservationByID() { 
+async function getReservationByID(id) { 
     const options = {
         headers : { 
             'Content-Type' : 'application/json',
         },
         credentials: 'include'
     }
-    return await api.httpRequest(`/reservation/all`, options)
+    return await api.httpRequest(`/reservation/reservation/${id}`, options)
 }
 
 

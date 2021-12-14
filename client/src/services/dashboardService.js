@@ -10,6 +10,7 @@ async function getAllDiscounts(page) {
     return await api.httpRequest(`/dashboard`, options)
 }
 
+
 export { 
     getAllDiscounts,
 }

@@ -7,7 +7,6 @@ import * as orderService from '../../services/orderService';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../store/loader';
 import { showAlert } from '../../store/alert-slice';
-import { addProduct } from '../../store/order-slice';
 
 const Orders = (props) => {
     const dispatch = useDispatch();
@@ -51,22 +50,22 @@ const Orders = (props) => {
                             <Link to="/order/categories/meat">Meat</Link>
                         </li>
                         <li>
-                            <Link to="">Seafood</Link>
+                            <Link to="/order/categories/seafood">Seafood</Link>
                         </li>
                         <li>
-                            <Link to="">Salands</Link>
+                            <Link to="/order/categories/salads">Salands</Link>
                         </li>
                         <li>
-                            <Link to="">Pasta</Link>
+                            <Link to="/order/categories/pasta">Pasta</Link>
                         </li>
                         <li>
-                            <Link to="">Burgers</Link>
+                            <Link to="/order/categories/burgers">Burgers</Link>
                         </li>
                         <li>
-                            <Link to="">Desserts</Link>
+                            <Link to="/order/categories/desserts">Desserts</Link>
                         </li>
                         <li>
-                            <Link to="">Wines</Link>
+                            <Link to="/order/categories/wines">Wines</Link>
                         </li>
                     </ul>
                 </article>
