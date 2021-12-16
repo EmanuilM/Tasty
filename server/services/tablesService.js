@@ -53,6 +53,9 @@ async function deleteProduct(id, productsToDelete) {
     }
     return await tablesModel.findById(id);
 }
+
+
+
 module.exports = {
     getTables,
     getTableByID,

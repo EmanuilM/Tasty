@@ -3,7 +3,7 @@ const orderModel = require('../models/orderModel');
 
 
 async function getDashboardData() {
-    return await dashboardModel.findOne({});
+    return await dashboardModel.findOne({}) || createDashboard();
 }
 
 
@@ -24,9 +24,16 @@ async function getDeliveredOrders() {
     return await dashboardModel.updateOne({ ordersDelivered : orderedProducts.length });
 }
 
+async function increaseEarnings(money) { 
+    return await dashboardModel.updateOne({ $push : { earnings : money }})
+}
+
+
+
 
 module.exports = {
     getDashboardData,
     createDashboard,
     getDeliveredOrders,
+    increaseEarnings,
 }

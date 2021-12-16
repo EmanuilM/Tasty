@@ -6,7 +6,8 @@ dotenv.config({
     path : `${__dirname}/config/.env.${process.env.NODE_ENV.trim()}`
 });
 
-async function startServer() { 
+async function startServer() {
+    
     try {
         require('./config/db')
         require('./config/cloudinary')()

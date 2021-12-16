@@ -60,4 +60,14 @@ router.get('/:id' , auth , async (req,res) => {
     }
 })
 
+router.patch('/update-earnings' , async (req,res) => { 
+    try {
+       
+        const data = await discountService.increaseEarnings(req.params.money);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
 module.exports = router;
