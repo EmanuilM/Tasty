@@ -29,7 +29,7 @@ const EditProfile = ({ userData }) => {
     })
 
     useEffect(() => {
-        setFields((state) => ({ ...state, email: userData.email, username: userData.username }))
+        setFields((state) => ({ ...state, email: userData?.email, username: userData?.username }))
     }, [userData])
 
 

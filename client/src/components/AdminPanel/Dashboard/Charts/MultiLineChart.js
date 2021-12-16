@@ -43,7 +43,7 @@ export const MultiLineChart = () => {
                     datasets: [
                         {
                             label: "Earnings",
-                            data: earnings,
+                            data: earnings || 0,
                             fill: false,
                             borderColor: "orange",
                             tension: 0.1,
@@ -51,7 +51,7 @@ export const MultiLineChart = () => {
                         },
                         {
                             label: "Order delivered",
-                            data: ordersDelivered,
+                            data: ordersDelivered || 0,
                             fill: false,
                             borderColor: "blue",
                             tension: 0.1,
@@ -59,7 +59,7 @@ export const MultiLineChart = () => {
                         },
                         {
                             label: "Order received",
-                            data: ordersReceived,
+                            data: ordersReceived || 0,
                             fill: false,
                             borderColor: "red",
                             tension: 0.1,

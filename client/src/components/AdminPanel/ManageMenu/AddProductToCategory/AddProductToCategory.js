@@ -60,7 +60,6 @@ const AddProductToCategory = ({ history }) => {
     }
 
     const onFileDrop = (e) => {
-        console.log(e.target.files)
         Array.from(e.target.files).map(x => {
             if (x) {
                 setFilesList((state) => [...state, x]);

@@ -39,8 +39,8 @@ const Profile = () => {
                 <article className="my-profile">
                     <div className="about-profile">
                         <img src={profileImage} alt="image" />
-                        <h1>{userData.username}</h1>
-                        <p>{userData.email}</p>
+                        <h1>{userData?.username}</h1>
+                        <p>{userData?.email}</p>
                     </div>
                     <ul className="about-profile-links">
                         <li>

@@ -2,7 +2,7 @@ import './ProfileDetails.css';
 
 const ProfileDetails = ({ userData }) => {
     
-    const reservations = userData.reservations ? [...userData.reservations].reverse().slice(0, 8) : [];
+    const reservations = userData?.reservations ? [...userData.reservations].reverse().slice(0, 8) : [];
 
     return (
         <section className="my-profile-details-section-wrapper">
@@ -15,19 +15,19 @@ const ProfileDetails = ({ userData }) => {
                     <ul>
                         <li>
                             <span>First Name :</span>
-                            <span>{userData.firstName || "None"}</span>
+                            <span>{userData?.firstName || "None"}</span>
                         </li>
                         <li>
                             <span>Last Name :</span>
-                            <span>{userData.lastName || "None"}</span>
+                            <span>{userData?.lastName || "None"}</span>
                         </li>
                         <li>
                             <span>Phone number :</span>
-                            <span>{userData.phoneNumber || "None"}</span>
+                            <span>{userData?.phoneNumber || "None"}</span>
                         </li>
                         <li>
                             <span>Email :</span>
-                            <span>{userData.email}</span>
+                            <span>{userData?.email}</span>
                         </li>
                     </ul>
                 </article>

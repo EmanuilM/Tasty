@@ -77,7 +77,7 @@ const Orders = (props) => {
                         <ul>
                             {products?.length >= 1 ? products.map(x => {
 
-                                return <OrdersListItem key={x._id} productImage={x.images[0].imageURL} productName={x.productName} productDescription={x.productDescription} productPrice={x.productPrice} id={x._id} />
+                                return <OrdersListItem key={x._id} productImage={x.images[0]?.imageURL} productName={x.productName} productDescription={x.productDescription} productPrice={x.productPrice} id={x._id} />
                             }) : ""}
 
                         </ul>

@@ -83,7 +83,7 @@ function App() {
         {authState.isAuthenticated && <Route path="/order" component={Orders} exact />}
         {authState.isAuthenticated && <Route path="/order/categories/:category" component={Orders} exact />}
         {authState.isAuthenticated && <Route path="/order-check-out" component={OrderCheckOut} />}
-        {authState.isAuthenticated && <Route path="/my-profile" component={Profile} />}
+        {authState.isAuthenticated && <Route path="/my-profile" component={Profile} exact />}
 
         {authState.userAuthState.isAdmin || authState.userAuthState.isWorker ?
           <Route path="/admin-panel" component={AdminPanel}>

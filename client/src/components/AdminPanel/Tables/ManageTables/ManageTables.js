@@ -49,7 +49,6 @@ const ManageTables = ({ history, match }) => {
     }, [])
 
 
-    console.log(product);
 
     function reservedFunction(e) {
         if (e.target.value === "Reserved") {

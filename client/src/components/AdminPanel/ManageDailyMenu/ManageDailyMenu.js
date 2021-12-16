@@ -8,7 +8,6 @@ import { loader } from '../../../store/loader';
 
 
 const ManageDailyMenu = ({ setDailyMenuProducts }) => {
-    console.log(setDailyMenuProducts);
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
     useEffect(() => {

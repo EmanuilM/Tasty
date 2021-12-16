@@ -36,6 +36,7 @@
 }
 
  .close-alert { 
+    cursor: pointer;
     position: absolute;
     right: 9px;
     top: 7px;

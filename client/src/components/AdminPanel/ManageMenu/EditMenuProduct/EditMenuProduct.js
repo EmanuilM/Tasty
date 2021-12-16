@@ -34,7 +34,17 @@ const EditMenuProduct = ({ match , history }) => {
             dispatch(loader());
             menuService.update(match.params.id , id)
             .then(res => { 
-                setInitialData(res);
+                console.log(res);
+                menuService.getProductByID(match.params.id)
+                .then(res => {
+                    dispatch(loader());
+                    setInitialData(res);
+                })
+                .catch(error => {
+                    dispatch(loader());
+                    dispatch(showAlert(error));
+                })
+                dispatch(loader());
             })
             .catch(error => { 
                 console.log(error);

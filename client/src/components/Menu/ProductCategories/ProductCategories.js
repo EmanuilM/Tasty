@@ -45,7 +45,7 @@ const ProductCategories = ({ match, location }) => {
                 <article className="main-menu-products">
                     <ul>
                         {products.length <= 0 ? <h1>There's no products</h1> : products.map(x => {
-                            return <MainMenuProduct key={x._id} productName={x.productName} price={x.productPrice} image={x.images[0].imageURL} ingredients={x.productDescription} />
+                            return <MainMenuProduct key={x._id} productName={x.productName} price={x.productPrice} image={x.images[0]?.imageURL} ingredients={x.productDescription} />
                         })}
                     </ul>
                 </article>

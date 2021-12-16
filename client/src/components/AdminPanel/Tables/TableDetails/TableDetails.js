@@ -6,6 +6,7 @@ import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
 import * as menuService from '../../../../services/menuService';
 import * as tableService from '../../../../services/tablesService';
+import * as dashboardService from '../../../../services/dashboardService';
 
 
 
@@ -15,7 +16,8 @@ const TableDetails = ({ match, history }) => {
     const [tableProducts, setTableProducts] = useState([]);
     const [productDetails, setProductDetails] = useState([]);
     const [tableName, setTableName] = useState();
-    let totalPrice = 0;
+    const [totalPrice, setTotalPrice] = useState(0);
+    // let totalPrice = 0;
 
     useEffect(() => {
         dispatch(loader());
@@ -39,6 +41,28 @@ const TableDetails = ({ match, history }) => {
             })
     }, [])
 
+    useEffect(() => {
+        if (tableProducts.length > 0 && productDetails.length) {
+            let price = 0;
+            tableProducts.map((x, i) => {
+                price += productDetails[i]?.productPrice * x.quantity;
+            })
+            setTotalPrice(price);
+        }
+    }, [tableProducts, productDetails])
+
+    async function increaseEarnings(totalPrice) {
+        dispatch(loader());
+        dashboardService.increaseEarnings(totalPrice)
+            .then(res => {
+                dispatch(loader());
+                console.log(res);
+            })
+            .catch(error => {
+                dispatch(loader());
+                console.log(error);
+            })
+    }
 
 
     return (
@@ -47,12 +71,12 @@ const TableDetails = ({ match, history }) => {
             <ul className="admin-page-table-details-info">
 
                 {tableProducts.length ? tableProducts.map((x, i) => {
-                    totalPrice += productDetails[i]?.productPrice * x.quantity;
+                    // totalPrice += productDetails[i]?.productPrice * x.quantity;
                     return <TableDetailsProductList
                         key={i}
                         id={x._id}
                         tableID={match.params.tableID}
-                        productImage={productDetails[i]?.images[0].imageURL}
+                        productImage={productDetails[i]?.images[0]?.imageURL}
                         productName={x.productName}
                         productQuantity={x.quantity}
                         productPrice={productDetails[i]?.productPrice * x.quantity}
@@ -64,7 +88,7 @@ const TableDetails = ({ match, history }) => {
             {tableProducts.length ?
                 <div className="table-details-total-price-info">
                     <h3>Total price : {totalPrice} $</h3>
-                    <button className="table-details-pay-button">Check as paid</button>
+                    <button className="table-details-pay-button" onClick={() => increaseEarnings(totalPrice)}>Check as paid</button>
                 </div> :
                 <div className="table-details-back-button-wrapper">
                     <button className="table-details-back-button" onClick={history.goBack}>Go back</button>

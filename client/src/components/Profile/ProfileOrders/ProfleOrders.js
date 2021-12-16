@@ -8,7 +8,7 @@ import image from '../../../assets/mealpicture.jpg';
 import { Link, useLocation } from 'react-router-dom';
 const ProfileOrders = ({ userData }) => {
 
-    const orders = userData.orders ? [...userData.orders].reverse().slice(0, 10) : [];
+    const orders = userData?.orders ? [...userData.orders].reverse().slice(0, 10) : [];
 
     return (
         <section className="profile-orders-wrapper">

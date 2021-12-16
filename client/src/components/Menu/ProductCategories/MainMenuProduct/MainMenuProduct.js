@@ -11,10 +11,6 @@ const MainMenuProduct = (props) => {
                 <span>Ingredients : </span>
                 <span>{props.ingredients}</span>
             </p>
-            {/* <p className="main-menu-product-weight">
-                <span>Weight : </span>
-                <span>{props.weight}</span>
-            </p> */}
         </li>
     )
 

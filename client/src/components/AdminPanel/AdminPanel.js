@@ -33,6 +33,7 @@ const AdminPanel = ({ setDailyMenuProducts }) => {
                     <Switch>
                         <Route path="/admin-panel" component={authState.userAuthState.isAdmin ? Dashboard : WelcomeToPanel} exact />
                         <Route path="/admin-panel/tables" component={Tables} exact />
+                        <Route path="/admin-panel/tables/create" component={CreateTable} exact />
                         <Route path="/admin-panel/tables/details/:tableID" component={TableDetails} />
                         <Route path="/admin-panel/tables/manage/:tableID" component={ManageTables} />
                         <Route path="/admin-panel/manage/orders/:page" component={ManageOrders} exact />
