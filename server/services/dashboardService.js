@@ -25,7 +25,7 @@ async function getDeliveredOrders() {
 }
 
 async function increaseEarnings(money) { 
-    return await dashboardModel.updateOne({ $push : { earnings : money }})
+    return await dashboardModel.updateOne({ $inc : { earnings : money }});
 }
 
 

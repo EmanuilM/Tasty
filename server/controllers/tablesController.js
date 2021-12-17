@@ -62,6 +62,15 @@ router.patch('/delete-product/:id' , auth , isWorker ,  async (req,res) => {
     }
 })
 
+router.patch('/change-status/:id' , async (req,res) => { 
+    try {
+        const data = await tablesService.changeTableStatusToActive(req.params.id);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
 
 
 module.exports = router;

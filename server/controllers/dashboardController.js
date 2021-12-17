@@ -33,6 +33,15 @@ router.get('/delivered-orders', auth, isAdmin, async (req, res) => {
 })
 
 
+router.patch('/update-earnings' , auth, isAdmin , async (req,res) => {
+    try {
+        const data = await dashboardService.increaseEarnings(req.body.money);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
 
 
 
