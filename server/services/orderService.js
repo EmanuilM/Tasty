@@ -12,7 +12,7 @@ async function getAllProducts(category, page) {
         )
     } else {
         return Promise.all([
-            menuModel.find({}),
+            menuModel.find({ category }),
             menuModel.find({ category }).skip((page - 1) * 12).limit(12)
         ])
     }

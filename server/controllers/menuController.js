@@ -76,9 +76,9 @@ router.post('/edit-product/:id' , auth , isAdmin ,  async (req,res) => {
     }
 })
 
-router.post('/delete-image/:id' , auth , isAdmin , async (req,res) => { 
+router.post('/delete-image/:imageID/:productID' , auth , isAdmin , async (req,res) => { 
     try {
-        const data = await deleteImageFromCloudinary(req.params.id);
+        const data = await menuService.deleteImage(req.params.imageID , req.params.productID);
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);

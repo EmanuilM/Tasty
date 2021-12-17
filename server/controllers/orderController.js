@@ -19,7 +19,7 @@ router.get('/' , auth , isWorker , async (req,res) => {
 
 router.get('/all-products/:category', async (req, res) => {
     try {
-        const data = await orderService.getAllProducts(req.params.category, Number(req.query.page))
+        const data = await orderService.getAllProducts(req.params.category, Number(req.query.page));
         res.status(200).json(data);
     } catch (error) {
         res.status(400).json(error);

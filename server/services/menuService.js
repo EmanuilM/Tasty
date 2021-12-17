@@ -1,8 +1,8 @@
 const menuModel = require("../models/menuModel");
 const cloudinaryService = require("./cloudinaryService");
-const { uploadImageToCloudinary } = require("../services/cloudinaryService");
+const { uploadImageToCloudinary, deleteImageFromCloudinary } = require("../services/cloudinaryService");
 
-async function getAllProducts() { 
+async function getAllProducts() {
   return await menuModel.find();
 }
 
@@ -10,24 +10,24 @@ async function getProductsByMenuCategory(category) {
   return await menuModel.find({ category: category });
 }
 
-async function getProductByName(productName) { 
-  return await menuModel.findOne({productName});
+async function getProductByName(productName) {
+  return await menuModel.findOne({ productName });
 }
 
-async function getNext(category , page) { 
+async function getNext(category, page) {
   return Promise.all([
     getProductsByMenuCategory(category),
-    menuModel.find({category : category }).skip((page  - 1) * 9 ).limit(9)
+    menuModel.find({ category: category }).skip((page - 1) * 9).limit(9)
   ])
- 
+
 }
 
 
 async function createProduct(data, files) {
   const imageCollection = [];
-  const isProductExist = await menuModel.findOne({productName : data.productName});
-  if(isProductExist) { 
-    throw({message : "This product already exist!"});
+  const isProductExist = await menuModel.findOne({ productName: data.productName });
+  if (isProductExist) {
+    throw ({ message: "This product already exist!" });
   }
   if (typeof data.productPrice === "string") {
     throw { message: "Product price must be a number" };
@@ -48,7 +48,7 @@ async function createProduct(data, files) {
         throw { message: "File cannot be over 10 MB" };
       }
     });
-  }else { 
+  } else {
     if (!/image\/(jpg|jpeg|png)$/.test(files.image.mimetype)) {
       throw { message: "Unsupported file extension! We support jpg/jpeg/png file extensions!" };
     }
@@ -64,12 +64,12 @@ async function createProduct(data, files) {
     await Promise.all(
       files.image.map(async (x) => {
         const [image, imageID] = await uploadImageToCloudinary(x.filepath);
-        imageCollection.push({imageURL :image, imageID : imageID});
+        imageCollection.push({ imageURL: image, imageID: imageID });
       })
     )
   } else {
     const [image, imageID] = await uploadImageToCloudinary(files.image.filepath);
-    imageCollection.push({imageURL :image, imageID : imageID});
+    imageCollection.push({ imageURL: image, imageID: imageID });
 
   }
   const product = new menuModel({
@@ -81,7 +81,7 @@ async function createProduct(data, files) {
   });
   product.save();
 
-  return [product , imageCollection];
+  return [product, imageCollection];
 
 }
 
@@ -127,6 +127,27 @@ async function updateProduct(id, deleteImageID) {
   return await menuModel.findById(id);
 }
 
+async function deleteImage(imageID, productID) {
+  const isImageDeleted = await deleteImageFromCloudinary(imageID);
+  if (isImageDeleted.result === "ok") {
+    const currentProduct = await menuModel.findById(productID).lean();
+    currentProduct.images.map(async (x) => {
+      if (x.imageID.split('/')[1] === imageID) {
+        const index = currentProduct.images.findIndex(y => x.imageID.split('/')[1] === y.imageID.split('/')[1]);
+        if (index !== -1) {
+          const currentImageData = currentProduct.images[index];
+
+          await menuModel.updateOne({ _id: productID }, { $pull: { images: currentImageData } })
+
+        }
+      }
+    })
+  }
+
+  return await menuModel.findById(productID);
+
+}
+
 
 module.exports = {
   getAllProducts,
@@ -138,4 +159,5 @@ module.exports = {
   editProduct,
   updateProduct,
   getNext,
+  deleteImage,
 };
