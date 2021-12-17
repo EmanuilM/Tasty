@@ -23,6 +23,7 @@ const Orders = (props) => {
         orderService.getAllProducts(category, page || 1)
             .then(([allProducts, filteredProducts]) => {
                 dispatch(loader());
+                console.log(allProducts);
                 setProducts(filteredProducts);
                 setPages(Array.from({ length: Math.ceil(allProducts.length / 12) }, (v, i) => i + 1))
             })
@@ -31,6 +32,8 @@ const Orders = (props) => {
                 dispatch(showAlert(error));
             })
     }, [props.location])
+
+
 
     return (
         <main>

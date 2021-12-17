@@ -90,9 +90,9 @@ const Header = ({ dailyMenuProducts }) => {
                         <li>
                             <Link onClick={activateSmallScreenView} to="/">Home</Link>
                         </li>
-                        <li>
+                        {dailyMenuProducts.some(x => x.length > 0) ? <li>
                             <Link onClick={activateSmallScreenView} to="/daily-menu">Daily Menu</Link>
-                        </li>
+                        </li> : ""}
                         <li>
                             <Link onClick={activateSmallScreenView} to="/menu">Menu</Link>
                         </li>

@@ -59,11 +59,6 @@ const Dashboard = () => {
                     <h3>Activity</h3>
                     <MultiLineChart data={dashboard} />
                 </article >
-                {/* <article className="doughnut-chart-wrapper">
-                    <h3>Top Selling Products</h3>
-                    <DoughnutChart data={dashboard} />
-
-                </article> */}
             </section>
         </section>
     )

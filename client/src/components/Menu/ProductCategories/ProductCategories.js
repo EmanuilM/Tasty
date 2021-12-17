@@ -5,9 +5,8 @@ import * as menuService from '../../../services/menuService';
 import { useDispatch } from 'react-redux';
 import { } from '../../../'
 import { loader } from '../../../store/loader';
-import { useEffect } from 'react';
+import { useEffect , useState } from 'react';
 import { showAlert } from '../../../store/alert-slice';
-import { useState } from 'react/cjs/react.development';
 import { Link } from 'react-router-dom';
 
 
@@ -34,6 +33,7 @@ const ProductCategories = ({ match, location }) => {
             })
 
     }, [location.search])
+
 
     return (
         <main>

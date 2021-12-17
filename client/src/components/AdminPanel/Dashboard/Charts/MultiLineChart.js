@@ -6,7 +6,6 @@ import * as dashboardService from '../../../../services/dashboardService';
 
 
 export const MultiLineChart = () => {
-    const [size , setSize] = useState(130);
 
     const disaptch = useDispatch();
 

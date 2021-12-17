@@ -33,11 +33,7 @@ function App() {
   const [dailyMenuProducts, setDailyMenuProducts] = useState([]);
 
 
-
-
-
   const dispatch = useDispatch();
-  const location = useLocation();
 
   useEffect(() => {
     dispatch(loader());

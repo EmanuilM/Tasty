@@ -12,6 +12,7 @@
 
 .main-menu-product-name { 
     font-weight: bold;
+    width: 300px;
 }
 
 .main-menu-product-ingredients span:nth-child(1) { 

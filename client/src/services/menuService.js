@@ -79,12 +79,12 @@ async function editProduct(id , data) {
 }
 
 
-async function deleteImage(id) { 
+async function deleteImage(imageID , productID) { 
     const options = {
         method: 'POST',
         credentials: 'include'
     }
-    return await api.httpRequest(`/menu/delete-image/${id}`, options)
+    return await api.httpRequest(`/menu/delete-image/${imageID}/${productID}`, options)
 }
 
 

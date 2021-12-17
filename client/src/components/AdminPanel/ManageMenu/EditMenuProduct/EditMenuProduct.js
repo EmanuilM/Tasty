@@ -6,7 +6,7 @@ import { loader } from '../../../../store/loader';
 import { showAlert } from '../../../../store/alert-slice';
 import ProductImage from './ProductImage/ProductImage';
 
-const EditMenuProduct = ({ match , history }) => {
+const EditMenuProduct = ({ match, history }) => {
 
     const dispatch = useDispatch();
 
@@ -19,6 +19,7 @@ const EditMenuProduct = ({ match , history }) => {
         menuService.getProductByID(match.params.id)
             .then(res => {
                 dispatch(loader());
+                console.log(res);
                 setInitialData(res);
             })
             .catch(error => {
@@ -27,34 +28,18 @@ const EditMenuProduct = ({ match , history }) => {
             })
     }, []);
 
-    const deleteImage = (id) => { 
+    const deleteImage = (id) => {
         dispatch(loader());
-        menuService.deleteImage(id.split('/')[1])
-        .then(res => { 
-            dispatch(loader());
-            menuService.update(match.params.id , id)
-            .then(res => { 
-                console.log(res);
-                menuService.getProductByID(match.params.id)
-                .then(res => {
-                    dispatch(loader());
-                    setInitialData(res);
-                })
-                .catch(error => {
-                    dispatch(loader());
-                    dispatch(showAlert(error));
-                })
+        menuService.deleteImage(id.split('/')[1] , match.params.id)
+            .then(res => {
                 dispatch(loader());
+                setInitialData(res);
             })
-            .catch(error => { 
+            .catch(error => {
+                dispatch(loader());
+                dispatch(showAlert(error));
                 console.log(error);
             })
-        })
-        .catch(error => { 
-            dispatch(loader());
-            dispatch(showAlert(error));
-            console.log(error);
-        })
     }
 
     const onSubmiHandler = (e) => {
@@ -117,7 +102,7 @@ const EditMenuProduct = ({ match , history }) => {
                         <h1>Product images</h1>
                         <ul>
                             {initialData?.images.map(x => {
-                                return <ProductImage key={x.imageID} data={x} deleteImage={deleteImage} / >
+                                return <ProductImage key={x.imageID} data={x} deleteImage={deleteImage} />
                             })}
                         </ul>
 
