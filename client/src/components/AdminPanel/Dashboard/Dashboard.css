@@ -19,7 +19,7 @@
 
 
 .delivery-stats {
-    background: url('https://img.freepik.com/free-vector/gradient-dynamic-blue-lines-background_23-2148995756.jpg?size=626&ext=jpg&ga=GA1.2.1687694167.1632268800');
+    background: url('../../../assets//ordersDeliverdBackground.jpg');
     width: 300px;
     height: 100px;
     color: white;
@@ -27,14 +27,14 @@
 
 
 .order-received-stats {
-    background: url('https://media.istockphoto.com/vectors/abstract-red-geometric-vector-background-can-be-used-for-cover-design-vector-id1128461010?k=20&m=1128461010&s=612x612&w=0&h=nYkQ0E10Ejf6B-32l_gvl7GkZ_sY025m63eo9c29nks=');
+    background: url('../../../assets/ordersReceivedBackground.jpg');
     width: 300px;
     height: 100px;
     color: white;
 }
 
 .earnings-stats{
-    background: url('https://media.istockphoto.com/photos/abstract-orange-background-picture-id679762938?k=20&m=679762938&s=170667a&w=0&h=2w542_6ysiXx6WFHtRB6liiPPMkEJGP4ltcRAVhFmD0=');
+    background: url('../../../assets/earningsBackground.jpg');
     width: 300px;
     height: 100px;
     color: white;
