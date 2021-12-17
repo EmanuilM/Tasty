@@ -74,16 +74,16 @@ function App() {
 
       <Switch>
         <Route path="/" component={HomePage} exact />
-        {!authState.isAuthenticated && <Route path="/sign-up" component={Register} />}
-        {!authState.isAuthenticated && <Route path="/sign-in" component={Login} />}
+        {!authState.isAuthenticated ? <Route path="/sign-up" component={Register} /> : ""}
+        {!authState.isAuthenticated ? <Route path="/sign-in" component={Login} /> : ""}
         <Route path="/daily-menu" component={DailyMenu} />
         <Route path="/menu" component={Menu} exact />
         <Route path="/menu/categories/:category" component={ProductCategories} />
-        {authState.isAuthenticated && <Route path="/reservation/:page" component={Reservation} />}
-        {authState.isAuthenticated && <Route path="/order" component={Orders} exact />}
-        {authState.isAuthenticated && <Route path="/order/categories/:category" component={Orders} exact />}
-        {authState.isAuthenticated && <Route path="/order-check-out" component={OrderCheckOut} />}
-        {authState.isAuthenticated && <Route path="/my-profile" component={Profile} exact />}
+        {authState.isAuthenticated ? <Route path="/reservation/:page" component={Reservation} /> : ""}
+        {authState.isAuthenticated ? <Route path="/order" component={Orders} exact /> : ""}
+        {authState.isAuthenticated ? <Route path="/order/categories/:category" component={Orders} exact /> : ""}
+        {authState.isAuthenticated ? <Route path="/order-check-out" component={OrderCheckOut} /> : ""}
+        {authState.isAuthenticated ? <Route path="/my-profile" component={Profile}  /> : ""}
 
         {authState.userAuthState.isAdmin || authState.userAuthState.isWorker ?
           <Route path="/admin-panel" component={AdminPanel}>

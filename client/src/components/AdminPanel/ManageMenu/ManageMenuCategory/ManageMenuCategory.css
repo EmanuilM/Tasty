@@ -21,11 +21,12 @@
 .manage-menu-products ul li { 
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 
 .manage-menu-products ul li p{ 
-    width: 170px;
+    width: 343px;
 }
 
 .add-product-button-wrapper { 

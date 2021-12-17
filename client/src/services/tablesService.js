@@ -70,6 +70,17 @@ async function deleteProduct(id, produtToDelete) {
 }
 
 
+async function changeTableStatusToActive(id) {
+    const options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+    }
+    return await api.httpRequest(`/tables/change-status/${id}`, options)
+}
+
 
 
 export {
@@ -79,4 +90,5 @@ export {
     deleteTable,
     addProduct,
     deleteProduct,
+    changeTableStatusToActive,
 }

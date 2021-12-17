@@ -3,7 +3,6 @@ import TableDetailsProductList from './TableDetailsProductList/TableDetailsProdu
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loader } from '../../../../store/loader';
-import { showAlert } from '../../../../store/alert-slice';
 import * as menuService from '../../../../services/menuService';
 import * as tableService from '../../../../services/tablesService';
 import * as dashboardService from '../../../../services/dashboardService';
@@ -17,7 +16,6 @@ const TableDetails = ({ match, history }) => {
     const [productDetails, setProductDetails] = useState([]);
     const [tableName, setTableName] = useState();
     const [totalPrice, setTotalPrice] = useState(0);
-    // let totalPrice = 0;
 
     useEffect(() => {
         dispatch(loader());
@@ -51,12 +49,18 @@ const TableDetails = ({ match, history }) => {
         }
     }, [tableProducts, productDetails])
 
-    async function increaseEarnings(totalPrice) {
+    async function increaseEarnings(totalPrice, tableID) {
         dispatch(loader());
         dashboardService.increaseEarnings(totalPrice)
             .then(res => {
                 dispatch(loader());
-                console.log(res);
+                tableService.changeTableStatusToActive(tableID)
+                    .then(res => {
+                        history.push('/admin-panel/tables');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             })
             .catch(error => {
                 dispatch(loader());
@@ -71,7 +75,6 @@ const TableDetails = ({ match, history }) => {
             <ul className="admin-page-table-details-info">
 
                 {tableProducts.length ? tableProducts.map((x, i) => {
-                    // totalPrice += productDetails[i]?.productPrice * x.quantity;
                     return <TableDetailsProductList
                         key={i}
                         id={x._id}
@@ -88,7 +91,7 @@ const TableDetails = ({ match, history }) => {
             {tableProducts.length ?
                 <div className="table-details-total-price-info">
                     <h3>Total price : {totalPrice} $</h3>
-                    <button className="table-details-pay-button" onClick={() => increaseEarnings(totalPrice)}>Check as paid</button>
+                    <button className="table-details-pay-button" onClick={() => increaseEarnings(totalPrice, match.params.tableID)}>Check as paid</button>
                 </div> :
                 <div className="table-details-back-button-wrapper">
                     <button className="table-details-back-button" onClick={history.goBack}>Go back</button>
