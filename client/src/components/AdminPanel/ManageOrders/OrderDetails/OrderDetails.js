@@ -103,7 +103,7 @@ const OrderDetails = ({ match, history }) => {
                                 <p>{x.productName}</p>
                                 <p>x {x.quantity}</p>
                                 <p>{x.productPrice} $</p>
-                                <p>{x.productPrice * x.quantity} $</p>
+                                <p>{(x.productPrice * x.quantity).toFixed(2)} $</p>
                             </div>
                         })}
 
