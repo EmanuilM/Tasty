@@ -106,7 +106,7 @@ async function createAccountForWorkers({ email, username, password, repeatPasswo
     let isAdmin = false;
     let isWorker = false;
     if(type === 'Admin') { 
-        account = true;
+        isAdmin = true;
     }else if(type === 'Worker') { 
         isWorker = true;
     }

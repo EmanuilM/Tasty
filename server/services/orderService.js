@@ -104,7 +104,7 @@ async function updateOrder(id, status) {
     await orderModel.updateOne({ _id: id }, { status: status[0] });
     const order = await orderModel.findById(id);
     if (order.status === "Delivered") {
-        await dashboardModel.updateOne({ $inc: { earnings: order.totalPrice } });
+        await dashboardModel.updateOne({ $inc: { earnings: order.totalPrice , ordersDelivered : 1 } } );
     }
     return order;
 }
