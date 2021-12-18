@@ -1,5 +1,4 @@
 import './Orders.css';
-import image from '../../assets/menuImages/orderMenuImages/orderMenu.jpg'
 import OrdersListItem from './OrdersListItem/OrdersListItem';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -23,7 +22,6 @@ const Orders = (props) => {
         orderService.getAllProducts(category, page || 1)
             .then(([allProducts, filteredProducts]) => {
                 dispatch(loader());
-                console.log(allProducts);
                 setProducts(filteredProducts);
                 setPages(Array.from({ length: Math.ceil(allProducts.length / 12) }, (v, i) => i + 1))
             })

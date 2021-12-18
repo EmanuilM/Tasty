@@ -29,6 +29,7 @@
 }
 
 .order-menu-product-buttons-wrapper button { 
+    cursor: pointer;
     margin: 7px;
 }
 

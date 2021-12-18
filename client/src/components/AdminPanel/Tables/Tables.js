@@ -34,17 +34,14 @@ const Tables = () => {
 
 
     const deleteTable = (id) => {
-        console.log(id)
         dispatch(loader());
         tablesService.deleteTable(id)
             .then(res => {
                 dispatch(loader());
                 setTables(res);
-                console.log(res);
             })
             .catch(error => {
                 dispatch(loader());
-                console.log(error);
             })
     }
 

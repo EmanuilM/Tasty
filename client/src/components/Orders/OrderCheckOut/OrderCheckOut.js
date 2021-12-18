@@ -84,8 +84,8 @@ const OrderCheckOut = ({ history }) => {
             street: e.target.street.value,
             flatNumber: e.target.flatNumber.value,
             shipping: shipping,
-            totalPrice: total,
-            discount: discount,
+            totalPrice: total.toFixed(2),
+            discount: discount.toFixed(2),
             note: e.target.note.value,
         }
 
@@ -218,7 +218,7 @@ const OrderCheckOut = ({ history }) => {
                         <article className="checkout-page-order-price-wrapper">
                             <div>
                                 <p>Subtotal : </p>
-                                <p>{subtotal} $</p>
+                                <p>{(subtotal).toFixed(2)} $</p>
                             </div>
                             <div>
                                 <p>Discount : </p>
@@ -230,7 +230,7 @@ const OrderCheckOut = ({ history }) => {
                             </div>
                             <div>
                                 <p>Total : </p>
-                                <p>{total} $</p>
+                                <p>{(total).toFixed(2)} $</p>
                             </div>
                         </article>
 

@@ -22,7 +22,7 @@ export const OrderItems = ({ productName, productPrice, image, quantity ,  id })
                     <button onClick={() => dispatch(decreseProductQuantity(id))}>-</button>
                     <p className="checkout-page-product-quantity">{quantity}</p>
                     <button onClick={() => dispatch(increateProductQuantity(id))}>+</button>
-                    <p className="checkout-page-product-price">x {productPrice * quantity} $</p>
+                    <p className="checkout-page-product-price">x {(productPrice * quantity).toFixed(2)} $</p>
                 </div>
             </div>
             <i className="fas fa-times checkout-page-remove-product" onClick={() => removeProductFromShoppingCart(id)}></i>

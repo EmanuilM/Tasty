@@ -12,7 +12,6 @@ const Reservation = ({ history , location }) => {
 
     const dispatch = useDispatch();
 
-    console.log()
 
     const [formData, setFormData] = useState({
         people: '1',

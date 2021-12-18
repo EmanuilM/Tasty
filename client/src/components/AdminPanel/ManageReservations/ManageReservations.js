@@ -21,7 +21,6 @@ const ManageReservations = ({ location }) => {
         reservationService.getAllReservations(page || 1)
             .then(([allReservations, filteredReservations]) => {
                 dispatch(loader());
-                console.log(allReservations);
                 setReservations(filteredReservations);
                 setPages(Array.from({ length: Math.ceil(allReservations.length / 10) }, (v, i) => i + 1))
             })

@@ -27,14 +27,14 @@ const orderSlice = createSlice({
                         state = JSON.parse(localStorage.getItem('orders'));
                     }
 
-                    if (!isExists) {
-                        isExists = true;
-                        data.push(action.payload);
-                        localStorage.setItem("orders", JSON.stringify(data));
-                        state = JSON.parse(localStorage.getItem('orders'));
-                    }
-
                 })
+                
+                if (!isExists) {
+                    isExists = true;
+                    data.push(action.payload);
+                    localStorage.setItem("orders", JSON.stringify(data));
+                    state = JSON.parse(localStorage.getItem('orders'));
+                }
 
             }
             return state;

@@ -6,7 +6,7 @@ import { showAlert } from '../../../store/alert-slice';
 import emailRegex from '../../../utils/emailRegex';
 import { useState } from 'react';
 
-const MakeAccount = () => {
+const MakeAccount = ({ history }) => {
 
     const dispatch = useDispatch();
 
@@ -55,12 +55,12 @@ const MakeAccount = () => {
         authService.createAccountForWorkers(formData)
             .then(res => {
                 dispatch(loader());
-                console.log(res);
+                history.push('/admin-panel');
+
             })
             .catch(error => {
                 dispatch(loader());
                 dispatch(showAlert(error));
-                console.log(error);
             })
     }
 
@@ -85,14 +85,14 @@ const MakeAccount = () => {
                     </label>
                     <label>
                         Password
-                        <input type="text" name="password" onChange={onInputChangeHandler} />
+                        <input type="password" name="password" onChange={onInputChangeHandler} />
                         <div className="form-error-message">
                             {errors.password ? <small>Password is required!</small> : ""}
                         </div>
                     </label>
                     <label>
                         Repeat password
-                        <input type="text" name="repeatPassword" onChange={onInputChangeHandler} />
+                        <input type="password" name="repeatPassword" onChange={onInputChangeHandler} />
                         <div className="form-error-message">
                             {errors.repeatPassword ? <small>Passwords does not match!</small> : ""}
                         </div>

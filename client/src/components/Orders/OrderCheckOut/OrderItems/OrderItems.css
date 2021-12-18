@@ -1,7 +1,6 @@
 .checkout-page-ordered-product-wrapper { 
     display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    margin: 30px;
 }
 
 .checkout-page-ordered-product-wrapper img { 
@@ -25,10 +24,10 @@
 }
 
 .checkout-page-remove-product { 
+    cursor: pointer;
     color: gray;
     margin: 15px 0px 0px 10px;
     height: 15px;
-    
 }
 
 .checkout-page-remove-product:hover { 

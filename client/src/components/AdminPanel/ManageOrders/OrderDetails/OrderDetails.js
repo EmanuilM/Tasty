@@ -142,15 +142,12 @@ const OrderDetails = ({ match, history }) => {
                             <h3>Order Created:</h3>
                             <p>{orderDetails.orderCreated}</p>
                         </div>
-                        <div>
-                            <h3>Order time:</h3>
-                            <p>asdasdasd</p>
-                        </div>
+                      
                         <div>
                             <h3>Subtotal:</h3>
                             <p>{orderDetails.orderedProducts?.map(x => { 
                                 subtotal += Number(x.productPrice) * Number(x.quantity)
-                            })} {subtotal}$</p>
+                            })} {(subtotal).toFixed(2)}$</p>
                         </div>
                         <div>
                             <h3>Shipping:</h3>

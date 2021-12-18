@@ -95,6 +95,7 @@ table,td,th {
 
 
 .admin-page-manage-tables-actions-wrapper i:hover { 
+   cursor: pointer;
    color: tomato;
 }
 

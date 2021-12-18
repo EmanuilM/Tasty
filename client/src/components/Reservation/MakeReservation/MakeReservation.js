@@ -8,18 +8,22 @@ import { useState } from 'react';
 
 
 
-const MakeReservation = ({ onInputChangeHandler , formData }) => {
+const MakeReservation = ({ onInputChangeHandler, formData }) => {
 
     const dispatch = useDispatch();
 
     const [freeTables, setFreeTables] = useState([]);
+    const [isFreeTablesFound, setFoundFreeTable] = useState(true);
 
     function getFreeTables() {
         dispatch(loader());
         reservationService.getFreeTables()
             .then(res => {
                 dispatch(loader());
-                setFreeTables(res);
+                setFreeTables(res)
+                if(!res.length) { 
+                    setFoundFreeTable(false);
+                }
             })
             .catch(error => {
                 dispatch(loader());
@@ -27,7 +31,7 @@ const MakeReservation = ({ onInputChangeHandler , formData }) => {
             })
     }
 
-   
+
     const isFindTableValid = formData.people !== '' && formData.date !== '' && formData.time !== '';
 
     return (
@@ -54,12 +58,13 @@ const MakeReservation = ({ onInputChangeHandler , formData }) => {
 
             <article className="reservation-free-tables">
                 {freeTables.map(x => {
-                   return <Link key={x._id} to={`details?table=${x.name}`} >
+                    return <Link key={x._id} to={`details?table=${x.name}`} >
                         <button className="free-reservation-btn">{x.name}</button>
                     </Link>
                 })}
+                {!isFreeTablesFound ? <h1>There's no free tables yet!</h1> : ""}
+                
 
-              
             </article>
         </Fragment>
     )
